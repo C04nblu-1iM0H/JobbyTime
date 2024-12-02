@@ -1,0 +1,280 @@
+@use '../../../style/mixins.scss' as mixin;
+
+
+.data{
+    background-color: hsla(220, 100%, 97%, 1);
+    box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+    margin-top: 10px;
+    width: 1002px;
+    border-radius: 16px;
+    padding: 24px;
+    margin-left: 24px;
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    @include mixin.flex(center, center);
+    z-index: 9999;
+
+    &__block{
+        width: 1002px;
+        height: 639px;
+        @include mixin.flex(flex-start, center, column);
+        background: hsla(0, 0%, 100%, 1);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+    }
+
+    &__wrapper{
+        width: 100%;
+        @include mixin.flex(flex-start, center, column);
+
+        &__title{
+            @include mixin.font('Inter_Medium', 24px, 30px, 600);
+            color:hsla(0, 0%, 24%, 1);
+            margin-bottom: 12px;
+        }
+
+        &__description{
+            @include mixin.font('Inter_Light', 12px, 18px, 400);
+            color:hsla(220, 9%, 46%, 1);
+        }
+    }
+
+
+
+    &__form{
+
+        width: 100%;
+
+        &__block{
+            display: flex;
+            justify-content: end;
+            
+            &__button{
+                width: 240px;
+                height: 37px;
+                border-radius: 999px;
+                border: 1px solid hsla(163, 93%, 22%, 1);
+                padding: 2px 5px;
+                @include mixin.font('Inter_Medium', 14px, 21px, 500);
+                background: transparent;
+                color: hsla(163, 93%, 22%, 1);
+            
+            }
+        }
+
+
+        &__hr{
+            width: 954px;
+            border: 0.5px solid hsla(216, 12%, 84%, 1);
+        }
+
+        &__container{
+            display: flex;
+            justify-content: space-between;
+            margin: 24px 0;
+
+            &:nth-child(5){
+                .modal__form__container__group__input {
+                    @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                    color: hsla(241, 68%, 62%, 1);
+                }
+            }
+            &:nth-child(6){
+                .modal__form__container__group__input {
+                    @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                    color: hsla(241, 68%, 62%, 1);
+                }
+            }
+
+            &__group{
+                display: flex;
+                flex-direction: column;
+
+                &__label{
+                    @include mixin.font('Inter_Regular', 14px, 21px, 500);
+                    color:hsla(219, 40%, 11%, 1);
+                    margin-bottom: 8px;
+                }
+
+                &__input {
+                    width: 302px;
+                    height: 42px;
+                    outline: none;
+                    border: 1px solid hsla(234, 95%, 85%, 1);
+                    border-radius: 8px;
+                    padding: 12px 16px;
+                    @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+
+                    &::placeholder{
+                        @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                        color:hsla(220, 9%, 46%, 1);
+                    }
+                }
+
+                &__select{
+                    width: 302px;
+                    height: 42px;
+                    outline: none;
+                    border: 1px solid hsla(234, 95%, 85%, 1);
+                    border-radius: 8px;
+                    padding: 12px 16px;
+
+                    &::placeholder{
+                        @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                        color:hsla(219, 40%, 11%, 1);
+                    }
+                }
+
+                &__addfile{
+                    @include mixin.flex(flex-start, center);
+
+                    &__button{
+                        width: 115px;
+                        height: 42px;
+                        padding: 10px 19px;
+                        border: 1px solid hsla(216, 12%, 84%, 1);
+                        border-radius: 8px 0 0 8px;
+                        background: hsla(234, 84%, 78%, 1);
+                        @include mixin.font('Inter_Regular', 14px, 21px, 500);
+                        color: hsla(0, 0%, 100%, 1);
+                    }
+
+                    &__text{
+                        width: 514px;
+                        height: 42px;
+                        border: 1px solid hsla(234, 95%, 85%, 1);
+                        border-radius: 0 8px 8px 0;
+                        padding: 12px 16px;
+                        @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                        color:hsla(220, 9%, 46%, 1);
+                    }
+
+                    &__input{
+                        position: absolute;
+                        z-index: -1;
+                        opacity: 0;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                    }
+                }
+
+                &__wrapper{
+                    width: 302px;
+                    height: 80px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: 4px;
+
+                    .checkbox{
+                        width: 16px;
+                        height: 16px;
+                        border: 0.5px solid hsla(234, 95%, 85%, 1);
+                        background-color: hsla(210, 20%, 98%, 1);
+                        appearance: none;
+                        border-radius: 4px;
+                        margin-right: 8px;
+                        
+                        &:checked{
+                            border: 0.5px solid hsla(234, 84%, 78%, 1);
+                            background: hsla(234, 84%, 78%, 1) url("../../../assets/resume/cheked.svg") no-repeat center;
+                            background-size: 9.79px 7px;
+                        }
+
+                    }
+                    
+                    .label{
+                        width: 137px;
+                        display: flex;
+                        align-items: center;
+                        @include mixin.flex(flex-start, center);
+                        @include mixin.font('Inter_Light', 14px, 14px, 300);
+                        color:hsla(219, 40%, 11%, 1);
+                    }
+                }
+
+                &__counter{
+                    &__button{
+                        width: 40px;
+                        height: 37px;
+                        border: 1px solid hsla(216, 12%, 84%, 1);
+                        background: hsla(220, 14%, 96%, 1);
+                        padding: 2px 3px;
+
+                        &:first-child{
+                            border-radius: 8px 0px 0px 8px;
+                        }
+
+                        &:last-child{
+                            border-radius: 0px 8px 8px 0px;
+                        }
+                    }
+
+                    &__input{
+                        width: 41px;
+                        height: 37px;
+                        border: 1px solid hsla(216, 12%, 84%, 1);
+                        background: hsla(210, 20%, 98%, 1);
+                        padding: 2px 4px;
+                        text-align: center;
+
+                        &::placeholder{
+                            @include mixin.font('Inter_Light', 14px, 21px, 400);
+                            color:hsla(0, 0%, 24%, 1);
+
+                        }
+                    }
+                }
+
+                &__description{
+                    @include mixin.font('Inter_Light', 12px, 15px, 300);
+                    color:hsla(220, 9%, 46%, 1);
+                    margin-top: 8px;
+                }
+
+                &__elements{
+                    width: 302px;
+                    height: 49px;
+                    @include mixin.flex(flex-start, flex-start);
+
+                    &__radio{
+                        @include mixin.flex(flex-start, center);
+
+                        &__input{
+                            width: 16px;
+                            height: 16px;
+                            background: hsla(210, 20%, 98%, 1);
+                            border: 0.5px solid hsla(234, 95%, 85%, 1);
+                            border-radius: 8px;
+                            appearance: none;
+                            cursor: pointer;
+
+                            &:checked{
+                                border: 3.5px solid hsla(234, 84%, 78%, 1);
+                                background: hsla(210, 20%, 98%, 1);
+                            }
+                        }
+
+                        &__description{
+                            @include mixin.font('Inter_Light', 14px, 14px, 300);
+                            color:hsla(219, 40%, 11%, 1);
+                            margin-left: 8px;
+                        }
+
+                        &:nth-child(2){
+                            margin-left: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

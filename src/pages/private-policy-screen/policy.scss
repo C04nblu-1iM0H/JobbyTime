@@ -1,0 +1,43 @@
+@use '../../style/mixins.scss' as mixin;
+
+.policy{
+    &__description{
+        width: 1088px;
+        margin-top: 32px;
+        margin-bottom: 24px;
+        @include mixin.font('Inter_Regular', 24px, 30px, 500);
+        color: hsla(220, 9%, 46%, 1);
+        margin-left: 96px;
+    }
+
+    &__list{
+        margin-left: 80px;
+
+        &__item{
+            margin-bottom: 24px;
+            width: 1120px;
+            height: fit-content;
+            background-color: hsla(0, 0%, 100%, 1);
+            border-radius: 20px;
+            padding: 32px;
+
+            &__title{
+                @include mixin.font('Inter_Bold', 24px, 36px, 700);
+                color: hsla(0, 0%, 24%, 1);
+                letter-spacing: -1%;
+                margin-bottom: 16px;
+            }
+
+            &__description{
+                @include mixin.font('Inter_Light', 18px, 27px, 400);
+                color: hsla(0, 2%, 6%, 1);
+            }
+
+            &__descriptions{
+                @include mixin.font('Inter_Light', 18px, 27px, 400);
+                color: hsla(0, 2%, 6%, 1);
+                margin-bottom: 12px;
+            }
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@use '../../style/mixins.scss' as mixin;
+
+.aside{
+    position: relative;
+    width: 214px;
+    height: 832px;
+    background-color: hsla(0, 0%, 100%, 1);
+
+    &__block{
+        &__logo{
+            margin: 29.44px 0 37.44px 26.67px;
+        }
+    }
+
+    &__menu{
+        width: 182px;
+        margin: 0 auto;
+        &__list{
+            list-style-type: none;
+
+            &__title{
+                width: 100%;
+                &__description{
+                    @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                    color: hsla(218, 11%, 65%, 1);
+                    padding: 20px 0 8px 12px;
+                }
+            }
+            &__item{
+                padding: 8px 10px;
+                cursor: pointer;
+                text-decoration: none;
+                @include mixin.flex(flex-start, center);
+
+
+                &__description{
+                    @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                    color: hsla(0, 0%, 24%, 1);
+                    margin-left: 8px;
+                }
+
+                &__description-active{
+                    @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                    color: hsla(89, 82%, 71%, 1);
+                    margin-left: 8px;
+                }
+            }
+
+            &__item-active{
+                border-radius: 999px;
+                padding: 8px 10px;
+                cursor: pointer;
+                background-color: hsla(0, 0%, 24%, 1);
+            }
+        }
+    }
+    &__mail{
+        position: absolute;
+        bottom: 40px;
+
+        &__help{
+            @include mixin.font('Inter_Regular', 12px, 18px, 500);
+            color: hsla(218, 11%, 65%, 1);
+            margin-left: 28px;
+        }
+
+        &__group{
+            margin-left: 28px;
+            margin-top: 8px;
+            margin-bottom: 56px;
+            @include mixin.flex(flex-start, center);
+
+            &__description{
+                @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                color: hsla(241, 68%, 62%, 1);
+                margin-left: 8px;
+            }
+        }
+
+        &__link{
+            margin-left: 21px;
+            @include mixin.link('Inter_Medium', 12px, 18px, 600, underline, hsla(218, 93%, 61%, 1));
+        }
+    }
+}

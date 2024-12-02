@@ -1,0 +1,25 @@
+@use './style/font.scss';
+@use './style/variables.scss';
+@use './components/breadcrumbs/breadcrumbs.scss';
+@use './pages/signup-screen/signup.scss';
+@use './components/DownloadArea/donwload.scss';
+@use './components/form/ResumeForm/resumeform.scss';
+@use './pages/job-board-screen/board.scss';
+@use './components/verify/verify.scss';
+@use './pages/job-screen/job.scss';
+@use './pages/auto-apply-screen/apply.scss';
+@use './components/BadgeStatus/status.scss';  
+@use './pages/profile-screen/profile.scss';
+@use './components/form/PhoneInput/PhoneInput.scss';
+@use './components/form/DataPicker/data_picker.scss';
+@use './pages/private-policy-screen/policy.scss';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+}

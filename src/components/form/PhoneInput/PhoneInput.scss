@@ -1,0 +1,60 @@
+@use "../../../style/mixins.scss" as mixin;
+@use "../../../style/variables.scss" as var;
+
+.container{
+    @include  mixin.flex(flex-start, flex-start, column);
+    width: 568px;
+    height: 613px;
+    border-radius: 16px;
+    padding: 24px;
+    background-color: hsla(0, 0%, 100%, 1);
+
+    &__label{
+        @include mixin.font('Inter_Regular', 14px, 17.5px, 500);
+        color: hsla(219, 40%, 11%, 1);
+    }
+
+    &__inputs{
+        @include  mixin.flex(flex-start, center);
+        border: 1px solid hsla(216, 12%, 84%, 1);
+
+        &__dropdown{
+            position: relative;
+            border-right: 1px solid hsla(219, 40%, 11%, 1);
+
+            &__button {
+                @include  mixin.flex(flex-start, center);
+                background: none;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+            }
+
+            &__content{
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: hsla(0, 0%, 100%, 1);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                z-index: 1;
+                display: none;
+
+                &__item{
+                    padding: 10px;
+                    cursor: pointer;
+                    @include  mixin.flex(flex-start, center);
+                }
+            }
+        }
+    }
+
+    &__input{
+        flex: 1;
+        padding: 10px;
+        border: 0;
+        outline: none;
+        @include mixin.font('Inter_Regular', 14px, 17.5px, 500);
+        color: hsla(219, 40%, 11%, 1);
+    }
+}

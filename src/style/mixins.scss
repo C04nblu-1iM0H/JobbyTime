@@ -1,0 +1,47 @@
+@mixin font($name, $size, $lineHight, $weight ){
+    font-family: $name, sans-serif;
+    font-size: $size;
+    line-height: $lineHight;
+    font-weight: $weight;
+}
+
+@mixin title($name, $size, $lineHight, $weight, $spacing, $color){
+    font-family: $name, sans-serif;
+    font-size: $size;
+    line-height: $lineHight;
+    font-weight: $weight;
+    letter-spacing: $spacing;
+    color: $color;
+}
+
+@mixin link($name, $size, $lineHight, $weight, $decoration, $color){
+    font-family: $name, sans-serif;
+    font-size: $size;
+    line-height: $lineHight;
+    font-weight: $weight;
+    text-decoration: $decoration;
+    color:$color;
+}
+
+@mixin input($border, $radius, $padding, $outline){
+    border: $border;
+    border-radius: $radius;
+    padding: $padding;
+    outline:$outline;
+}
+
+@mixin button($radius, $background, $padding, $margin, $border, $cursor){
+    border-radius: $radius;
+    background-color: $background;
+    padding: $padding;
+    margin-bottom: $margin;
+    border:$border;
+    cursor: $cursor;
+}
+
+@mixin flex($content, $items, $direction:row ){
+    display: flex;
+    justify-content: $content;
+    align-items: $items;
+    flex-direction: $direction;
+}

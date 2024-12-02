@@ -1,0 +1,190 @@
+@use '../../style/mixins.scss' as mixin;
+
+body{
+    background-color: hsla(220, 14%, 96%, 1);
+}
+
+.resume{
+    width: 88%;
+    height: 100%;
+    
+    &__title{
+        @include mixin.font('BricolageGrotesque_Extra', 36px, 39.6px, 800);
+        letter-spacing: -2px;
+        color: hsla(0, 0%, 24%, 1);
+        margin-top: 24px;
+        padding-left: 24px;
+    }
+
+    &__container{
+        margin: 0 auto;
+        margin-top: 164px;
+        width: 615px;
+
+        &__subtitle{
+            @include mixin.font('Inter_Bold', 24px, 30px, 600);
+            color: hsla(220, 9%, 46%, 1);
+            margin-bottom: 25px;
+        }
+        &__download{
+            width: 615px;
+            height: 228px;
+            border: 2px dashed hsla(220, 13%, 91%, 1);
+            border-radius: 8px;
+            background-color: #fff;
+            @include mixin.flex(center, center);
+            flex-direction: column;
+
+            &.dragging {
+                border-color: hsla(234, 84%, 78%, 1);
+            }
+
+            &__action{
+                margin: 7px 0;
+                @include mixin.font('Inter_Regular', 14px, 21px, 400);
+                color: hsla(241, 68%, 62%, 1);  
+                &__btn{
+                    @include mixin.font('Inter_Medium', 14px, 21px, 600);
+                    margin-right: 3px;
+                    outline: none;
+                    border: none;
+                    background-color: #fff;
+                    color: hsla(241, 68%, 62%, 1);
+                }
+            }
+
+            &__description{
+                @include mixin.font('Inter_Light', 12px, 18px, 400);
+                color: hsla(215, 14%, 34%, 1);
+            }
+        }
+    }
+
+    &__list{
+            margin-top: 20px;
+        &__item{
+            width: 1002px;
+            height: 169px;
+            padding: 24px;
+            background-color: hsla(0, 0%, 100%, 1);
+            box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+            border-radius: 16px;
+            margin-left:24px;
+
+            &__header{
+                @include mixin.flex(space-between, center);
+                margin-bottom: 4px;
+
+                &__title{
+                    @include mixin.font('Inter_Light', 14px, 21px, 400);
+                    color: hsla(0, 0%, 60%, 1);
+                }
+
+                &__score{
+                    @include mixin.flex(flex-start, center);
+
+                    &__text{
+                        @include mixin.font('Inter_Light', 14px, 21px, 400);
+                        color: hsla(0, 0%, 60%, 1);
+                        margin-right: 4px;
+                    }
+
+                    .badge{
+                        width: fit-content;    
+                        height: 22px;
+                        border-radius: 6px;
+                        @include mixin.flex(flex-start, center);
+                        margin-right: 8px;
+                    }
+    
+                    .icon{
+                        padding-left: 10px;
+                    }
+        
+                    .description{
+                        @include mixin.font('Inter_Light', 12px, 18px, 400);
+                        color: hsla(0, 0%, 24%, 1);
+                        margin-left: 4px;
+                        padding: 2px 8px 2px 0;
+                    }
+                }
+            }
+
+            &__title{
+                @include mixin.font('Inter_Bold', 24px, 30px, 600);
+                color: hsla(0, 0%, 24%, 1);
+            }
+
+            &__footer{
+                @include mixin.flex(space-between, center);
+                margin-top: 32px;
+
+                &__group-btns{
+                    @include mixin.flex(flex-start, center);
+
+                        &__button{
+                        padding: 8px 20px;
+                        border-radius: 999px;
+                        border: 0;
+                        @include mixin.flex(flex-start, center);
+                        @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                        color: hsla(0, 0%, 24%, 1);
+
+                        &:nth-child(1){
+                            background-color: hsla(234, 95%, 85%, 1);
+                            margin-right: 16px;
+                        }
+
+                        &:nth-child(2){
+                            background-color: hsla(220, 13%, 91%, 1);
+                        }
+
+                        .icon{
+                            margin-left: 9.33px;
+                        }
+                    }
+                }
+
+                &__applications{
+                    @include mixin.flex(flex-start, center);
+
+                    &__button{
+                        border: 0;
+                        background-color: transparent;
+                        @include mixin.font('Inter_Regular', 12px, 18px, 600);
+                        color: hsla(241, 68%, 62%, 1);
+                        margin-right: 4px;
+                        cursor: pointer;
+                    }
+                }
+
+                &__del{
+                    &__button{
+                        cursor: pointer;
+                        padding: 8px 20px;
+                        border-radius: 999px;
+                        border: 0;
+                        @include mixin.flex(flex-start, center);
+                        @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                        background-color: hsla(0, 74%, 45%, 1);
+                        color: hsla(0, 0%, 100%, 1);
+                        
+                    }
+
+                    &__icon{
+                        margin-left: 10.4px;
+                    }
+                }
+            }
+        }
+        .data{
+            background-color: hsla(220, 100%, 97%, 1);
+            box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+            margin-top: 10px;
+            width: 1002px;
+            border-radius: 16px;
+            padding: 24px;
+            margin-left: 24px;
+        }
+    }
+}

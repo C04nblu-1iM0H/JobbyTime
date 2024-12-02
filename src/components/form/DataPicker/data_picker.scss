@@ -1,0 +1,115 @@
+@use "../../../style/mixins.scss" as mixin;
+
+    .datepicker-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 300px;
+    }
+  
+    .datepicker-label {
+        @include mixin.font("Inter_Regular", 14px, 21px, 500);
+        color: hsla(219, 40%, 11%, 1);
+        margin-bottom: 8px;
+    }
+    
+    .datepicker-input {
+        width: 250px;
+        height: 42px;
+        padding-left: 12px;
+        border-radius: 8px;
+        border: 1px solid hsla(216, 12%, 84%, 1);
+        background-color: hsla(210, 20%, 98%, 1);
+        outline: none;
+        @include mixin.font("Inter_Regular", 14px, 17.5px, 400);
+        color: hsla(219, 40%, 11%, 1);
+    }
+    
+    .react-datepicker{
+        border: 0;
+    }
+
+    .react-datepicker__navigation{
+        top: 18px;
+        color: #000;
+    }
+
+    .react-datepicker__navigation-icon--previous::before{
+        border-color: #000;
+    }
+
+    .react-datepicker__navigation-icon--next::before{
+        border-color: #000;
+    }
+
+
+    .custom-datepicker-popper {
+        z-index: 1000;
+    }
+
+    .react-datepicker__month-container {
+        width: 284px;
+        height: 313px;
+        background-color: #fff;
+        padding: 16px;
+        box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.05);  
+        box-shadow: 0px 10px 15px -3px hsla(0, 0%, 0%, 0.1);
+
+    }
+
+    .react-datepicker__month{
+        margin-top: 0;
+    }
+  
+    .react-datepicker__header {
+        background-color: #fff;
+        border-bottom: none;
+    }
+
+    .react-datepicker__week{
+        width: 252px;
+        height: 34px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .react-datepicker__day-names{
+        margin-top: 8px;
+        margin-left: 8px;
+        height: 34px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .react-datepicker__day-name{
+        @include mixin.font("Inter_Medium", 12px, 18px, 600);
+        color: hsla(220, 9%, 46%, 1);
+        margin: 0;
+        width: 36px;
+    }
+
+    .react-datepicker__day{
+        @include mixin.font("Inter_Bold", 12px, 18px, 700);
+        color: hsla(219, 40%, 11%, 1); 
+        padding: 8px 4px;
+        width: 36px;
+        height: 100%;
+        margin: 0;
+    }
+  
+    .react-datepicker__day--selected {
+        background-color: #a29bfe;
+        color: #fff;
+    }
+  
+    .react-datepicker__day--keyboard-selected {
+        background-color: #a29bfe;
+        border-radius: 8px;
+        color: #fff;
+    }
+
+    .react-datepicker__day--selected:not([aria-disabled=true]):hover{
+        background-color: #a29bfe;
+        color: #fff;
+    }

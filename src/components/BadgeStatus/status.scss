@@ -1,0 +1,22 @@
+@use '../../style/mixins.scss' as mixin;
+
+.badge_status{
+    width: fit-content;    
+    height: 22px;
+    border-radius: 6px;
+    @include mixin.flex(flex-start, center);
+    margin-right: 8px;
+    background-color: hsla(0, 0%, 100%, 1);
+}
+
+.circle{
+    padding-left: 10px;
+    width: 16px;
+    height: 16px;
+}
+
+.description{
+    @include mixin.font('Inter_Regular', 12px, 18px, 500);
+    margin-left: 8px;
+    padding: 2px 10px 2px 0;
+}

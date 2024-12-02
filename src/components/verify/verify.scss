@@ -1,0 +1,133 @@
+@use '../../style/mixins.scss' as mixin;
+@use '../../style/variables.scss' as var;
+
+body{
+    background-color: var.$body_background;
+}
+
+.header{
+    margin: 0 auto;
+    margin-top: 24px;
+    margin-bottom: 71px;
+    width: 150px;
+    height: 50px;
+
+    &__logo{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.verify{
+    width: 364px;
+    height: 377px;
+    margin: 0 auto;
+    border-radius: 16px;
+    background-color: #fff;
+
+    &__title{
+        @include mixin.title('BricolageGrotesque_Bold', 48px, 52.8px, 800, -2px, hsla(0, 0%, 24%, 1));
+        padding: var.$p-8;
+        text-align: center;
+    }
+
+    &__description{
+        @include mixin.font('Inter_Light', 14px, 21px, 400);
+        text-align: center;
+        color: hsla(0, 0%, 24%, 1);
+    }
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-top: 32px;
+
+        &__inputs {
+            display: flex;
+            gap: 10px;
+
+            &__input {
+                width: 44px;
+                height: 44px;
+                text-align: center;
+                font-size: 18px;
+                border: 1px solid hsla(216, 12%, 84%, 1);
+                border-radius: 8px;
+                outline: none;
+                padding: 2px 2.5px;
+            }
+
+        }
+
+        &__button{
+            border-radius: 100px;
+            background-color: hsla(234, 95%, 85%, 1);
+            padding: 17.5px 95px;
+            margin-bottom: 24px;
+            border:0;
+            cursor: pointer;
+
+            &__description{
+                margin-right: 8px;
+                @include mixin.font('Inter_Medium', 14px, 21px, 600);
+            }
+        }
+    }
+
+    &__change-adress{
+        @include mixin.flex(center, center);
+
+        &__link{
+            @include mixin.link('Inter_Medium', 12px, 18px, 600, none, var.$color_link);
+        }
+    }
+}
+
+.block{
+    width: fit-content;
+    margin: 22px auto 24px auto;
+    &__description{
+        @include mixin.font('Inter_Light', 12px, 18px, 400);
+        color: hsla(0, 0%, 24%, 1);
+    }
+}
+
+.divider{
+    max-width: 364px;
+    @include mixin.flex(flex-start, center);
+    text-align: center;
+    color: #aaa; 
+    margin: 0 auto;
+
+    &::before,
+    &::after {
+    content: "";
+        flex: 1;
+        border-bottom: 1px solid #aaa;
+        margin: 0 10px;
+    }
+}
+
+.footer{
+    width: 310px;
+    height: 34px;
+    @include mixin.flex(center, center);
+    margin: 0 auto;
+    margin-top: 24px;
+
+    &__time{
+        margin-left: 5px;
+        @include mixin.font('Inter_Bold', 12px, 18px, 700);
+    }
+
+    &__link-disabled{
+        @include mixin.link('Inter_Medium', 12px, 18px, 600, none, hsla(241, 68%, 62%, 0.5));
+    }
+
+    &__link{
+        @include mixin.link('Inter_Medium', 12px, 18px, 600, none, var.$color_link);
+        cursor: pointer;
+    }
+}

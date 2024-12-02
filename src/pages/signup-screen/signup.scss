@@ -1,0 +1,170 @@
+@use '../../style/mixins.scss' as mixin;
+@use '../../style/variables.scss' as var;
+
+body{
+    background-color: var.$body_background;
+}
+
+.header{
+    margin: 0 auto;
+    margin-top: 24px;
+    margin-bottom: 71px;
+    width: 150px;
+    height: 50px;
+
+    &__logo{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.signup{
+    width: 564px;
+    height: fit-content;
+    margin: 0 auto;
+    border-radius: 16px;
+    background-color: #fff;
+
+    &__title{
+        @include mixin.title('BricolageGrotesque_Bold', 48px, 52.8px, 800, -2px, hsla(0, 0%, 24%, 1));
+        padding: var.$p-8;
+        text-align: center;
+    }
+
+    &__list{
+        padding: 0 32px 32px 32px;
+
+        &__item{
+            list-style-type: none;
+            
+            &:first-child{
+                margin-bottom: 16px;
+            }
+
+            &__button{
+                @include mixin.flex(center, center);
+                text-decoration: none;
+                border: 1px solid hsla(220, 13%, 91%, 1);
+                border-radius: 100px;
+                padding: 14px 50px 14px 49px;
+                cursor: pointer;
+
+                &__text{
+                    margin-left: 8px;
+                    color: hsla(0, 0%, 24%, 1);
+                    @include mixin.font('Inter_Medium', 14px, 21px, 600);
+                }
+            }
+        }
+    }
+
+    &__divider{
+        @include mixin.flex(flex-start, center);
+        text-align: center;
+        color: #aaa; 
+
+        &::before,
+        &::after {
+        content: "";
+            flex: 1;
+            border-bottom: 1px solid #aaa;
+            margin: 0 10px;
+        }
+    }
+
+    &__form{
+        padding: 32px;
+        
+        .group-fullname{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+
+            & input{
+                width: 240px;
+            }
+        }
+
+        &__group{
+            display: flex;
+            flex-direction: column;
+            
+            
+            &:nth-child(3){
+                margin-top: 24px;
+                margin-bottom: 24px;
+            }
+
+            &__label{
+                @include mixin.font('Inter_Regular', 14px, 21px, 500);
+                margin-bottom: 8px;
+            }
+
+            &__input{
+                @include mixin.input(1px solid var.$border_color_input, 8px, 12px 16px, none);
+
+                &::placeholder{
+                    color: hsla(220, 9%, 46%, 1);
+                }
+
+                &__error{
+                    border-color: hsla(0, 84%, 63%, 1);
+                }
+            }
+
+            &__error-message {
+                color: hsla(0, 84%, 63%, 1);
+                @include mixin.font('Inter_Light', 12px, 18px, 400);
+                margin-top: 4px;
+              }
+        }
+
+        &__button{
+            @include mixin.button(100px, var.$button_color, 17.5px 99px, 24px, 0, pointer);
+            width: 100%;
+            &__description{
+                margin-right: 8px;
+                @include mixin.font('Inter_Medium', 14px, 21px, 600);
+            }
+        }
+    }
+
+    &__TermsOfUse{
+        @include mixin.flex(center, center);
+        padding-bottom: 40px;
+
+        &__description{
+            @include mixin.font('Inter_Light', 12px, 18px, 400);
+            margin-right: 5px;
+            color: hsla(218, 11%, 65%, 1);
+        }
+
+        &__link{
+            @include mixin.link('Inter_Medium', 12px, 18px, 600, none, var.$color_link);
+        }
+    }
+}
+
+.footer{
+    width: 310px;
+    height: 34px;
+    @include mixin.flex(center, center);
+    margin: 0 auto;
+    margin-top: 24px;
+
+    &__description{
+        margin-right: 5px;
+        @include mixin.font('Inter_Light', 12px, 18px, 400);
+    }
+
+    &__link{
+        @include mixin.link('Inter_Medium', 12px, 18px, 600, none,  var.$color_link);
+        border: 0;
+        background: transparent;
+    }
+
+    &__link-disabled{
+        @include mixin.link('Inter_Medium', 12px, 18px, 600, none,  hsla(241, 68%, 62%, 1));
+
+    }
+}

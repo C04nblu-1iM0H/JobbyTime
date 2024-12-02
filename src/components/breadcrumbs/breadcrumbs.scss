@@ -1,0 +1,17 @@
+@use "../../style/mixins.scss" as mixin;
+
+
+.breadcrumbs{
+    width: 100%;
+    margin: 24px 0 25px 97px;
+}
+
+.breadcrumbs__link{
+    @include mixin.link('Inter_Regular', 14px, 21px, 500, none, hsla(217, 19%, 27%, 1));
+    margin-right: 16px;
+}
+
+.breadcrumbs__current{
+    @include mixin.link('Inter_Regular', 14px, 21px, 500, none, hsla(218, 11%, 65%, 1));
+    margin-left: 16px;
+}
