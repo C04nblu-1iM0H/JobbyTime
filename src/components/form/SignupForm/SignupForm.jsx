@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import icon from '../../../assets/Signup/icon_button.svg'
-import validateInputs from '../../../utils/validate';
+import {validateInputs} from '../../../utils/validate';
 import { API } from '../../../const';
 import { useNavigate } from 'react-router-dom';
 

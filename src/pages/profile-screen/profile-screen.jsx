@@ -27,10 +27,10 @@ export default function ProfileScreen(){
                     </button> 
                 </div>
             </div>
-            <h2 className="profile__subtitle">Location</h2>
+            {/* <h2 className="profile__subtitle">Location</h2>
             <div className="profile__location">
                 
-            </div>
+            </div> */}
         </section>
     )
 }

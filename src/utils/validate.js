@@ -1,4 +1,4 @@
-export default function validateInputs(firstName, lastName, email, password) {
+export const validateInputs = (firstName, lastName, email, password) => {
     const errors = {};
   
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,4 +31,28 @@ export default function validateInputs(firstName, lastName, email, password) {
     }
   
     return errors;
+}
+
+export const ValidateFormResume = (name, jobprefor, work)=>{
+  const errors = {};
+  if(!name){
+    errors.name = "It should not be application job title empty ";
+  }else if(name <= 5 ){
+    errors.name = "Too short application job title";
+  }else if(name >= 60){
+    errors.name = "Too long application job title";
+  }
+
+  if(jobprefor.length === 0){
+    errors.jobprefor = "specify what type of job you prefer?";
+  }
+
+  if(work === 0){
+    errors.work = "Your work experience it can't be less than one year old";
+  }else if(work > 80){
+    errors.work = "Your work experience it can't be more than eighty years old";
+  }
+ 
+  return errors;
+
 }

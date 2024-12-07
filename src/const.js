@@ -7,14 +7,14 @@ import mark from './assets/board/mark.svg';
 import time from './assets/board/time.svg';
 import cash from './assets/job/cash.svg';
 
-const currentUrl = 'https://6d76-150-241-93-219.ngrok-free.app';
+const currentUrl = 'https://cd8a-87-117-59-60.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,
     REGISTRETION:`${currentUrl}/api/v1/registration`,
     REPEAT_SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_repeat_verification_code`,
     GET_TOKEN:`${currentUrl}/api/v1/token`,
-    PROTECTED_ROUTE:`${currentUrl}/protected-route`,
+    PROTECTED_ROUTE:`${currentUrl}/api/v1/protected-route`,
     GET_BOARD:`${currentUrl}/api/v1/leverco_postings`,
     RESUME_BUILDER:`${currentUrl}/api/v1/resume_builder`,
     RESUME_FROM:`${currentUrl}/api/v1/resume_form`,

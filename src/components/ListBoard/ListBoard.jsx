@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import favorite from '../../assets/board/favorite.svg'
-import {API, AppRouting} from '../../const.js';
+import {API} from '../../const.js';
 import { useEffect, useState } from 'react';
 import { useQuery} from "@tanstack/react-query";
 import axios from 'axios';
@@ -8,8 +8,6 @@ import { useSelector } from 'react-redux';
 import { formatDateDifference } from '../../utils/date.js';
 import Loader from '../loader/loader.jsx';
 import Badge from '../badge/badge';
-
-
 
 export default function ListBoard({filters}){
     const [listJob, setListJob] = useState([]);
@@ -65,14 +63,15 @@ export default function ListBoard({filters}){
     // if (isError) console.error(`Error: ${error.message}`);
     
     return(
-        filteredJobs.map((posting) => {
-            console.log(posting);
-            const categories = JSON.parse(posting.categories);
+        filteredJobs.map((posting, index) => {
+            const categories = typeof posting.categories === 'string' 
+            ? JSON.parse(posting.categories) 
+            : posting.categories;
             const {commitment, location, team} = categories
             const creationTime = formatDateDifference(posting.updatedat)
             return(
-                <Link to={AppRouting.Job}>
-                    <section className="board__list" key={posting.id_posting}>
+                <Link to={posting.id_posting} key={index}>
+                    <section className="board__list">
                         <div className="board__list__company">
                             <p className="board__list__company__name">{team}</p>
                             <img className="board__list__company__favorites" src={favorite} alt="icon_favorites" />

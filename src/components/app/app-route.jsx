@@ -57,7 +57,7 @@ export default function AppRoute() {
                   path={AppRouting.AppliedResults}
                   element={<AppliedResultsScreen />} 
                 />
-                <Route 
+                <Route
                   path={AppRouting.JobBoard} 
                   element={<JobBoardScreen />}
                 />
@@ -67,7 +67,7 @@ export default function AppRoute() {
                 />
               </Route>
               <Route 
-                path={AppRouting.Job} 
+                path={`${AppRouting.JobBoard}/:id`} 
                 element={<JobScreen />} 
               />
               <Route 

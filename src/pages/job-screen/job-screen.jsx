@@ -1,98 +1,144 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import { API } from "../../const";
+import { formatDateDifference } from "../../utils/date";
+import { numberWithCommas } from "../../utils/numberWthisComas";
 import Breadcrumbs from "../../components/breadcrumbs/breadcrumbs";
+import Badge from "../../components/badge/badge";
+import Loader from "../../components/loader/loader";
 import arrow from '../../assets/job/arrow_left.svg'
 import link from '../../assets/job/link.svg'
-import Badge from "../../components/badge/badge";
-import { infoOfJob, details, benefits, qualifications } from "../../const";
 
 export default function JobScreen(){
+    const [job, setJob] = useState([]);
+    const token = useSelector( state => state.token.token);
+    const params = useParams();
+    const jobId = params.id;
+    const navigate = useNavigate();
+    const goBack = () => navigate(-1);
+
+    const {data, isSuccess, isLoading} = useQuery({
+        queryKey:['jobList'],
+        queryFn: async () => {
+            const response = await axios.post(API.GET_BOARD,{},{
+                headers: {
+                    'accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            })
+            return response.data
+        },
+    });
+
+    useEffect(() => {
+        if(isSuccess && data !== undefined){
+            setJob(data.filter(item => item.id_posting === jobId));
+        }
+    }, [isSuccess, data, jobId]);
+
+    
+    if(isLoading) return (
+        <Loader />
+    )
+    
     return(
-        <section className="job headers">
-            <Breadcrumbs />
-            <div className="headers__title">
-                <Link className=" headers__title__button">
-                    <img src={arrow} alt="arrow_left"/>
-                </Link>
-                <h1 className="headers__title__text">Senior Software Developer</h1>
-            </div>
-            <div className="job__list">
-                {
-                    infoOfJob.map((item, index) =>{
-                        return(
-                            <Badge item={item} index={index}/>
-                        )
-                    })
-                }
-            </div>
-            <section className="job__container">
-                <article className="job__container__description">
-                    <h2 className="job__container__description__title">Company Description</h2>
-                    <p className="job__container__description__text">
-                        Freshworks makes it fast and easy for businesses to delight their customers and employees. 
-                        We do this by taking a fresh approach to building and delivering software that is affordable, 
-                        quick to implement, and designed for the end user. Headquartered in San Mateo, California, 
-                        Freshworks has a global team operating from 13 global locations to serve more than 
-                        65,000 companies - from startups to public companies – that rely on Freshworks 
-                        software-as-a-service to enable a better customer experience (CRM, CX) and employee experience (ITSM).
-                    </p>
-                    <p className="job__container__description__text">
-                        Freshworks is featured in global national press including CNBC, Forbes, Fortune, 
-                        Bloomberg and has been a BuiltIn Best Place to work in San Francisco and Denver for the last 3 years. 
-                        Our customer ratings have earned Freshworks products TrustRadius Top Rated Software ratings 
-                        and G2 Best of Awards for Best Feature Set, Best Value for the Price and Best Relationship.
-                    </p>
-                </article>
-                <section className="job__container__group">
-                    <aside className="job__container__group__aside">
-                        <div className="job__container__group__aside__details">
-                            <h3 className="job__container__group__aside__details__title">Job Details</h3>
-                            <div className="job__container__group__aside__details__badges">
-                                {
-                                    details.map((item, index) =>{
-                                        return(
-                                            <Badge item={item} index={index}/>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                        <div className="job__container__group__aside__benefits">
-                            <h3 className="job__container__group__aside__benefits__title">Benefits</h3>
-                            <div className="job__container__group__aside__benefits__badges">
-                                {
-                                    benefits.map((item, index) =>{
-                                        return(
-                                            <Badge item={item} index={index}/>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                        <div className="job__container__group__aside__qualifications">
-                            <h3 className="job__container__group__aside__qualifications__title">Qualifications</h3>
-                            <div className="job__container__group__aside__qualifications__badges">
-                                {
-                                    qualifications.map((item, index) =>{
-                                        return(
-                                            <Badge item={item} index={index}/>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
-                    </aside>
-                    <aside className="job__container__group__aside-control">
-                        <div className="job__container__group__aside-control__buttons">
-                            <button className="job__container__group__aside-control__buttons__button apply">Apply now</button>
-                            <button className="job__container__group__aside-control__buttons__button save">Save</button>
-                        </div>
-                        <Link className="job__container__group__aside-control__link">
-                            <img src={link} alt="link_icon" className="job__container__group__aside-control__link__icon"/>
-                            Go to the original vacancy
+        job.map((el, index) => {
+            const {text_posting} = el;
+            const content = JSON.parse(el.content);
+            const categories = JSON.parse(el.categories);
+            const salary = JSON.parse(el.salaryrange);
+            const creationTime = formatDateDifference(el.createdat);
+            const {commitment, location, team} = categories
+            const {lists, description} = content; 
+            const {min, max } = salary;      
+            const salaryString= `$${numberWithCommas(min)}-$${numberWithCommas(max)} a year`
+            return(
+                <section className="job headers" key={index}>
+                    <Breadcrumbs currenturl={text_posting} />
+                    <div className="headers__title">
+                        <Link 
+                            onClick={goBack}
+                            className=" headers__title__button"
+                        >
+                            <img src={arrow} alt="arrow_left"/>
                         </Link>
-                    </aside>
+                        <h1 className="headers__title__text">{text_posting}</h1>
+                    </div>
+                    <div className="job__list">
+                        <Badge name={team} team="team" />
+                        <Badge name={location} city="city"/>
+                        <Badge name={creationTime} time="time"/>
+                    </div>
+                    <section className="job__container">
+                        <article className="job__container__description">
+                            <h2 className="job__container__description__title">Company Description</h2>
+                            <p className="job__container__description__text">{description}</p>
+                            {
+                                lists.map((item, index) =>{
+                                    const {text, content} = item;
+                                    return(
+                                        <div key={index}>   
+                                            <h2 className="job__container__description__title">{text}</h2>
+                                            <ul className="job__container__description__list" dangerouslySetInnerHTML={{ __html: content }}></ul>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </article>
+                        <section className="job__container__group">
+                            <aside className="job__container__group__aside">
+                                <div className="job__container__group__aside__details">
+                                    <h3 className="job__container__group__aside__details__title">Job Details</h3>
+                                    <div className="job__container__group__aside__details__badges">
+                                        <div className="job__container__group__aside__details__badges-left">
+                                            <Badge name={commitment}/>
+                                        </div>
+                                        <Badge name={salaryString} />
+                                    </div>
+                                </div>
+                                <div className="job__container__group__aside__benefits">
+                                    <h3 className="job__container__group__aside__benefits__title">Benefits</h3>
+                                    <div className="job__container__group__aside__benefits__badges">
+                                        {/* {
+                                            benefits.map((item, index) =>{
+                                                return(
+                                                    <Badge item={item} index={index}/>
+                                                )
+                                            })
+                                        } */}
+                                    </div>
+                                </div>
+                                <div className="job__container__group__aside__qualifications">
+                                    <h3 className="job__container__group__aside__qualifications__title">Qualifications</h3>
+                                    <div className="job__container__group__aside__qualifications__badges">
+                                        {/* {
+                                            qualifications.map((item, index) =>{
+                                                return(
+                                                    <Badge item={item} index={index}/>
+                                                )
+                                            })
+                                        } */}
+                                    </div>
+                                </div>
+                            </aside>
+                            <aside className="job__container__group__aside-control">
+                                <div className="job__container__group__aside-control__buttons">
+                                    <button className="job__container__group__aside-control__buttons__button apply">Apply now</button>
+                                    <button className="job__container__group__aside-control__buttons__button save">Save</button>
+                                </div>
+                                <Link className="job__container__group__aside-control__link">
+                                    <img src={link} alt="link_icon" className="job__container__group__aside-control__link__icon"/>
+                                    Go to the original vacancy
+                                </Link>
+                            </aside>
+                        </section>
+                    </section>
                 </section>
-            </section>
-        </section>
+            )
+        })
+        
     )
 }

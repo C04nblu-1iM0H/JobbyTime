@@ -7,17 +7,13 @@ import './policy.scss';
 
 export default function PrivatePolicyScreen(){
     const navigate = useNavigate();
-
+    const goBack = () => navigate(-1);
     return(
         <section className="headers policy ">
             <Breadcrumbs />
             <div className="headers__title">
                 <Link 
-                    to={"/onboard"}
-                    onClick={()=>(e) => {
-                        e.preventDefault();
-                        navigate(-1);
-                      }}
+                    onClick={goBack}
                     className="headers__title__button"
                 >
                     <img src={arrow} alt="arrow_left"/>
