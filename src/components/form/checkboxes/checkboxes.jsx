@@ -9,7 +9,7 @@ export default function Checkboxes({checkboxing, handleFilterChange, formData}){
                 <label key={id} className="label">
                     <input
                         name="checkbox"
-                        className="checkbox"
+                        className="checkbox"  
                         type="checkbox"
                         value={key}
                         checked={flattenedJobprefor.includes(key)}

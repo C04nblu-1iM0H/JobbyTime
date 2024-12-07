@@ -59,9 +59,5 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/C04nblu-1iM0H/JobbyTime.git"
-  },
-  "bugs": {
-    "url": "https://github.com/C04nblu-1iM0H/JobbyTime/issues"
-  },
-  "homepage": "https://github.com/C04nblu-1iM0H/JobbyTime#readme"
+  }
 }

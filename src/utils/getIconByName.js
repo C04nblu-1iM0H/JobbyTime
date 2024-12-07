@@ -8,12 +8,13 @@ import watch from '../assets/board/time.svg';
 import cash from '../assets/job/cash.svg';
 import smile from '../assets/resume/smile.svg';
 import good from '../assets/resume/good.svg';
+import teams from '../assets/job/team.svg';
 
-
-export function getIconByName(name, city, time){
+export function getIconByName(name, city, time, team){
     if(name.slice(0,1)  === "$" ) name = "$";    
     if(city) name = city;
     if(time) name = time;
+    if(team) name = team;
 
     switch (name) {
         case "Flexible":
@@ -32,6 +33,8 @@ export function getIconByName(name, city, time){
             return mark;
         case "time":
             return watch;
+        case "team":
+            return teams;
         case "100%":
           return smile;
         case "80%":

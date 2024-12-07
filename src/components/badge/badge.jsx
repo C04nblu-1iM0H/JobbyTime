@@ -1,9 +1,9 @@
 import {getColorByName} from "../../utils/getColorByName"
 import { getIconByName } from "../../utils/getIconByName";
 
-export default function Badge({name, city, time}){
+export default function Badge({name, city, time, team}){
     const badgeColor = getColorByName(name);
-    const icon = getIconByName(name, city, time);
+    const icon = getIconByName(name, city, time, team);
     return( 
         <div 
             className="badge" 

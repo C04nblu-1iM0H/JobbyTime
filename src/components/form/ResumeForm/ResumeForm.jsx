@@ -10,7 +10,8 @@ export default function ResumeForm({
     handleFilterChange,
     handleCounter,
     filename,
-    OldFileName
+    OldFileName,
+    errors
 }){    
     return(
         <form 
@@ -20,11 +21,16 @@ export default function ResumeForm({
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Application job title</label>
                     <input 
-                        className="modal__form__container__group__input" 
+                        className={`modal__form__container__group__input ${
+                            errors.name ? "modal__form__container__group__input__error" : ""
+                        }`}  
                         type="text"
                         value={formData.name}
                         onChange={(e) => handleChange("name", e.target.value)}
                     />
+                    {errors.name && (
+                        <span className="modal__form__container__group__error-message">{errors.name}</span>
+                    )}
                 </div>
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Minimum salary $/per year</label>
@@ -62,18 +68,34 @@ export default function ResumeForm({
             <div className="modal__form__container">
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">What type of job you prefer?</label>
-                    <div className="modal__form__container__group__wrapper">
+                    <div 
+                        className={`modal__form__container__group__wrapper ${
+                            errors.jobprefor ? "modal__form__container__group__wrapper__error" : ""
+                        }`}  
+                        >
                         <Checkboxes 
                             checkboxing={checkboxing}
                             handleFilterChange={handleFilterChange}
                             formData={formData}
+                            errors={errors}
                         />
                     </div>
+                    {errors.jobprefor && (
+                        <span className="modal__form__container__group__error-message">{errors.jobprefor}</span>
+                    )}
                 </div>
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Your work experience</label>
-                    <Counter currentCount={formData.work} handleCounter={handleCounter}/>
+                    <Counter 
+                        currentCount={formData.work} 
+                        handleCounter={handleCounter}
+                        errors={errors}
+                    />
+                    {errors.work && (
+                        <span className="modal__form__container__group__error-message">{errors.work}</span>
+                    )}
                     <p className="modal__form__container__group__description">The number of full years of your work experience</p>
+                    
                 </div>
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Are you open to relocating?</label>

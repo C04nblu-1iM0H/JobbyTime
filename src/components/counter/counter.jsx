@@ -1,6 +1,6 @@
 import { useEffect, useState,  } from "react"
 
-export default function Counter({handleCounter, currentCount}){
+export default function Counter({handleCounter, currentCount, errors}){
     const [count, setCount] = useState(5); // Используем useState для состояния
 
     const increment = () => {
@@ -19,9 +19,13 @@ export default function Counter({handleCounter, currentCount}){
     useEffect(() => {
         updateInputValue();
     }, [count]);
-    
+        
     return(
-        <div className="modal__form__container__group__counter">
+        <div 
+            className={`modal__form__container__group__counter ${
+                errors.work ? "modal__form__container__group__counter__error" : ""
+            }`}  
+        >
             <button 
                 type="button"
                 className="modal__form__container__group__counter__button" 

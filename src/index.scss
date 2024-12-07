@@ -1,6 +1,7 @@
 @use './style/font.scss';
 @use './style/variables.scss';
 @use './components/breadcrumbs/breadcrumbs.scss';
+@use './components/BadgeStatus/status.scss';  
 @use './pages/signup-screen/signup.scss';
 @use './components/DownloadArea/donwload.scss';
 @use './components/form/ResumeForm/resumeform.scss';
@@ -8,7 +9,6 @@
 @use './components/verify/verify.scss';
 @use './pages/job-screen/job.scss';
 @use './pages/auto-apply-screen/apply.scss';
-@use './components/BadgeStatus/status.scss';  
 @use './pages/profile-screen/profile.scss';
 @use './components/form/PhoneInput/PhoneInput.scss';
 @use './components/form/DataPicker/data_picker.scss';

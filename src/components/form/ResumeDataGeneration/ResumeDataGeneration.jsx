@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import ResumeForm from "../ResumeForm/ResumeForm";
 import { useNavigate } from "react-router-dom";
+import { ValidateFormResume } from "../../../utils/validate";
 
 export default function ResumeDataGeneration({file, OldFileName, resume, active}){    
     const [fileName, setFilename] = useState("your .pdf portfolio (or .docx / .doc / .txt)");
@@ -20,6 +21,7 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
         radiobutton: "yes",
         work: 5,
     });
+    const [errors, setErrors] = useState({});
     const token = useSelector(state => state.token.token);
     const navigate = useNavigate();
     const builderResume = useMutation({
@@ -95,16 +97,18 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        const validationErrors = ValidateFormResume(formData.name, formData.jobprefor, formData.work);
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+        setErrors({});
         const formDataToSend = new FormData();
         Object.keys(formData).forEach((key) => {
             formDataToSend.append(key, formData[key]);
         });
-        for (let [key, value] of formDataToSend) {
-            console.log(`${key} - ${value}`)
-          }
         if (file) formDataToSend.append("file", file);
-
+        
         builderResume.mutate(formDataToSend);
     };
 
@@ -123,7 +127,8 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
                     handleFilterChange={handleFilterChange}
                     handleCounter={handleCounter} 
                     filename={fileName}      
-                    OldFileName={OldFileName}              
+                    OldFileName={OldFileName}    
+                    errors={errors}          
                 />
             </div>
         </section>
