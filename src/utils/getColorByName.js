@@ -1,4 +1,5 @@
 export const getColorByName = (name) => {    
+    if (!name) return ''
     if(name.slice(0,1)  === "$" ) name = "$";
 
     switch (name) {

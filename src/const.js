@@ -7,7 +7,7 @@ import mark from './assets/board/mark.svg';
 import time from './assets/board/time.svg';
 import cash from './assets/job/cash.svg';
 
-const currentUrl = 'https://cd8a-87-117-59-60.ngrok-free.app';
+const currentUrl = 'https://532e-87-117-58-211.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,

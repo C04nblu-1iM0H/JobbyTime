@@ -4,13 +4,10 @@ import { API } from "../../const";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Loader from "../loader/loader";
 
-export default function Apply({job, setIsLoading}){
+export default function Apply({job, setLoadingJobId}){
     const token = useSelector(state => state.token.token);
     const id_post = job.id_posting;
-    console.log(id_post);
-    console.log(token);    
     const navigate = useNavigate(); 
 
     const applyed = useMutation({
@@ -32,13 +29,17 @@ export default function Apply({job, setIsLoading}){
             console.error('Error sending data:', error);
 
         },
+        onSettled: () => {
+            setLoadingJobId(null); 
+        },
     });
 
     const handleApplyed = (e) =>{
         e.preventDefault();
+        setLoadingJobId(id_post);
         applyed.mutate({id_post});
     }
-    setIsLoading(applyed.isPending)
+    // setIsLoading(applyed.isPending)
 
     // if(applyed.isPending) return <Loader />
 

@@ -49,6 +49,7 @@ function Sidebar(){
                     <img src={icon_mail} alt="icon_mail" />
                     <p className="aside__mail__group__description">help@jobbytime.com</p>
                 </div>   
+                <p className="aside__mail__info-mail"> Mo-Fr 10:00-22:00 (GMT+04:00) Reply ETA 24h</p>
                 <Link to={AppRouting.PrivatePolicy} className="aside__mail__link">Privacy Policy & Terms of Use</Link>
             </div>
         </aside>

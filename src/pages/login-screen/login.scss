@@ -93,6 +93,16 @@ body{
                 &::placeholder{
                     color: var.$placeholder_color_input;
                 }
+
+                &__error{
+                    border-color: hsla(0, 84%, 63%, 1);
+                }
+            }
+
+            &__error-message {
+                color: hsla(0, 84%, 63%, 1);
+                @include mixin.font('Inter_Light', 12px, 18px, 400);
+                margin-top: 4px;
             }
         }
 
