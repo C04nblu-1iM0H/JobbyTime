@@ -38,7 +38,6 @@ export default function JobScreen(){
             setJob(data.filter(item => item.id_posting === jobId));
         }
     }, [isSuccess, data, jobId]);
-
     
     if(isLoading) return (
         <Loader />
@@ -46,7 +45,7 @@ export default function JobScreen(){
     
     return(
         job.map((el, index) => {
-            const {text_posting} = el;
+            const {text_posting, salarydescription} = el;
             const content = JSON.parse(el.content);
             const categories = JSON.parse(el.categories);
             const salary = JSON.parse(el.salaryrange);
@@ -54,7 +53,8 @@ export default function JobScreen(){
             const {commitment, location, team} = categories
             const {lists, description} = content; 
             const {min, max } = salary;      
-            const salaryString= `$${numberWithCommas(min)}-$${numberWithCommas(max)} a year`
+            const salaryString= `$${numberWithCommas(min)}-$${numberWithCommas(max)} a year`;
+            
             return(
                 <section className="job headers" key={index}>
                     <Breadcrumbs currenturl={text_posting} />
@@ -99,30 +99,24 @@ export default function JobScreen(){
                                         <Badge name={salaryString} />
                                     </div>
                                 </div>
-                                <div className="job__container__group__aside__benefits">
+                                <div className="job__container__group__aside__qualifications">
+                                    <h3 className="job__container__group__aside__qualifications__title">Qualifications</h3>
+                                    <div className="job__container__group__aside__qualifications__badges">
+                                        <div className="job__container__group__aside__qualifications__badges__list">{salarydescription}</div>
+                                    </div>
+                                </div>
+                                {/* <div className="job__container__group__aside__benefits">
                                     <h3 className="job__container__group__aside__benefits__title">Benefits</h3>
                                     <div className="job__container__group__aside__benefits__badges">
-                                        {/* {
+                                        {
                                             benefits.map((item, index) =>{
                                                 return(
                                                     <Badge item={item} index={index}/>
                                                 )
                                             })
-                                        } */}
+                                        }
                                     </div>
-                                </div>
-                                <div className="job__container__group__aside__qualifications">
-                                    <h3 className="job__container__group__aside__qualifications__title">Qualifications</h3>
-                                    <div className="job__container__group__aside__qualifications__badges">
-                                        {/* {
-                                            qualifications.map((item, index) =>{
-                                                return(
-                                                    <Badge item={item} index={index}/>
-                                                )
-                                            })
-                                        } */}
-                                    </div>
-                                </div>
+                                </div> */}
                             </aside>
                             <aside className="job__container__group__aside-control">
                                 <div className="job__container__group__aside-control__buttons">
