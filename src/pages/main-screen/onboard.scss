@@ -1,0 +1,560 @@
+@use '../../style/mixins.scss' as mixin;
+
+.onboard{
+    margin-left: 24px;
+    background-color: hsla(220, 14%, 96%, 1);   
+
+    &__information-board{
+        position: relative;
+        display: flex;
+        margin-top: 40px;
+        width: 1002px;
+        height: 263px;
+        border-radius: 20px;
+        background: linear-gradient(80.98deg, #C8FC4F -11.46%, #88D4ED 43.24%, #B3BBFD 94.55%);
+
+        &__container{
+            flex: 1;
+            padding-left: 30px;
+            padding-top: 30px;
+
+            &__title{
+                @include mixin.title('BricolageGrotesque_Extra', 34px, 39.6px, 800, -2px, hsla(0, 0%, 24%, 1));
+                margin-bottom: 12px;
+            }
+
+            &__description{
+                @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                color: hsla(0, 0%, 24%, 1);
+                margin-bottom: 44px;
+                max-width: 590px;
+                width: 100%;
+            }
+
+            &__button{
+                @include mixin.flex(center, center);
+                border-radius: 999px;
+                padding: 16px 87px;
+                background-color:hsla(210, 100%, 96%, 1);
+                border-style: none;
+                cursor: pointer;
+                
+                &__block{
+                    margin-right: 12.35px;
+                    &__title{
+                        @include mixin.font('Inter_Medium', 14px, 21px, 600);
+                        color: hsla(0, 0%, 24%, 1);
+                    }
+    
+                    &__description{
+                        @include mixin.font('Inter_Light', 12px, 18px, 400);
+                        color: hsla(0, 0%, 24%, 1);
+                    }
+                }
+            }
+        }
+        &__image{
+            position: absolute;
+            right: -40px;
+            top: -40px;
+            mix-blend-mode: luminosity;
+        }
+    }
+
+    &__step{
+        margin-top: 40px;
+
+        &__title{
+            @include mixin.title('BricolageGrotesque_Extra', 34px, 39.6px, 800, -2px, hsla(0, 0%, 24%, 1));
+            margin-bottom: 20px;
+        }
+
+        &__container{
+            display: flex;
+            gap: 15px;
+            margin-bottom: 12px;
+
+            &__item{
+                max-width: 324px;
+                width: 100%;
+                padding: 24px;
+                border-radius: 16px;
+                background-color:hsla(0, 0%, 100%, 1);
+                box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+                @include mixin.flex(flex-start, flex-start, column);
+
+                &:nth-child(1){
+                    .onboard__step__container__item__description{
+                        width: 187px;
+                    }
+                }
+
+                &__header{
+                    @include mixin.flex(space-between, center);
+                    width: 100%;
+                    margin-bottom: 37px;
+
+                    &__title{
+                        @include mixin.font('Inter_Mediun', 14px, 21px, 600);
+                        color: hsla(220, 9%, 46%, 1);
+                    }
+                }
+    
+                &__description{
+                    @include mixin.font('Inter_Mediun', 16px, 20px, 600);
+                    color: hsla(0, 0%, 24%, 1);
+                }
+
+                &__badges{
+                    margin-top: 12px;
+                }
+            }
+        }
+
+        &__button{
+            @include mixin.flex(center, center);
+            max-width: 1002px;
+            width: 100%;
+            border-radius: 999px;
+            gap: 10px;
+            border-style: none;
+            background-color: hsla(89, 82%, 71%, 1);
+            padding: 14px 0;
+            cursor: pointer;
+
+            &__text{
+                @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                color: hsla(0, 0%, 24%, 1);
+            }
+        }
+
+        &__block{
+            @include mixin.flex(center, center);
+            gap: 16px;
+
+            &__button{
+                @include mixin.flex(center, center);
+                max-width: 1002px;
+                width: 100%;
+                border-radius: 999px;
+                gap: 10px;
+                padding: 14px 0;
+                cursor: pointer;
+
+                &__queue-text{
+                    @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                    color: hsla(241, 68%, 62%, 1);
+                }
+
+                &__sent-text{
+                    @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                    color: hsla(0, 0%, 24%, 1);
+                }
+            }
+
+            &__queue-btn{
+                border: 1px solid hsla(241, 68%, 62%, 1);
+                background-color: transparent;
+            }
+
+            &__sent-btn{
+                border-style: none;
+                background-color: hsla(89, 82%, 71%, 1);
+            }
+        }
+    }
+}
+
+.modal__container{
+    max-width: 744px;
+    width: 100%;
+    height: fit-content;
+    border-radius: 16px;
+    padding: 24px;
+    background-color: hsla(220, 14%, 96%, 1);
+
+    &__title{
+        text-align: center;
+        @include mixin.title('Inter_Medium', 24px, 30px, 600, 0, hsla(0, 0%, 24%, 1));
+        margin-bottom: 8px;
+    }
+    
+    &__description{
+        text-align: center;
+        @include mixin.font('Inter_Light', 12px, 18px, 400);
+        color: hsla(220, 9%, 46%, 1);
+        margin-bottom: 24px;
+    }
+
+    &__text-done{
+        text-align: center;
+        @include mixin.font('Inter_Light', 20px, 30px, 400);
+        color: hsla(220, 9%, 46%, 1);
+        margin-bottom: 24px;
+    }
+}
+
+.tariff-plan__description{
+    margin-bottom: 0px;
+}
+
+.modal__container__tariff-plan{
+    max-width: 1010px;
+    width: 100%;
+    height: fit-content;
+    border-radius: 16px;
+    padding: 24px;
+    background-color: hsla(220, 14%, 96%, 1);
+}
+
+.modal__footer{
+    @include mixin.flex(flex-end, center);
+    margin-top: 24px;
+    gap: 16px;
+
+    &__button{
+        border-radius: 999px;
+        @include mixin.font('Inter_Regular', 14px, 21px, 500);
+        padding: 8px 20px;
+        cursor: pointer;
+
+        &:nth-child(1){
+            border: none;
+            background-color: hsla(220, 13%, 91%, 1);
+            color: hsla(212, 28%, 17%, 1);
+        }
+
+        &:nth-child(2){
+            border: 1px solid hsla(163, 93%, 22%, 1);
+            background-color: transparent;
+            color: hsla(163, 93%, 22%, 1);
+        }
+    }
+}
+
+.tariff-plan{
+   margin-left: 24px;
+   margin-top: 24px; 
+   margin-bottom: 11px;
+
+   &__title{
+        @include mixin.title('BricolageGrotesque_Extra', 34px, 39.6px, 800, -2px, hsla(0, 0%, 24%, 1));
+        margin-bottom: 12px;
+   }
+
+   &__description{
+        @include mixin.font('Inter_Regular', 16px, 24px, 500);
+        color: hsla(218, 11%, 65%, 1);
+   }
+
+   &__container{
+        list-style-type: none;
+        @include mixin.flex(flex-start, flex-start);
+        gap: 15px;
+
+        &__item{
+            position: relative;
+            border: none;
+            width: 309px;
+            height: 469px;
+            margin-top: 47px;
+            border-radius: 16px;
+            background-color: hsla(210, 20%, 98%, 1);
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: 1px solid hsla(216, 12%, 84%, 1);
+                border-radius: 16px;
+                z-index: 0;
+            }
+
+            &__header{
+                position: relative;
+                z-index: 1;
+                background-color: white;
+                @include mixin.flex(center, center, column);
+                height: 165px;
+                border-radius: 16px;
+                box-shadow: 0px 10px 15px -3px hsla(0, 0%, 0%, 0.1);
+
+                &__subtitle{
+                    @include mixin.font('Inter_Medium', 24px, 30px, 600);
+                    color: hsla(0, 0%, 24%, 1);
+                }
+
+                &__title{
+                    @include mixin.title('BricolageGrotesque_Extra', 34px, 39.6px, 800, -2px, hsla(234, 84%, 78%, 1));
+                    margin-top: 9px;
+                    margin-bottom: 4px;
+                }
+
+                &__description{
+                    @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                    color: hsla(218, 11%, 65%, 1);
+                }
+            }
+
+            &__body{
+
+                &__list{
+                    list-style-type: none;
+                    margin: 0 33px;
+
+                    &:nth-child(1){
+                        list-style-image: url('../../assets/onboard/check-circle.svg');
+                        padding-left: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+                        padding-top: 40px;
+
+                        .tariff-plan__container__item__body__list__item{
+                            @include mixin.font('Inter_Regular', 14px, 21px, 500);
+                            color: hsla(0, 0%, 24%, 1);
+                        }
+                    }
+
+                    &:nth-child(2){
+                        list-style-image: url('../../assets/onboard/plus.svg');
+                        padding-left: 20px;
+                        margin-top: 20px;
+                        margin-bottom: 40px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+
+                        .tariff-plan__container__item__body__list__item{
+                            @include mixin.font('Inter_Light', 12px, 18px, 300);
+                            color: hsla(0, 0%, 24%, 1);
+                        }
+                    }
+                }
+            }
+
+            &__footer{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+
+                &__button{
+                    position: relative;
+                    z-index: 1;
+                    width: 243px;
+                    padding: 12px 20px;
+                    border-radius: 999px;
+                    border: 1px solid hsla(0, 0%, 24%, 1);
+                    cursor: pointer;
+                    background-color: transparent;
+                }
+            }
+        }
+   }
+}
+
+.done{
+    color: hsla(160, 84%, 34%, 1);
+}
+
+// .description{
+//     color:hsla(164, 93%, 17%, 1);
+// }
+
+.subtitle-active{
+    color: hsla(0, 0%, 100%, 1);
+}
+
+.item-active{
+    position: relative;
+    border: none;
+    width: 309px;
+    height: 469px;
+    margin-top: 32px;
+    border-radius: 16px;
+    background-color: hsla(220, 100%, 97%, 1);
+}
+
+
+.item-active::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid hsla(234, 95%, 85%, 1);
+    border-radius: 16px;
+    z-index: 0;
+}
+
+.header-active{
+    position: relative;
+    z-index: 1;
+    background-color: hsla(0, 0%, 24%, 1);
+    @include mixin.flex(center, center, column);
+    height: 165px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 6px 0px hsla(243, 80%, 62%, 0.5);
+    box-shadow: 0px 10px 15px -3px hsla(243, 80%, 62%, 0.5);
+
+}
+
+.list-active{
+    list-style-image: url('../../assets/onboard/check_circle_active.svg');
+}
+
+
+.button-active{
+    border: none;
+    background-color: hsla(234, 95%, 85%, 1);
+}
+
+.active{
+    border: 1px solid hsla(160, 84%, 34%, 1);
+}
+
+.title-active{
+    display: flex;
+    align-items: center;
+    color: hsla(160, 84%, 34%, 1);
+}
+
+.round-active{
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    padding: 2px 10px;
+    margin-right: 8px;
+    @include mixin.flex(center, center);
+    background-color: hsla(154, 61%, 92%, 1);
+}
+
+
+
+.job{
+    max-width: 696px;
+    width: 100%;
+    max-height: 538px;
+    margin-top: 24px;
+    overflow-y: auto;
+    padding-right: 4px;
+    box-sizing: content-box;
+    
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 141px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: hsla(234, 84%, 78%, 1);
+        border-radius: 999px;
+    }
+    &__list{
+        margin: 0;
+        @include mixin.flex(flex-start, center);
+        list-style-type: none;
+        &__item{
+            &:nth-child(2){
+                margin-left: 8px;
+            }
+            &__button{
+                border: 0;
+                background-color: transparent;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.job__card {
+    width: 672px;
+    height: fit-content;
+    background-color: hsla(0, 0%, 100%, 1);
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 8px;
+
+    display: grid; 
+    grid-template-columns: 450px 194px; 
+    grid-template-rows: 60px 22px; 
+    gap: 16px 0px; 
+    grid-template-areas: 
+      "header buttons"
+      "footer buttons"; 
+
+    &__header{
+        grid-area: header;
+        &__subtitle{
+            @include mixin.font('Inter_Light', 14px, 21px, 400);
+            color: hsla(0, 0%, 60%, 1);
+            margin-bottom: 10.5px;
+        }
+        &__title{
+            @include mixin.title('Inter_Bold', 20px, 30px, 600, 0, hsla(0, 0%, 24%, 1));
+        }
+    }
+
+    &__footer{
+        grid-area: footer;
+        @include mixin.flex(space-between, flex-end);
+        &__tags{
+            @include mixin.flex(flex-start, center);
+        }
+    }
+
+    &__actions{
+        grid-area: buttons;
+        @include mixin.flex(space-around, flex-end, column);
+        &__edit-button{
+            width: 194px;
+            height: 34px;
+            @include mixin.flex(center, center);
+            padding: 2px 5px;
+            border-radius: 999px;
+            background-color: hsla(234, 95%, 85%, 1);
+            @include mixin.font('Inter_Regular', 12px, 18px, 500);
+            color: hsla(0, 0%, 24%, 1);
+            border: 0;
+            margin-right: 16px;
+            cursor: pointer;
+        }
+
+        &__resume-button{
+            width: 142px;
+            height: 34px;
+            @include mixin.flex(center, center);
+            padding: 2px 5px;
+            border-radius: 999px;
+            background-color: hsla(0, 0%, 100%, 1);
+            border: 1px solid hsla(241, 68%, 62%, 1);
+            @include mixin.font('Inter_Regular', 12px, 18px, 500);
+            color: hsla(241, 68%, 62%, 1);
+            margin-right: 16px;
+            cursor: pointer;
+        }
+
+        &__apply-button{
+            padding: 8px 20px;
+            background-color: transparent;
+            border: 1px solid hsla(163, 93%, 22%, 1);
+            @include mixin.font('Inter_Regular', 12px, 18px, 500);
+            color: hsla(163, 93%, 22%, 1);
+            border-radius: 999px;
+            cursor: pointer;
+        }
+
+        &__edit-results{
+            background-color: transparent;
+            border: 1px solid hsla(241, 68%, 62%, 1);
+            color: hsla(241, 68%, 62%, 1);
+        }
+
+        &__icon{
+            margin-left: 8px;
+        }
+    }
+}

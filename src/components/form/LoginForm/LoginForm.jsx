@@ -33,13 +33,15 @@ export default function LoginForm(){
            return response.data;
         },
         onSuccess: (response) => {
+            console.log(response);
+            
             if(response === false ){
                 setErrors("You have entered an incorrect username or password");
                 return;
             }
             
             dispatch(setAccessToken(response.access_token));
-            navigate('/onboard')
+            navigate('/onboard');
         },
         onError: (error) => {
             console.error('Error adding user:', error);
@@ -53,7 +55,6 @@ export default function LoginForm(){
 
     const handleEmail = (e) => setEmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
-    console.log(errors);
     
     return (
         <form className="login__form" onSubmit={handleSendingData}>

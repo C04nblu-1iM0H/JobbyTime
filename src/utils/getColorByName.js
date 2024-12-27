@@ -1,20 +1,34 @@
 export const getColorByName = (name) => {    
-    if (!name) return ''
+    if (!name) return '';
     if(name.slice(0,1)  === "$" ) name = "$";
 
     switch (name) {
       case "Flexible":
         return "hsla(211, 94%, 94%, 1)";
-      case "Project-Based" && "Contract":
+      case "Project-Based":
+        return "hsla(222, 100%, 95%, 1)";
+      case "Contract":
         return "hsla(222, 100%, 95%, 1)";
       case "Remotely":
         return "hsla(246, 90%, 96%, 1)";
-      case "Partial"  && "Part-time":
+      case "Third Party":
+        return "hsla(246, 90%, 96%, 1)";
+      case "Partial":
         return "hsla(54, 95%, 85%, 1)";
-      case "Full time" && "Full-time":
+      case "Part-time":
+        return "hsla(54, 95%, 85%, 1)";
+      case "Full time":
+        return "hsla(154, 61%, 92%, 1)";
+      case "Full-time":
         return "hsla(154, 61%, 92%, 1)";
       case "$":
         return "hsla(211, 94%, 94%, 1)";
+      case "Great":
+        return "hsla(154, 61%, 92%, 1)";
+      case "Well Done":
+        return "hsla(154, 61%, 92%, 1)";
+      case "You are on the right way":
+        return "hsla(154, 61%, 92%, 1)";
       case "100%":
         return "#DEF7EC";
       case "80%":
@@ -23,7 +37,6 @@ export const getColorByName = (name) => {
         return "hsla(220, 14%, 96%, 1)";
     }
 };
-
 
 export const getColorByStatusName = (status) => {
   switch (status) {

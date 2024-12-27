@@ -11,9 +11,11 @@ import {
      } from 'redux-persist'
 import st from './storage';
 import tokenReducer from './tokenSlice';
+import stepReducer from './stepSlice';
 
 const rootReducer = combineReducers({
     token: tokenReducer,
+    step:stepReducer,
 })
 
 const persistConfig = {

@@ -1,22 +1,36 @@
 import Counter from "../../counter/counter";
 import Checkboxes from "../checkboxes/checkboxes";
-import {checkboxing, options} from '../../../const';
+import {AppRouting, checkboxing, options} from '../../../const';
 import './resumeform.scss';
+import AdditionalForm from "./AdditionalForm";
+import { useDispatch } from "react-redux";
+import { setSteps } from "../../../store/stepSlice";
+import ButtonComponent from "../../button/ButtonComponent/ButtonComponent";
 
 export default function ResumeForm({
     formData, 
+    setAdditionalData,
     handleChange, 
+    handleAdditionalDataChange,
     handleSubmit,
     handleFilterChange,
     handleCounter,
-    filename,
-    OldFileName,
-    errors
+    errors,
+    currentRoute,
 }){    
+    const dispatch = useDispatch();
     return(
         <form 
             className="modal__form" onSubmit={handleSubmit}
         >
+        {currentRoute === AppRouting.Onboard &&(
+            <AdditionalForm 
+                setAdditionalData={setAdditionalData}
+                handleAdditionalDataChange={handleAdditionalDataChange}
+                errors={errors}
+            />
+        )}
+            
             <div className="modal__form__container">
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Application job title</label>
@@ -27,6 +41,7 @@ export default function ResumeForm({
                         type="text"
                         value={formData.name}
                         onChange={(e) => handleChange("name", e.target.value)}
+                        placeholder="Specify application job title"
                     />
                     {errors.name && (
                         <span className="modal__form__container__group__error-message">{errors.name}</span>
@@ -35,11 +50,17 @@ export default function ResumeForm({
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Minimum salary $/per year</label>
                     <input 
-                        className="modal__form__container__group__input" 
+                        className={`modal__form__container__group__input ${
+                            errors.salary ? "modal__form__container__group__input__error" : ""
+                        }`}  
                         type="text"
                         value={formData.salary}
                         onChange={(e) => handleChange("salary", e.target.value)}
+                        placeholder="Specify the minimum wage per year"
                     />
+                    {errors.salary && (
+                        <span className="modal__form__container__group__error-message">{errors.salary}</span>
+                    )}
                 </div>
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Your experience level</label>
@@ -47,20 +68,17 @@ export default function ResumeForm({
                         className="modal__form__container__group__select"
                         name="experienceLevel"
                         value={formData.experienceLevel}
-                        onChange={(e) =>
-                            handleChange("experienceLevel", e.target.value)
-                        }
+                        onChange={(e) =>handleChange("experienceLevel", e.target.value)}
                     >
-                        {
-                            options.map((option, index) => {
-                                const {name, description} = option;
-                                return(
-                                    <option key={index} selected={formData.experienceLevel === name} value={name}>
-                                        {description}
-                                    </option>
-                                )
-                            })
-                        }
+                        {options.map((option, index) => {
+                            const {name, description} = option;
+                            return(
+                                // selected={formData.experienceLevel === name}
+                                <option key={index} value={name}> 
+                                    {description}
+                                </option>
+                            )
+                        })}
                     </select>
                 </div>
             </div>
@@ -132,6 +150,7 @@ export default function ResumeForm({
                         type="text"
                         value={formData.site}
                         onChange={(e) => handleChange("site", e.target.value)}
+                        placeholder="Link to your website"
                     />
                 </div>
                 <div className="modal__form__container__group">
@@ -141,6 +160,7 @@ export default function ResumeForm({
                         type="text"
                         value={formData.linkedIn}
                         onChange={(e) => handleChange("linkedIn", e.target.value)}
+                        placeholder="Link to your LinkedIn"
                     />
                 </div>
                 <div className="modal__form__container__group">
@@ -150,6 +170,7 @@ export default function ResumeForm({
                         type="text"
                         value={formData.gitHub}
                         onChange={(e) => handleChange("gitHub", e.target.value)}
+                        placeholder="Link to your GitHub"
                     />
                 </div>
             </div>
@@ -161,6 +182,7 @@ export default function ResumeForm({
                         type="text"
                         value={formData.portFolioLink}
                         onChange={(e) => handleChange("portFolioLink", e.target.value)}
+                        placeholder="Link to your Portfolio (link)"
                     />
                 </div>
                 <div className="modal__form__container__group">
@@ -171,17 +193,30 @@ export default function ResumeForm({
                             id="fileInput" 
                             className="modal__form__container__group__addfile__input" 
                             type="file" 
-                            title="" 
                         />
-                        <span 
-                            className="modal__form__container__group__addfile__text" 
-                            type="text" 
-                        > {OldFileName || filename}</span>
+                        <span className="modal__form__container__group__addfile__text">your .pdf portfolio (or .docx / .doc / .txt)</span>
                     </div>
                 </div>
             </div>
             <div className="modal__form__block">
-                <button type="submit" className="modal__form__block__button">Save and Find Relevant Jobs</button>
+                {currentRoute === AppRouting.Onboard && (
+                    <ButtonComponent 
+                        ClickFunction={ () => dispatch(setSteps({ step: 'step1', value: false }))}
+                        classNameButton={"modal__footer__button"}
+                        textButton={"Close"}
+                    />
+                )}
+                {/* <ButtonComponent 
+                    type={"submit"}
+                    classNameButton={"modal__form__block__button"}
+                    textButton={currentRoute === AppRouting.Onboard ? "Save and Continue" : "Save and Find Relevant Jobs"}
+                /> */}
+                <button
+                    type="submit"
+                    className="modal__form__block__button"
+                >
+                    <p>{currentRoute === AppRouting.Onboard ? "Save and Continue" : "Save and Find Relevant Jobs"}</p>
+                </button>
             </div>
         </form>
     )

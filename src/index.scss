@@ -3,8 +3,9 @@
 @use './components/breadcrumbs/breadcrumbs.scss';
 @use './components/BadgeStatus/status.scss';  
 @use './pages/signup-screen/signup.scss';
-@use './components/DownloadArea/donwload.scss';
+@use './components/UploadResume/upload_resume.scss';
 @use './components/form/ResumeForm/resumeform.scss';
+@use './components/badge/bage.scss';
 @use './pages/job-board-screen/board.scss';
 @use './components/verify/verify.scss';
 @use './pages/job-screen/job.scss';
@@ -13,6 +14,12 @@
 @use './components/form/PhoneInput/PhoneInput.scss';
 @use './components/form/DataPicker/data_picker.scss';
 @use './pages/private-policy-screen/policy.scss';
+@use './components/resumeModal/resum_modal.scss';
+@use './components/StepStatus/step_status.scss';
+@use './pages/main-screen/onboard.scss';
+@use './components/form/InputResume/input_resume.scss';
+@use './components/JobOpeningsList/job_openings_list.scss';
+@use './components/JobOpeningsCard/job_openings_card.scss';
 
 *{
   margin: 0;
@@ -22,4 +29,8 @@
 
 a{
   text-decoration: none;
+}
+
+.no-scroll {
+  overflow: hidden;
 }

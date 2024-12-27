@@ -1,5 +1,10 @@
 @use "../../../style/mixins.scss" as mixin;
 
+
+    .react-datepicker__input-container{
+        @include mixin.flex(flex-start, center);
+    }
+
     .datepicker-container {
         display: flex;
         flex-direction: column;
@@ -15,13 +20,17 @@
     .datepicker-input {
         width: 250px;
         height: 42px;
-        padding-left: 12px;
+        padding-left: 32px !important;
         border-radius: 8px;
         border: 1px solid hsla(216, 12%, 84%, 1);
         background-color: hsla(210, 20%, 98%, 1);
         outline: none;
         @include mixin.font("Inter_Regular", 14px, 17.5px, 400);
-        color: hsla(219, 40%, 11%, 1);
+        color: hsla(220, 9%, 46%, 1);
+
+        &::placeholder{
+            margin-left: 10px;
+        }
     }
     
     .react-datepicker{
@@ -112,4 +121,38 @@
     .react-datepicker__day--selected:not([aria-disabled=true]):hover{
         background-color: #a29bfe;
         color: #fff;
+    }
+
+    .datapicker__management{
+        width: 252px;
+        height: 37px;
+        position: absolute;
+        z-index: 1;
+        bottom: 40px;
+
+        &__buttons{
+            @include mixin.flex(flex-start, center);
+            gap: 16px;
+
+            &__btn{
+                width: 118px;
+                padding: 8px 12px;
+                border-radius: 999px;
+                cursor: pointer;
+                
+                &:nth-child(1){
+                    background-color: hsla(234, 95%, 85%, 1);
+                    border: none;
+                    @include mixin.font("Inter_Regular", 14px, 21px, 500);
+                    color: hsla(0, 0%, 100%, 1); 
+                }
+
+                &:nth-child(2){
+                    background-color: transparent;
+                    border: 1px solid hsla(220, 13%, 91%, 1);
+                    @include mixin.font("Inter_Regular", 14px, 21px, 500);
+                    color: hsla(212, 28%, 17%, 1); 
+                }
+            }
+        }
     }

@@ -7,15 +7,16 @@ body {
 
 .profile{
     position: relative;
+    width: 1002px;
+    margin-left: 24px;
     
     &__title{
         @include mixin.title('BricolageGrotesque_Bold', 36px, 39.6px, 800, -2px, hsla(0, 0%, 24%, 1));
-        margin: 24px 0 20px 24px;
+        margin: 24px 0 20px 0;
     }
 
     &__container{
         @include mixin.flex(space-between, center);
-        margin-left: 24px;
         width: 100%;
 
         &__information{
@@ -103,13 +104,15 @@ body {
                             &:first-child{
                                 margin-bottom: 20px;
                             }
+
+
                             &__label{
                                 @include mixin.font("Inter_Regular", 14px, 21px, 500);
                                 color: hsla(219, 40%, 11%, 1);
                                 margin-bottom: 8px;
                             }
 
-                            &__input{
+                            &__input {
                                 width: 250px;
                                 height: 42px;
                                 padding-left: 12px;
@@ -119,6 +122,11 @@ body {
                                 outline: none;
                                 @include mixin.font("Inter_Regular", 14px, 17.5px, 400);
                                 color: hsla(219, 40%, 11%, 1);
+                            
+                                &:not(:placeholder-shown) {
+                                    border: 2px solid hsla(234, 95%, 85%, 1);
+                                    background-color: hsla(210, 20%, 98%, 1);
+                                }
                             }
                             &__block{
                                 position: relative;
@@ -146,6 +154,33 @@ body {
                                     transform: translateY(-50%);
                                     pointer-events: none;
                                 }
+                            }
+                        }
+                    }
+
+                    &__buttons{
+                        @include mixin.flex(flex-end, center);
+                        gap: 16px;
+
+
+
+                        &__btn{
+                            padding: 8px 20px;
+                            border-radius: 999px;
+
+                            &:nth-child(1){
+                                border: none;
+                                background-color: hsla(220, 13%, 91%, 1);
+                                @include mixin.font("Inter_Regular", 14px, 21px, 500);
+                                color: hsla(212, 28%, 17%, 1);
+                            }
+    
+                            &:nth-child(2){
+                                width: 150px;
+                                border: 1px solid hsla(163, 93%, 22%, 1);
+                                background-color: transparent;
+                                @include mixin.font("Inter_Regular", 14px, 21px, 500);
+                                color: hsla(163, 93%, 22%, 1);
                             }
                         }
                     }
@@ -189,4 +224,306 @@ body {
             }
         }
     }
+
+    &__subtitle{
+        @include mixin.font('Inter_Regular', 24px, 36px, 600);
+        color: hsla(0, 0%, 24%, 1);
+        margin: 30px 0 12px 0;
+    }
+
+    &__location{
+        display: flex;
+        justify-content: space-between;
+
+        &__group{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &__block{
+            max-width:324px;
+            width: 100%;
+            height: fit-content; 
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: 24px;
+            padding: 24px;
+            border-radius: 16px;
+            background-color: hsla(0, 0%, 100%, 1);
+            box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+
+            &__title{
+                @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                color: hsla(0, 0%, 24%, 1);
+            }
+
+            &__radio-buttons{
+                @include mixin.flex(flex-start, center);
+                gap: 16px;
+
+                &__label{
+                    @include mixin.flex(flex-start, center);
+                    gap: 8px;
+                    @include mixin.font('Inter_Light', 14px, 14px, 300);
+                    color: hsla(0, 0%, 24%, 1);
+                }
+
+                &__input{
+                    width: 16px;
+                    height: 16px;
+                    background: hsla(210, 20%, 98%, 1);
+                    border: 0.5px solid hsla(234, 95%, 85%, 1);
+                    border-radius: 8px;
+                    appearance: none;
+                    cursor: pointer;
+    
+                    &:checked{
+                        border: 3.5px solid hsla(234, 84%, 78%, 1);
+                        background: hsla(210, 20%, 98%, 1);
+                    }
+                }
+            }
+        }
+
+        &__container{
+            max-width:663px;
+            width: 100%;
+            height: fit-content; //288px
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: 24px;
+            padding: 24px;
+            border-radius: 16px;
+            background-color: hsla(0, 0%, 100%, 1);
+            box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+
+            &__title{
+                @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                color: hsla(0, 0%, 24%, 1);
+            }
+
+            &__radio-buttons{
+                @include mixin.flex(flex-start, center);
+                flex-wrap: wrap;
+                gap: 16px;
+
+                &__block{
+                    width: 280px;
+                    height: fit-content;
+                    @include mixin.flex(flex-start, flex-start);
+                    gap:4px; 
+                }
+
+                &__input{
+                    width: 16px;
+                    height: 16px;
+                    background: hsla(210, 20%, 98%, 1);
+                    border: 0.5px solid hsla(234, 95%, 85%, 1);
+                    border-radius: 8px;
+                    appearance: none;
+                    cursor: pointer;
+    
+                    &:checked{
+                        border: 3.5px solid hsla(234, 84%, 78%, 1);
+                        background: hsla(210, 20%, 98%, 1);
+                    }
+                }
+
+                &__descriptions{
+                    @include mixin.flex(flex-start, flex-start, column);
+                    gap: 4px;
+
+                    &__label{
+                        @include mixin.font('Inter_Light', 14px, 14px, 300);
+                        color: hsla(0, 0%, 24%, 1);
+                    }
+    
+                    &__text{
+                        @include mixin.font('Inter_Light', 12px, 18px, 300);
+                        color:hsla(220, 9%, 46%, 1);
+                    }
+                }
+
+            }
+        }
+    }
+
+    &__blacklist-box{
+        display: flex;
+        gap: 24px;
+        height: fit-content;
+        padding: 24px;
+        border-radius: 16px;
+        background-color: hsla(0, 0%, 100%, 1);
+        box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+    }
+
+    &__black-list{
+        @include mixin.flex(flex-start, flex-start, column);
+        gap: 24px;
+        height: fit-content;
+        width: 493px;
+
+        &__title{
+            @include mixin.font('Inter_Regular', 16px, 24px, 500);
+            color: hsla(0, 0%, 24%, 1);
+        }
+        &__container{
+            @include mixin.flex(flex-start, center);
+            gap: 15px;
+
+            &__description{
+                @include mixin.font('Inter_Light', 12px, 18px, 300);
+                color:hsla(0, 0%, 24%, 1);
+            }
+        }
+
+        &__form{
+            @include mixin.flex(flex-start, center);
+            gap: 4px;
+
+            &__input{
+                width: 328px;
+                padding: 12px 16px;
+                border: 1px solid hsla(216, 12%, 84%, 1);
+                border-radius: 8px;
+                outline: none;
+
+                &::placeholder{
+                    @include mixin.font('Inter_Light', 14px, 17.5px, 400);
+                    color:hsla(220, 9%, 46%, 1);
+                }
+
+                &:not(:placeholder-shown) {
+                    border: 1px solid hsla(234, 95%, 85%, 1);
+                    background-color: hsla(210, 20%, 98%, 1); 
+                }
+            }
+
+            &__button{
+                @include mixin.flex(flex-start, center);
+                gap: 8px;
+                padding: 10px 20px;
+                border-radius: 999px;
+                border: none;
+                background-color: hsla(0, 74%, 45%, 1);
+
+                &__text{
+                    @include mixin.font('Inter_Regular', 14px, 21px, 500);
+                    color: #fff;
+                }
+            }
+        }
+
+        &__divider{
+            border-left: 0.5px solid hsla(220, 9%, 46%, 1); 
+            height: 170px;              
+        }
+
+        &__company{
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: 24px;
+            width: 493px;
+            height: fit-content;
+
+            &__title{
+                @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                color: hsla(0, 0%, 24%, 1);
+            }
+
+            &__badge-list{
+                @include mixin.flex(flex-start, center);
+                flex-wrap: wrap;
+                gap: 10px;
+                
+                
+
+            }
+        }
+    }
+
+    &__security{
+        width: 1002px;
+        height: fit-content;
+        border-radius: 16px;
+        background-color: hsla(0, 0%, 100%, 1);
+        box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+        padding: 24px;
+        margin-bottom: 24px;
+
+        &__active{
+            width: 100%;
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: 24px;
+            padding-bottom: 24px;
+        }
+
+        &__divider{
+            width: 315px;
+            border: 0.5px solid hsla(0, 0%, 60%, 1);
+            margin: 0 auto;
+        }
+
+        &__agency{
+            width: 100%;
+            @include mixin.flex(flex-start, flex-start, column);
+            gap: 24px;
+            padding-top: 24px;
+
+            &__title{
+                @include mixin.font('Inter_Regular', 16px, 24px, 500);
+                color: hsla(0, 0%, 24%, 1);
+            }
+
+            &__container{
+                width: 100%;
+                @include mixin.flex(flex-start, center);
+                gap: 16px;
+
+                &__checkbox{
+                    max-width: 137px;
+                    width: 100%;
+                    @include mixin.flex(flex-start, center);
+                    gap: 8px;
+
+                    &__input{
+                        width: 16px;
+                        height: 16px;
+                        border: 0.5px solid hsla(234, 95%, 85%, 1);
+                        background-color: hsla(210, 20%, 98%, 1);
+                        appearance: none;
+                        border-radius: 4px;
+                        margin-right: 8px;
+                        
+                        &:checked{
+                            border: 0.5px solid hsla(234, 84%, 78%, 1);
+                            background: hsla(234, 84%, 78%, 1) url("../../assets/resume/cheked.svg") no-repeat center;
+                            background-size: 9.79px 7px;
+                        }
+                    }
+
+                    &__label{
+                        @include mixin.font('Inter_Light', 14px, 14px, 300);
+                        color: hsla(0, 0%, 24%, 1);
+                    }
+
+                }
+            }
+        }
+
+    }
+}
+
+.badge-blackList{
+    width: fit-content;
+    height: fit-content;
+    @include mixin.flex(flex-start, center);
+    gap: 4px;
+    border-radius: 6px;
+    padding: 2px 12px;
+    background-color: hsla(0, 84%, 95%, 1);
+}
+
+.description-blackList{
+    @include mixin.font('Inter_Regular', 14px, 21px, 500);
+    color: hsla(0, 69%, 36%, 1);       
 }

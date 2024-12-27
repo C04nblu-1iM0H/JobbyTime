@@ -33,7 +33,8 @@ export const validateInputs = (firstName, lastName, email, password) => {
     return errors;
 }
 
-export const ValidateFormResume = (name, jobprefor, work)=>{
+export const ValidateFormResume = (name, salary, jobprefor, work, firstName, lastName, city)=>{
+
   const errors = {};
   if(!name){
     errors.name = "It should not be application job title empty ";
@@ -41,6 +42,10 @@ export const ValidateFormResume = (name, jobprefor, work)=>{
     errors.name = "Too short application job title";
   }else if(name >= 60){
     errors.name = "Too long application job title";
+  }
+
+  if(!(/^\d+$/.test(salary))){
+    errors.salary ="The line should contain only numbers."
   }
 
   if(jobprefor.length === 0){
@@ -51,6 +56,22 @@ export const ValidateFormResume = (name, jobprefor, work)=>{
     errors.work = "Your work experience it can't be less than one year old";
   }else if(work > 80){
     errors.work = "Your work experience it can't be more than eighty years old";
+  }
+
+  if(!firstName){
+    errors.firstName = "The first name field must not be empty";
+  }else if(firstName > 80){
+    errors.firstName = "You entered a first name that is too long";
+  }
+
+  if(!lastName){
+    errors.lastName = "The last name field must not be empty";
+  }else if(lastName > 80){
+    errors.lastName = "You entered a last name that is too long";
+  }
+
+  if(!city){
+    errors.city = "The city field must not be empty";
   }
  
   return errors;

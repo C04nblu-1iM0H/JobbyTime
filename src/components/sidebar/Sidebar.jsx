@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { AsideJobs, AsideProfile, AsideAiTools, AppRouting, TitleMenu } from '../../const';
+import { AsideJobs, AsideProfile, AsideAiTools, AppRouting, TitleMenu, AsideOnboard } from '../../const';
 import ListAiTools from '../ListAiTools/ListAiTools';
 import ListJobs from '../ListJobs/ListJobs';
 import logo from '../../assets/logo.svg'
@@ -16,6 +16,14 @@ function Sidebar(){
                 <img className='aside__block__logo' src={logo} alt="logo"/>
             </div>
             <nav className="aside__menu">
+                <LinkComponent
+                    root={AppRouting.Onboard} 
+                    path={AsideOnboard.path}
+                    fill={currentRoute === AsideOnboard.root ? "hsla(89, 82%, 71%, 1)" : "hsla(0, 0%, 24%, 1)"}
+                    description={AsideOnboard.description}
+                    activeItem={currentRoute === AsideOnboard.root ? "aside__menu__list__item-active" : null}
+                    activeDescription={currentRoute === AsideOnboard.root ? "aside__menu__list__item__description-active" : null}
+                />
                 <ul className="aside__menu__list">
                     <li className="aside__menu__list__title">
                         <p className='aside__menu__list__title__description'>{TitleMenu.user}</p>

@@ -1,4 +1,3 @@
-import download from '../../assets/resume/file.svg';
 import DownloadArea from '../../components/DownloadArea/DownloadArea';
 import './resume.scss'
 import ListResumeBuilder from '../../components/ListResumeBuilder/ListResumeBuilder';
@@ -42,7 +41,7 @@ export default function ResumeScreen(){
         <section className="resume">
             <h1 className="resume__title">AI Resume Builder</h1>
             {
-                listResume.length !==0 ? <ListResumeBuilder listResume={listResume} />:<DownloadArea icon={download}/>
+                listResume.length !==0 ? <ListResumeBuilder listResume={listResume} />:<DownloadArea/>
             }
             
         </section>

@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../../const";
 
-export default function VerifyForm(){
+export default function VerifyForm({setIsLoading}){
     const [code, setCode] = useState(new Array(6).fill("")); // Для хранения 6 символов
     const inputs = useRef([]); // Ссылки на input элементы
     const navigate = useNavigate();
@@ -41,6 +41,7 @@ export default function VerifyForm(){
             });
         },
         onSuccess: () => {
+            setIsLoading(false);
             navigate("/login");
         },
         onError: (error) => {
@@ -51,6 +52,7 @@ export default function VerifyForm(){
 
     const handleSumbit = (e) =>{
         e.preventDefault();
+        setIsLoading(true);
         varifyEmail.mutate({code});        
     }
     return(
