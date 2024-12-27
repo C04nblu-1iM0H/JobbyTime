@@ -2,7 +2,6 @@ import {getColorByName} from "../../utils/getColorByName"
 
 export default function BadgeComp({item, index}){
     const {name, icon} = item;
-
     const badgeColor = getColorByName(name);
     return( 
         <div 

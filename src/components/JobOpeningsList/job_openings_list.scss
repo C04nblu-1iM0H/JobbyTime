@@ -1,0 +1,45 @@
+@use '../../style/mixins.scss' as mixin;
+
+.job-openings{
+    &__сhoice{
+        @include mixin.flex(flex-start, center);
+
+        &__input{
+            width: 16px;
+            height: 16px;
+            border: 0.5px solid hsla(234, 95%, 85%, 1);
+            background-color: hsla(210, 20%, 98%, 1);
+            appearance: none;
+            border-radius: 4px;
+            margin-right: 8px;
+
+            &:checked{
+                border: 0.5px solid hsla(234, 84%, 78%, 1);
+                background: hsla(234, 84%, 78%, 1) url("../../assets/resume/cheked.svg") no-repeat center;
+                background-size: 9.79px 7px;
+            }
+        }
+        &__label{
+            @include mixin.font('Inter_light', 14px, 14px, 300);
+            color:hsla(219, 40%, 11%, 1);
+        }
+    }
+
+    &__list{
+        list-style-type: none;
+        max-height: 538px;
+        overflow-y: auto;
+        padding-right: 4px;
+        box-sizing: content-box;
+        
+        &::-webkit-scrollbar {
+            width: 4px;
+            height: 141px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: hsla(234, 84%, 78%, 1);
+            border-radius: 999px;
+        }
+    }
+}

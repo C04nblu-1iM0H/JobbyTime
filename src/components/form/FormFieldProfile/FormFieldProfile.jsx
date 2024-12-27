@@ -1,5 +1,11 @@
 
-export default function FormFieldProfile({ label, type = "text", value, onChange }){
+export default function FormFieldProfile({ 
+    label, 
+    type = "text", 
+    value, 
+    onChange, 
+    placeholder
+}){
     return (
         <div className="profile__container__information__findings__form__basic__group">
             <label className="profile__container__information__findings__form__basic__group__label">{label}</label>
@@ -8,6 +14,7 @@ export default function FormFieldProfile({ label, type = "text", value, onChange
                 type={type}
                 value={value}
                 onChange={onChange}
+                placeholder={placeholder}
             />
         </div>
       );

@@ -11,9 +11,7 @@ export default function Badge({name, city, time, team}){
                 backgroundColor:badgeColor,
             }}
         >
-            {
-                icon === undefined ? null : <img className="icon" src={icon} alt="icon_operating_mode" />
-            }
+            {icon === undefined ? null : <img className="icon" src={icon} alt="icon_operating_mode" />}
             <p className="description">{name}</p>
         </div>        
     )

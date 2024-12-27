@@ -6,13 +6,13 @@ import {validateInputs} from '../../../utils/validate';
 import { API } from '../../../const';
 import { useNavigate } from 'react-router-dom';
 
-export default function SignupForm({SetIsDataSuccess}){
+export default function SignupForm({SetIsDataSuccess, setIsLoading}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [errors, setErrors] = useState({});
-    const navigate = useNavigate() 
+    const navigate = useNavigate();
 
     const addUser = useMutation({
         mutationFn: async ({firstName, lastName, email, password }) => {
@@ -21,7 +21,8 @@ export default function SignupForm({SetIsDataSuccess}){
         },
         onSuccess: (response) => {            
             if(response === true){
-                SetIsDataSuccess(true)
+                setIsLoading(false);
+                SetIsDataSuccess(true);
             }else if(response === false){
                 errors.email = "Such an email already exists.";
                 setTimeout(() => {
@@ -37,12 +38,13 @@ export default function SignupForm({SetIsDataSuccess}){
 
     const handleSendingData = (e) =>{
         e.preventDefault();
+        setIsLoading(true);
         const validationErrors = validateInputs(firstName, lastName, email, password);
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
-          }
-          setErrors({});
+        }
+        setErrors({});
         addUser.mutate({firstName, lastName, email, password });
     }
 
@@ -50,7 +52,6 @@ export default function SignupForm({SetIsDataSuccess}){
     const handleFirstName = (e) => setFirstName(e.target.value);
     const handleEmail = (e) => setEmail(e.target.value);
     const handlePassword = (e) => setPassword(e.target.value);
-
 
     return (
         <form  onSubmit={handleSendingData} className="signup__form">

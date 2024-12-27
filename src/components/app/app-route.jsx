@@ -14,9 +14,10 @@ import ProfileScreen from "../../pages/profile-screen/profile-screen";
 import { AppRouting } from "../../const";
 import ReduxProvider from "../ReduxProvider";
 import ProtectedRoute from "../ProtectedRoute";
-import './app.scss';
 import AppliedResultsScreen from "../../pages/applied-results-screen/applied-results-screen";
 import PrivatePolicyScreen from "../../pages/private-policy-screen/private-policy-screen";
+import IsBotScreen from "../../pages/is-bot-screen/is-bot-screen";
+import './app.scss';
 
 const queryClient = new QueryClient();
 
@@ -34,8 +35,12 @@ export default function AppRoute() {
               path={AppRouting.Login}
               element={<LoginScreen />} 
             />
+            <Route 
+              path={AppRouting.bot}
+              element={<IsBotScreen />} 
+            />
             {/* element={<ProtectedRoute />} */}
-            <Route element={<ProtectedRoute />}> 
+            <Route> 
               <Route element={<PageHead />}>
                 <Route 
                   path={AppRouting.Profile}

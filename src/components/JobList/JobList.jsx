@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { AppRouting } from "../../const";
 import { useState } from "react";
 import Loader from "../loader/loader";
+import ModalJobCard from "../ModalJobCard/ModalJobCard";
 
 export default function JobList({ list }) {
     const [loadingJobId, setLoadingJobId] = useState(null);
@@ -21,7 +22,7 @@ export default function JobList({ list }) {
                 }
                 return (
                     <div key={`job-${index}`} className="job__list">
-                        {route.pathname === AppRouting.AutoApply ? (
+                        {route.pathname === AppRouting.AutoApply || route.pathname === AppRouting.Onboard ? (
                             <li className="job__list__item">
                                 <button className="job__list__item__button">
                                     <img className="job__list__item__button__icon" src={del} alt="del_icon" />
@@ -29,7 +30,12 @@ export default function JobList({ list }) {
                             </li>
                         ) : null}
                         <li className="job__list__item">
-                            <JobCard job={job} setLoadingJobId={setLoadingJobId} />
+                            { route.pathname === AppRouting.Onboard ?(
+                                <ModalJobCard job={job} setLoadingJobId={setLoadingJobId}/>
+                            ):(
+                                <JobCard job={job} setLoadingJobId={setLoadingJobId} />
+                            )}
+                            
                         </li>
                     </div>
                 );

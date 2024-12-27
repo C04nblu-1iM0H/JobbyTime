@@ -1,13 +1,12 @@
 import google from './assets/Signup/google.svg';
 import linkedin from './assets/Signup/linkedin.svg';
+// import fulltime from './assets/board/fulltime.svg';
+// import remotely from './assets/board/remotely.svg';
+// import mark from './assets/board/mark.svg';
+// import time from './assets/board/time.svg';
+// import cash from './assets/job/cash.svg';
 
-import fulltime from './assets/board/fulltime.svg';
-import remotely from './assets/board/remotely.svg';
-import mark from './assets/board/mark.svg';
-import time from './assets/board/time.svg';
-import cash from './assets/job/cash.svg';
-
-const currentUrl = 'https://532e-87-117-58-211.ngrok-free.app';
+const currentUrl = 'https://79e6-46-147-240-190.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,
@@ -20,7 +19,10 @@ export const API = {
     RESUME_FROM:`${currentUrl}/api/v1/resume_form`,
     GET_APPLY_POSTING:`${currentUrl}/api/v1/get_apply_postings`,
     PUT_APPLYED:`${currentUrl}/api/v1/apply`,
-    GET_APPLY_RESULTS:`${currentUrl}/api/v1/apply_results`
+    GET_APPLY_RESULTS:`${currentUrl}/api/v1/apply_results`,
+    AUTHORIZATION_GOOGLE:`${currentUrl}/api/v1/auth_google`,
+    AUTHORIZATION_LINKEDIN:`${currentUrl}/api/v1/auth_linkedin`,
+    IS_BOT:`${currentUrl}/api/v1/check_bot`,
 }
 
 //www.shane-smith.com
@@ -41,7 +43,21 @@ export const AppRouting = {
     Job: "/job-board/job",
     SavedJobs: '#',
     PrivatePolicy:"/privacy-policy",
+    bot:"/is-bot",
     NotFound : '*',
+};
+
+export const LinkedAuth = {
+    REDIRECT_URI:'https://0f8b-46-147-100-132.ngrok-free.app/login',
+    STATE:'odsivsodivhsoidhvspvjpdsovjs[zodvjih',
+    CLIENT_ID:'77cd76fz23dmja'
+}
+
+
+export const AsideOnboard = {
+    description :"Start from here" ,
+    root:"/onboard",
+    path: " M3.93821 5.54428C3.62784 5.54515 3.32039 5.48526 3.03364 5.36809C2.7469 5.25091 2.48655 5.07879 2.26768 4.86167L1.23837 3.95928C1.03788 3.78266 0.916713 3.53468 0.901523 3.26991C0.894002 3.13881 0.912726 3.00753 0.956626 2.88357C1.00053 2.7596 1.06874 2.64539 1.15738 2.54744C1.24601 2.44949 1.35334 2.36972 1.47322 2.31269C1.5931 2.25567 1.72319 2.2225 1.85606 2.21507C2.12441 2.20009 2.3878 2.29089 2.58829 2.46752L3.65742 3.4092C3.69224 3.44979 3.73511 3.4829 3.78341 3.5065C3.8317 3.5301 3.88439 3.54367 3.93821 3.54639C4.02754 3.54637 4.11322 3.5114 4.17647 3.44915L6.61509 1.15823C6.8109 0.983412 7.06818 0.890994 7.33206 0.900686C7.59595 0.910379 7.84555 1.02141 8.02764 1.21011C8.20973 1.39881 8.30989 1.65024 8.30677 1.91077C8.30364 2.1713 8.19747 2.42032 8.01091 2.60471L5.59051 4.87832C5.37304 5.09111 5.11515 5.25947 4.83161 5.37375C4.54808 5.48803 4.24448 5.54598 3.93821 5.54428ZM17.0999 3.2134C17.0999 2.94846 16.9932 2.69438 16.8034 2.50704C16.6135 2.3197 16.356 2.21445 16.0875 2.21445H10.6878C10.4193 2.21445 10.1618 2.3197 9.97189 2.50704C9.78202 2.69438 9.67536 2.94846 9.67536 3.2134C9.67536 3.47834 9.78202 3.73243 9.97189 3.91977C10.1618 4.10711 10.4193 4.21235 10.6878 4.21235H16.0875C16.356 4.21235 16.6135 4.10711 16.8034 3.91977C16.9932 3.73243 17.0999 3.47834 17.0999 3.2134ZM5.59051 10.206L8.01091 7.93244C8.19747 7.74805 8.30364 7.49903 8.30677 7.2385C8.30989 6.97797 8.20973 6.72654 8.02764 6.53784C7.84555 6.34914 7.59595 6.23811 7.33206 6.22842C7.06818 6.21872 6.8109 6.31114 6.61509 6.48596L4.17647 8.77688C4.11318 8.83931 4.02736 8.87438 3.93787 8.87438C3.84838 8.87438 3.76256 8.83931 3.69927 8.77688L2.62946 7.72066C2.43953 7.53326 2.18193 7.42798 1.91333 7.42798C1.64473 7.42798 1.38713 7.53326 1.1972 7.72066C1.00727 7.90806 0.900569 8.16223 0.900569 8.42725C0.900569 8.69227 1.00727 8.94644 1.1972 9.13384L2.26768 10.1894C2.70773 10.6233 3.3035 10.8685 3.92563 10.8716C4.54776 10.8747 5.14602 10.6355 5.59051 10.206ZM17.0999 8.54113C17.0999 8.27619 16.9932 8.02211 16.8034 7.83477C16.6135 7.64743 16.356 7.54218 16.0875 7.54218H10.6878C10.4193 7.54218 10.1618 7.64743 9.97189 7.83477C9.78202 8.02211 9.67536 8.27619 9.67536 8.54113C9.67536 8.80607 9.78202 9.06016 9.97189 9.2475C10.1618 9.43483 10.4193 9.54008 10.6878 9.54008H16.0875C16.356 9.54008 16.6135 9.43483 16.8034 9.2475C16.9932 9.06016 17.0999 8.80607 17.0999 8.54113ZM5.59051 15.5338L8.01091 13.2602C8.19747 13.0758 8.30364 12.8268 8.30677 12.5662C8.30989 12.3057 8.20973 12.0543 8.02764 11.8656C7.84555 11.6769 7.59595 11.5658 7.33206 11.5561C7.06818 11.5465 6.8109 11.6389 6.61509 11.8137L4.17647 14.1046C4.11322 14.1669 4.02754 14.2018 3.93821 14.2018C3.88439 14.1991 3.8317 14.1856 3.78341 14.162C3.73511 14.1384 3.69224 14.1052 3.65742 14.0647L2.58829 13.123C2.3878 12.9464 2.12441 12.8555 1.85606 12.8705C1.58771 12.8855 1.33639 13.0051 1.15738 13.2029C0.978367 13.4007 0.886334 13.6606 0.901523 13.9254C0.916713 14.1901 1.03788 14.4381 1.23837 14.6147L2.26633 15.5171C2.70644 15.9515 3.30249 16.1968 3.92495 16.2C4.54741 16.2031 5.14596 15.9637 5.59051 15.5338ZM17.0999 13.8689C17.0999 13.6039 16.9932 13.3498 16.8034 13.1625C16.6135 12.9752 16.356 12.8699 16.0875 12.8699H10.6878C10.4193 12.8699 10.1618 12.9752 9.97189 13.1625C9.78202 13.3498 9.67536 13.6039 9.67536 13.8689C9.67536 14.1338 9.78202 14.3879 9.97189 14.5752C10.1618 14.7626 10.4193 14.8678 10.6878 14.8678H16.0875C16.356 14.8678 16.6135 14.7626 16.8034 14.5752C16.9932 14.3879 17.0999 14.1338 17.0999 13.8689Z ",
 };
 
 export const AsideProfile = {
@@ -103,9 +119,15 @@ export const TitleMenu ={
 }
 
 export const SignupButton = [
-    {root: '/google', icon:google, description: 'SIGH UP WITH GOOGLE'},
-    {root: '/linked', icon:linkedin, description: 'SIGH UP WITH LINKEDIN'},
+    {id:1, root: '/google', icon:google, description: 'SIGH UP WITH GOOGLE'},
+    {id:2, root: '/linked', icon:linkedin, description: 'SIGH UP WITH LINKEDIN'},
 ];
+
+export const bageStatus = [
+    {id:1, statusName: "Great"},
+    {id:2, statusName: "Well Done"},
+    {id:3, statusName: "You are on the right way"},
+]
 
 export const inputs = [
     {title: "Application job title", type: "text", placeholder: "Specify application job title"},
@@ -132,40 +154,59 @@ export const checkfilter = [
     { label: "Flexible", key: "flexible" },
 ];
 
-export const infoOfJob = [
-    {name:"Google"},
-    {name: "San Francisco, CA" ,icon:mark},
-    {name: "15 hours ago", icon:time}
-]
+// export const infoOfJob = [
+//     {name:"Google"},
+//     {name: "San Francisco, CA" ,icon:mark},
+//     {name: "15 hours ago", icon:time}
+// ]
 
-export const details = [
-    {name:"Full time", icon:fulltime},
-    {name: "Remotely" ,icon:remotely},
-    {name: "$34,800 – $55,500 a year", icon:cash}
-]
+// export const details = [
+//     {name:"Full time", icon:fulltime},
+//     {name: "Remotely" ,icon:remotely},
+//     {name: "$34,800 – $55,500 a year", icon:cash}
+// ]
 
-export const benefits = [
-    {name:"Commuter assistance"},
-    {name:"Employee stock purchase plan"},
-    {name:"Health insurance"},
-    {name:"Disability insurance"},
-    {name:"Dental insurance"},
-    {name:"Paid time off"},
-    {name:"Perental leave"},
-    {name:"Vision insurance"},
-]
+// export const benefits = [
+//     {name:"Commuter assistance"},
+//     {name:"Employee stock purchase plan"},
+//     {name:"Health insurance"},
+//     {name:"Disability insurance"},
+//     {name:"Dental insurance"},
+//     {name:"Paid time off"},
+//     {name:"Perental leave"},
+//     {name:"Vision insurance"},
+// ]
 
-export const qualifications = [
-    {name:"Sales"},
-    {name:"Customer service"},
-    {name:"Engineering"},
-    {name:"11+ years"},
-    {name:"Bachelor’s degree"},
-    {name:"Human resources"},
-    {name:"IT"},
-    {name:"SaaS"},
-    {name:"Leadership"},
-]
+// export const qualifications = [
+//     {name:"Sales"},
+//     {name:"Customer service"},
+//     {name:"Engineering"},
+//     {name:"11+ years"},
+//     {name:"Bachelor’s degree"},
+//     {name:"Human resources"},
+//     {name:"IT"},
+//     {name:"SaaS"},
+//     {name:"Leadership"},
+// ]
+
+export const timeZones = [
+    { value: 'Eastern Daylight Time', label: 'Eastern Daylight Time', location: 'Washington D.C.' },
+    { value: 'Central Daylight Time', label: 'Central Daylight Time', location: 'Chicago' },
+    { value: 'Mountain Daylight Time', label: 'Mountain Daylight Time', location: 'Denver' },
+    { value: 'Mountain Standard Time', label: 'Mountain Standard Time', location: 'Phoenix' },
+    { value: 'Pacific Daylight Time', label: 'Pacific Daylight Time', location: 'Los Angeles' },
+    { value: 'Alaska Daylight Time', label: 'Alaska Daylight Time', location: 'Anchorage' },
+    { value: 'Hawaii-Aleutian Standard Time', label: 'Hawaii-Aleutian Standard Time', location: 'Honolulu' },
+];
+
+export const SecurityClearanceLevel = [
+    { id:1, value: 'None', label: 'None' },
+    { id:2, value: 'Public Trust', label: 'Public Trust' },
+    { id:3, value: 'Secret', label: 'Secret' },
+    { id:4, value: 'TS/SSBI', label: 'TS/SSBI' },
+    { id:5, value: 'TS/SCI', label: 'TS/SCI' },
+    { id:6, value: 'TS/SCI - CI Poly', label: 'TS/SCI' },
+];
 
 
 export const countries = [
@@ -184,6 +225,78 @@ export const options= [
     {name:"Senior", description:"Senior"},
     {name:"Expert", description:"Expert"},
 ]
+
+
+export const steps =  [
+    {
+        id:1,
+        name:"Add Your Resume in .pdf Format",
+        path:"M25.47 11.25H18C15.9325 11.25 14.25 9.5675 14.25 7.5V0.03C14.0488 0.01625 12.5975 0 12.3938 0H6.75C3.30375 0 0.5 2.80375 0.5 6.25V23.75C0.5 27.1963 3.30375 30 6.75 30H19.25C22.6963 30 25.5 27.1963 25.5 23.75V11.8562C25.5 11.6525 25.4838 11.4513 25.47 11.25ZM9.25 6.24875C10.6313 6.24875 11.75 7.3675 11.75 8.74875C11.75 10.13 10.6313 11.2487 9.25 11.2487C7.86875 11.2487 6.75 10.13 6.75 8.74875C6.75 7.3675 7.86875 6.24875 9.25 6.24875ZM5.82 14.2387C5.95625 14.06 7.21125 12.4987 9.2825 12.4987C11.3538 12.4987 12.6063 14.0612 12.7438 14.2387C13.1638 14.7863 13.06 15.5712 12.5113 15.9913C12.2838 16.165 12.0163 16.2487 11.7525 16.2487C11.3763 16.2487 11.005 16.08 10.7588 15.7588C10.7588 15.7588 10.1375 14.9987 9.2825 14.9987C8.4275 14.9987 7.81125 15.7513 7.805 15.7588C7.385 16.3075 6.6025 16.4125 6.0525 15.9913C5.505 15.5725 5.40125 14.7875 5.82 14.2387ZM19.25 26.25H6.75C6.05875 26.25 5.5 25.69 5.5 25C5.5 24.31 6.05875 23.75 6.75 23.75H19.25C19.9413 23.75 20.5 24.31 20.5 25C20.5 25.69 19.9413 26.25 19.25 26.25ZM19.25 21.25H6.75C6.05875 21.25 5.5 20.69 5.5 20C5.5 19.31 6.05875 18.75 6.75 18.75H19.25C19.9413 18.75 20.5 19.31 20.5 20C20.5 20.69 19.9413 21.25 19.25 21.25ZM18 8.75C17.31 8.75 16.75 8.19 16.75 7.5V1.1775C17.4088 1.555 18.0288 2.01 18.5813 2.56125L22.9363 6.91875C23.4888 7.47 23.9438 8.09 24.3213 8.74875L18 8.75Z",
+    },
+    {
+        id:2,
+        name:"Tailor Resume and Cover Letter to AI Matched Jobs",
+        path:[
+            {icon:"M21.875 5H20.6375C20.3764 3.73034 19.6855 2.58951 18.6814 1.76981C17.6773 0.950101 16.4212 0.501636 15.125 0.5L12.875 0.5C11.5788 0.501636 10.3227 0.950101 9.31859 1.76981C8.31445 2.58951 7.62361 3.73034 7.3625 5H6.125C4.63371 5.00179 3.204 5.59499 2.1495 6.6495C1.09499 7.704 0.501786 9.13371 0.5 10.625L0.5 14H27.5V10.625C27.4982 9.13371 26.905 7.704 25.8505 6.6495C24.796 5.59499 23.3663 5.00179 21.875 5ZM9.707 5C9.93884 4.34423 10.3676 3.7761 10.9347 3.37335C11.5018 2.97059 12.1795 2.75288 12.875 2.75H15.125C15.8205 2.75288 16.4982 2.97059 17.0653 3.37335C17.6324 3.7761 18.0612 4.34423 18.293 5H9.707Z"},
+            {icon:"M15.125 16.7C15.125 17.0183 15.0065 17.3235 14.7955 17.5485C14.5845 17.7736 14.2984 17.9 14 17.9C13.7016 17.9 13.4155 17.7736 13.2045 17.5485C12.9935 17.3235 12.875 17.0183 12.875 16.7V15.5H0.5V21.5C0.501786 23.0907 1.09499 24.6157 2.1495 25.7405C3.204 26.8653 4.63371 27.4981 6.125 27.5H21.875C23.3663 27.4981 24.796 26.8653 25.8505 25.7405C26.905 24.6157 27.4982 23.0907 27.5 21.5V15.5H15.125V16.7Z"},
+        ],
+    },
+    {
+        id:3,
+        name:"Start AI Auto Apply",
+        path:[
+            {icon:"M7.58396 2.26717L6.14996 6.42292C6.11215 6.53636 6.04777 6.63911 5.96219 6.7226C5.8766 6.8061 5.77229 6.86793 5.65796 6.90292L1.51721 8.16592L5.67296 9.60367C5.78477 9.64093 5.88622 9.70401 5.96909 9.78779C6.05197 9.87158 6.11393 9.97372 6.14996 10.0859L7.47746 14.2334L8.84996 10.0859C8.88637 9.97204 8.94947 9.86852 9.03401 9.78398C9.11855 9.69944 9.22208 9.63633 9.33596 9.59992L13.4835 8.27317C13.4888 8.2717 13.4938 8.26943 13.4985 8.26642L9.33596 6.89992C9.22044 6.86298 9.11561 6.79858 9.03044 6.71224C8.94527 6.6259 8.88231 6.52019 8.84696 6.40417L7.58396 2.26717Z"},
+            {icon:"M14.2044 17.8713C14.3286 17.9552 14.4751 18 14.625 17.9999C14.7752 17.9998 14.922 17.9545 15.0462 17.87C15.1704 17.7855 15.2664 17.6656 15.3217 17.5259L15.9525 15.9509L17.5275 15.3202C17.6649 15.2627 17.7822 15.1659 17.8647 15.0419C17.9472 14.918 17.9913 14.7724 17.9913 14.6234C17.9913 14.4745 17.9472 14.3289 17.8647 14.2049C17.7822 14.081 17.6649 13.9841 17.5275 13.9267L15.9525 13.2959L15.3217 11.7209C15.264 11.5838 15.1671 11.4668 15.0431 11.3845C14.9192 11.3022 14.7737 11.2583 14.625 11.2583C14.4762 11.2583 14.3307 11.3022 14.2068 11.3845C14.0829 11.4668 13.9859 11.5838 13.9282 11.7209L13.3005 13.2899L11.7345 13.8832C11.5962 13.9381 11.4772 14.0327 11.3924 14.155C11.3077 14.2774 11.261 14.422 11.2582 14.5708C11.2554 14.7196 11.2966 14.8659 11.3767 14.9914C11.4567 15.1168 11.5721 15.2158 11.7082 15.2759L13.2952 15.9442L13.9282 17.5289C13.984 17.6681 14.0802 17.7873 14.2044 17.8713ZM14.9136 5.09118C15.0454 5.19405 15.2078 5.24992 15.375 5.24992C15.5422 5.24992 15.7046 5.19405 15.8364 5.09118C15.9682 4.98832 16.0618 4.84436 16.1025 4.68217L16.368 3.61867L17.4315 3.35242C17.5936 3.31178 17.7376 3.21811 17.8404 3.08631C17.9433 2.9545 17.9991 2.79211 17.9991 2.62492C17.9991 2.45774 17.9433 2.29534 17.8404 2.16354C17.7376 2.03173 17.5936 1.93807 17.4315 1.89742L16.368 1.63117L16.1025 0.567671C16.0618 0.405501 15.9682 0.26156 15.8363 0.158711C15.7045 0.0558609 15.5421 0 15.375 0C15.2078 0 15.0454 0.0558609 14.9136 0.158711C14.7818 0.26156 14.6881 0.405501 14.6475 0.567671L14.3805 1.62217L13.3305 1.86592C13.1675 1.90364 13.0218 1.99474 12.9166 2.12475C12.8114 2.25477 12.7526 2.41623 12.7497 2.58347C12.7467 2.75071 12.7998 2.91413 12.9004 3.04775C13.001 3.18137 13.1434 3.27752 13.305 3.32092L14.3797 3.60967L14.6475 4.68217C14.6881 4.84436 14.7817 4.98832 14.9136 5.09118Z"},
+            {icon:"M7.49996 15.7499C7.17594 15.7538 6.85937 15.6527 6.59763 15.4616C6.33589 15.2706 6.14304 15 6.04796 14.6902L4.83746 10.9049L1.04021 9.63442C0.733733 9.53198 0.467749 9.33478 0.280676 9.07129C0.0936036 8.8078 -0.00487431 8.49167 -0.000533828 8.16856C0.00380665 7.84544 0.110741 7.53207 0.304824 7.2737C0.498907 7.01533 0.770092 6.82534 1.07921 6.73117L4.84646 5.58067L6.11546 1.79017C6.20981 1.47883 6.40498 1.20767 6.67027 1.01936C6.93556 0.831055 7.25592 0.736272 7.58096 0.749921C7.90504 0.75036 8.22025 0.855743 8.47943 1.0503C8.73861 1.24485 8.92781 1.51811 9.01871 1.82917L10.1677 5.59042L13.9402 6.79792C14.2445 6.89998 14.509 7.09506 14.6964 7.3556C14.8839 7.61614 14.9847 7.92898 14.9847 8.24992C14.9847 8.57087 14.8839 8.88371 14.6964 9.14425C14.509 9.40479 14.2445 9.59986 13.9402 9.70192L10.161 10.9109L8.95196 14.6902C8.85688 15 8.66403 15.2706 8.40229 15.4616C8.14055 15.6527 7.82398 15.7538 7.49996 15.7499ZM6.14996 6.42292L7.58396 2.26717L8.84696 6.40417C8.88231 6.52019 8.94527 6.6259 9.03044 6.71224C9.11561 6.79858 9.22044 6.86298 9.33596 6.89992L13.4985 8.26642C13.4938 8.26943 13.4888 8.2717 13.4835 8.27317L9.33596 9.59992C9.22208 9.63633 9.11855 9.69944 9.03401 9.78398C8.94947 9.86852 8.88637 9.97204 8.84996 10.0859L7.47746 14.2334L6.14996 10.0859C6.11393 9.97372 6.05197 9.87158 5.96909 9.78779C5.88622 9.70401 5.78477 9.64093 5.67296 9.60367L1.51721 8.16592L5.65796 6.90292C5.77229 6.86793 5.8766 6.8061 5.96219 6.7226C6.04777 6.63911 6.11215 6.53636 6.14996 6.42292Z"},
+        ],
+    },
+]
+
+
+export const jobs = [
+    {
+        id_posting: 1,
+        text_posting: "Product Designer (senior)",
+        categories:{
+            team:"Sentry",
+            commitment: [ "Full time", "Remotely"],
+            location: "Dallas, TX",
+            creationTime: "1 day ago",
+        }
+    },
+    {
+        id_posting: 2,
+        text_posting: "UX/UI Middle Designer",
+        categories:{
+            team:"Forward",
+            commitment: ["Partial"],
+            location: "New York, NY",
+            creationTime: "4 days ago",
+        }
+    },
+    {
+        id_posting: 3,
+        text_posting: "Lead UX Designer",
+        categories:{
+            team:"Carta",
+            commitment: [ "Project-Based", "Remotely"],
+            creationTime: "4 days ago",
+            location: "New York, NY",
+        }
+    },
+    {
+        id_posting: 4,
+        text_posting: "Product UX/UI Designer (middle+/senior)",
+        categories:{
+            team:"Google",
+            commitment: [ "Partial", "Remotely"],
+            creationTime: "4 days ago",
+            location: "New York, NY",
+        }
+    },
+];
+
+
 
 export const PolicyTitle = {
     title:"THIS PRIVACY POLICY HAS BEEN COMPILED TO BETTER SERVE THOSE WHO ARE \n" +
@@ -279,68 +392,288 @@ export const PolicyMainContent =[
             rights, property or safety. However, non-personally identifiable visitor information may be provided to other parties for 
             marketing, advertising, or other uses.`
     },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
-    // {
-    //     title:"How do we use your information?",
-    //     description:``
-    // },
+    {
+        title:"Third-party links",
+        description:`
+            Occasionally, at our discretion, we may include or offer third-party products or services on our website. 
+            These third-party sites have separate and independent privacy policies. We therefore have no responsibility 
+            or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the
+            integrity of our site and welcome any feedback about these sites.`
+    },
+    {
+        title:"AUTOMATED DECISION-MAKING",
+        description:`
+            Automated decision-making refers to decisions made exclusively by automated means without any human involvement. 
+            This may include, for example, an online assessment of your resume's compatibility with a posted job vacancy, 
+            where the decision is made based on the information you've entered without any human intervention. 
+            Jobbytime.com makes automated decisions using artificial intelligence, utilizing your personal data. 
+            If you do not agree with Software making automated decisions, please do not use Software Jobbytime.com. 
+            For any questions related to automated decision-making or termination of Jobbytime.com usage, please email 
+            us at help@jobbytime.com Situations where Jobbytime.comjo (hereinafter "the System") makes automated decisions 
+            using artificial intelligence with processing your personal data:`
+    },
+    {
+        title:"During your registration on the Jobbytime.com website:",
+        description:`
+           When uploading a resume, the System extracts data and automatically fills in registration fields, 
+           also saving user data to the database (prior to registration). When uploading a resume during the
+           quiz (questionnaire) stage or in the personal account, the System automatically generates a new resume document using AI.`
+    },
+    {
+        title:"At the time of payments:",
+        description:`
+           When you pay for any subscription, the System automatically registers internal accounts 
+           on the necessary services (“Job providers”, as defined below).`
+    },
+    {
+        title:"When generate cover letters:",
+        description:`
+            In the settings functions in your Personal Account, you have the option to request the System to generate cover letters. 
+            The System will automatically prepare a cover letter based on your personal data entered into it and the job description.`
+    },
+    {
+        title:`At the stage of submitting resumes to companies or other individuals who have posted vacancies (hereinafter "job applications"):`,
+        description:`
+            The System analyzes each vacancy using AI and provides a rating of resume-to-vacancy compatibility. 
+            Simultaneously, the System prepares an AI-generated cover letter that will be automatically sent 
+            along with the job application (if you have selected the option to prepare and send a cover letter 
+            in your personal account settings). Before filling out forms, the System analyzes the similarity 
+            between the vacancy and your data. If this parameter is higher than what you've set in your personal account, 
+            the System adds this vacancy to the application queue. You can cancel the application submission within 24 hours 
+            and/or modify the cover letter. When filling out each form, the System selects the best answer option to the question 
+            asked in the form being filled out, using its internal algorithms. Also, if you have an account on the service where 
+            the job application was sent, the System will automatically forward to your email address specified in the resume 
+            any message from the employer in response to the job application.`
+    },
+    {
+        title:`Job Providers:`,
+        description:`
+            Job providers are companies or platforms that aggregate and list job openings from various employers. 
+            These platforms serve as intermediaries between job seekers and employers, offering a centralized location 
+            where candidates can search for and apply to multiple job opportunities. Examples of such platforms include 
+            job board websites or recruitment services. These Job providers often offer additional features such as resume posting, 
+            job alerts, and sometimes their own AI-powered matching services to connect suitable candidates with relevant job openings. 
+            In some cases, Job Providers prohibit the use of third-party automation on their services. In such instances, 
+            manual management may be required. You can perform this manually on your own or contact us at help@jobbytime.com 
+            for assistance.`
+    },
+    {
+        title:`Does our site allow third-party behavioral tracking?`,
+        description:`
+           It’s also important to note that we do not allow third-party behavioral tracking.`
+    },
+    {
+        title:`COPPA (Children Online Privacy Protection Act)`,
+        description:`
+           When it comes to the collection of personal information from children under the age of 13 years old, 
+           the Children’s Online Privacy Protection Act (COPPA) puts parents in control. The Federal Trade 
+           Commission, United States’ consumer protection agency, enforces the COPPA Rule, which spells out what 
+           operators of websites and online services must do to protect children’s privacy and safety online. 
+           We do not specifically market to children under the age of 13 years old.`
+    },
+    {
+        title:`Fair Information Practices`,
+        description:`
+           The Fair Information Practices Principles form the backbone of privacy law in the United States 
+           and the concepts they include have played a significant role in the development of data protection 
+           laws around the globe. Understanding the Fair Information Practice Principles and how they should be 
+           implemented is critical to comply with the various privacy laws that protect personal information.`
+    },
+    {
+        title:`In order to be in line with Fair Information Practices we will take the following responsive action, should a data breach occur:`,
+        description:`
+           We will notify you via email Within 7 business days We will notify the users via in-site notification Within 
+           7 business days We also agree to the Individual Redress Principle which requires that individuals have the right to legally 
+           pursue enforceable rights against data collectors and processors who fail to adhere to the law. 
+           This principle requires not only that individuals have enforceable rights against data users, but also that 
+           individuals have recourse to courts or government agencies to investigate and/or prosecute non-compliance by data processors.`
+    },
+    {
+        title:`In order to be in line with Fair Information Practices we will take the following responsive action, should a data breach occur:`,
+        description:`
+           The CAN-SPAM Act is a law that sets the rules for commercial email, establishes requirements for commercial messages, 
+           gives recipients the right to have emails stopped from being sent to them, and spells out tough penalties for violations.`
+    },
+    {
+        title:"We collect your email address in order to:",
+        description:[
+            {
+                text:
+                    `Send information, respond to inquiries, and/or other requests or questions. 
+                    Process orders and to send information and updates pertaining to orders. 
+                    Send you additional information related to your product and/or service. 
+                    Market to our mailing list or continue to send emails to our clients after the original transaction has occurred.`
+            },
+            {
+                text:
+                    `To be in accordance with CANSPAM, we agree to the following:`
+            },
+            {
+                text:
+                    `Not use false or misleading subjects or email addresses. 
+                    Identify the message as an advertisement in some reasonable way. 
+                    Include the physical address of our business or site headquarters. 
+                    Monitor third-party email marketing services for compliance, if one is used. 
+                    Honor opt-out/unsubscribe requests quickly. Allow users to unsubscribe by using the link at the bottom of each email.`
+            },
+            {
+                text:
+                    `If at any time you would like to unsubscribe from receiving future emails, you can email us at`
+            },
+            {
+                text:
+                    `Follow the instructions at the bottom of each email.and we will promptly remove you from ALL correspondence.`
+            },
+
+        ]
+    },
+    {
+        title:"Text Marketing",
+        description:[
+            {
+                text:
+                    `Text Marketing and notifications: By subscribing to text notifications you agree to receive 
+                    recurring automated marketing text messages at the phone number provided. 
+                    Consent is not a condition of purchase. 
+                    Msg and data rates may apply. View Terms of use and privacy policy.`
+            },
+            {
+                text:
+                    `Transparency of Algorithms and Data Usage in Job Matching We are committed to maintaining 
+                    transparency about the algorithms and criteria we use to match job seekers’ CVs with potential 
+                    job opportunities. Our platform employs advanced data processing techniques to enhance your job 
+                    search and application process.`
+            },
+            {
+                text:
+                    `Algorithmic Matching Process Our site uses a sophisticated algorithm designed to match 
+                    job seekers with job opportunities that best fit their skills, experience, and preferences. 
+                    This process involves analyzing the information provided in your CV and comparing it with the 
+                    requirements and preferences listed by employers in their job postings.`
+            },
+            {
+                text:
+                    `Criteria for CV and Job Matching The matching algorithm takes into account several factors, including but not limited to:`
+            },
+            {
+                text:
+                    `Skills and Experience: Matching keywords and phrases related to skills, experience levels, 
+                    and qualifications that appear in both your CV and job descriptions. Location Preferences: 
+                    Geographical preferences and location details provided in your profile and job listings. 
+                    Employment Type and Preferences: Type of employment sought (full-time, part-time, freelance) and other 
+                    job preferences such as remote work options.`
+            },
+            {
+                text:
+                    `Industry and Sector: Alignment of your previous work sectors and the industries of potential employers.`
+            },
+            {
+                text:
+                    `User Rights to Information on CV Distribution As a user of jobbytime.com, you have the right to 
+                    understand where your CV has been sent and the rationale behind these decisions made by our algorithm. 
+                    To support this transparency:`
+            },
+            {
+                text:
+                    `Access to Information: You can access a log of all job applications made on your behalf, 
+                    including the details of where your CV was sent. Decision Criteria Disclosure: Upon request, 
+                    we can provide insights into how our algorithm matched your CV with specific job listings, 
+                    detailing the criteria that led to these decisions. Control Over Data Sharing: You have the 
+                    ability to adjust your preferences and consent settings to control how and where your CV is 
+                    shared with potential employers. Ensuring Accuracy and Fairness: We regularly review and update 
+                    our algorithms and data processing practices to ensure fairness, accuracy, and relevance in the 
+                    job matching process. Our commitment to these principles means we strive to avoid biases and provide 
+                    equal opportunities for all job seekers.`
+            },
+            {
+                text:
+                    `Regular Audits and Algorithm UpdatesWe conduct regular audits of our algorithms to identify 
+                    and rectify any potential biases or inadvertent discriminatory practices. 
+                    These audits help ensure that our algorithms function in a manner that is both fair and equitable to all users.`
+            },
+            {
+                text:
+                    `Criteria for Algorithmic Decisions Our algorithms are designed to prioritize relevance and 
+                    qualifications over factors that could lead to biased outcomes. The criteria used include:`
+            },
+            {
+                text:
+                    `Professional qualifications and skills relevant to the job. Work experience and past job performance. 
+                    Preferences stated by the job seekers themselves, such as desired job location and type.`
+            },
+            {
+                text:
+                    `Bias Detection and Correction To detect potential biases, we utilize advanced statistical and machine learning methods that analyze decision patterns and outcomes across different demographic groups. If any disparities are detected that could suggest bias:`
+            },
+            {
+                text:
+                    `We take immediate corrective action to adjust the algorithm accordingly. We review potentially affected user interactions and provide redress where appropriate.`
+            },
+            {
+                text:
+                    `Training and Awareness Our team receives ongoing training on issues related to bias, discrimination, and data ethics. This ensures that everyone involved in the development and maintenance of our algorithms is aware of their responsibilities towards promoting fairness. `
+            },
+            {
+                text:
+                    `User Feedback We actively encourage feedback from our users regarding the job matching process. 
+                    This feedback is crucial for continually improving our algorithms and practices. Users can report 
+                    concerns related to perceived discrimination or bias through our dedicated support channel at help@jobbytime.com.`
+            },
+            {
+                text:
+                    `Transparency and Accountability We are committed to transparency regarding how our 
+                    job matching algorithms work and how decisions are made. Users can request detailed 
+                    explanations of how their data was processed and how decisions were made regarding their job applications.`
+            },
+            {
+                text:
+                    `Data Storage and Security All personal data collected by jobbytime.com is stored securely on servers located within the territory of the United States. This localization aligns with our commitment to protect user data and to comply with applicable federal and state regulations concerning data protection.`
+            },
+            {
+                text:
+                    `Our servers are equipped with state-of-the-art security measures to prevent unauthorized access, alteration, disclosure, or destruction of your personal information. Regular security audits are conducted to ensure the integrity and security of our data storage and processing practices.`
+            },
+            {
+                text:
+                    `Compliance with General Data Protection Regulation (GDPR) For our users residing in the European Union, 
+                    jobbytime.com adheres to the General Data Protection Regulation (GDPR), which sets guidelines for the collection 
+                    and processing of personal information from individuals within the EU. Users within the EU have specific rights 
+                    under GDPR, including the right to access their data, request corrections, request data deletion, object to processing, 
+                    and the right to data portability.`
+            },
+            {
+                text:
+                    `Terms Specific to EU Users If you are accessing jobbytime.com from a location within the European Union, 
+                    the following additional terms apply to you:`
+            },
+            {
+                text:
+                    `You have the right to be informed about the collection and use of your personal data.`
+            },
+            {
+                text:
+                    `You may request that we cease processing your data if you believe the processing infringes on your privacy rights.`
+            },
+            {
+                text:
+                    `You are entitled to lodge a complaint with a supervisory authority in your member state if you believe your rights under GDPR are being infringed.`
+            },
+            {
+                text:
+                    `Determining User Location To ensure compliance with local laws and regulations, 
+                    jobbytime.com uses geolocation technology to determine whether a user is accessing 
+                    our services from within the United States or from the EU. This technology helps us:`
+            },
+            {
+                text:
+                    `Apply the appropriate legal and regulatory framework based on the user’s location. 
+                    Provide a personalized and compliant service experience to all our users.`
+            },
+        ]
+    },
+    {
+        title:`Contacting Us`,
+        description:`
+            If there are any questions regarding this privacy policy, you may contact us via help@jobbytime.com`
+    },
 ]

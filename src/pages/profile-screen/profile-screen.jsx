@@ -1,5 +1,10 @@
+import BlackList from "../../components/BlackList/BlackList";
+import DemographicQuestions from "../../components/DemographicQuestions/DemographicQuestions";
+import LocationCheckUSA from "../../components/Location/LocationCheckUSA/LocationCheckUSA";
+import TimeZoneQuestion from "../../components/Location/TimeZoneQuestion/TimeZoneQuestion";
+import WorkAuthorizationQuestion from "../../components/Location/WorkAuthorizationQuestion/WorkAuthorizationQuestion";
+import SecurityClearance from "../../components/SecurityClearance/SecurityClearance";
 import UserInformation from "../../components/UserInformation/UserInformation";
-import arrow_right from "../../assets/Signup/icon_button.svg";
 import "./profile.scss";
 
 export default function ProfileScreen(){
@@ -8,29 +13,20 @@ export default function ProfileScreen(){
             <h1 className="profile__title">My Profile</h1>
             <div className="profile__container">
                 <UserInformation />
-                <div className="profile__container__questions">
-                    <div className="profile__container__questions__block">
-                        <h2 className="profile__container__questions__block__title">U.S. Standard Demographic Questions</h2>
-                        <p className="profile__container__questions__block__description">
-                            We invite applicants to share their demographic background. 
-                            If you choose to complete this survey, your responses may be 
-                            used to identify areas of improvement in our hiring process.
-                        </p>
-                    </div>
-                    <button className="profile__container__questions__button">
-                        Start
-                        <img 
-                            className="profile__container__questions__icon" 
-                            src={arrow_right} 
-                            alt="arrow_right"
-                        />
-                    </button> 
-                </div>
+                <DemographicQuestions />
             </div>
-            {/* <h2 className="profile__subtitle">Location</h2>
+            <h2 className="profile__subtitle">Location</h2>
             <div className="profile__location">
-                
-            </div> */}
+                <section className="profile__location__group">
+                    <LocationCheckUSA />
+                    <WorkAuthorizationQuestion />
+                </section>
+                <TimeZoneQuestion />
+            </div>
+            <h2 className="profile__subtitle">Black List</h2>
+            <BlackList />
+            <h2 className="profile__subtitle">Security Clearance</h2>
+            <SecurityClearance />
         </section>
     )
 }

@@ -1,0 +1,81 @@
+@use '../../style/mixins.scss' as mixin;
+
+.item{
+    margin-top: 12px;
+    @include mixin.flex(flex-start, center);
+    &__choice{
+        @include mixin.flex(flex-start, center);
+
+        &__input{
+            width: 16px;
+            height: 16px;
+            border: 0.5px solid hsla(234, 95%, 85%, 1);
+            background-color: hsla(210, 20%, 98%, 1);
+            appearance: none;
+            border-radius: 4px;
+            margin-right: 8px;
+
+            &:checked{
+                border: 0.5px solid hsla(234, 84%, 78%, 1);
+                background: hsla(234, 84%, 78%, 1) url("../../assets/resume/cheked.svg") no-repeat center;
+                background-size: 9.79px 7px;
+            }
+        }
+    }
+
+    &__card{
+        max-width: 670px;
+        width: 100%;
+        height:130px;
+        border-radius: 20px;
+        background-color: #fff;
+        padding: 16px 24px;
+        margin-bottom: 8px;
+        box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+
+        &__header{
+            @include mixin.flex(space-between, center);
+            margin-bottom: 12px;
+
+            &__company{
+                @include mixin.font('Inter_light', 14px, 21px, 400);
+                color:hsla(0, 0%, 60%, 1);
+            }
+
+            &__button{
+                background-color: transparent;
+                @include mixin.font('Inter_Medium', 12px, 18px, 600);
+                color:hsla(241, 68%, 62%, 1);
+                border: 0;
+                cursor: pointer;
+                &__icon{
+                    margin-left: 7px;
+                }
+            }
+        }
+
+        &__title{
+            @include mixin.font('Inter_Medium', 20px, 30px, 600);
+            color:hsla(0, 0%, 24%, 1);
+        }
+
+        &__footer{
+            margin-top: 16px;
+            @include mixin.flex(space-between, center);
+
+            &__operating-mode{
+                @include mixin.flex(flex-start, center);
+                gap: 8px;
+            }
+
+            &__information{
+                @include mixin.flex(flex-start, center);
+                gap: 8px;
+            }
+        }
+    }
+
+    .active{
+        border: 1px solid hsla(241, 68%, 62%, 1); 
+    }
+}

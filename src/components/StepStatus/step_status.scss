@@ -1,0 +1,44 @@
+@use '../../style/mixins.scss' as mixin;
+
+
+.step-status{
+    width: 100%;
+    @include mixin.flex(space-between, center);
+    margin-bottom: 25px;
+
+    &__divider {
+        width: 85.5px; 
+        height: 2px;
+        background-color: #d1d5db; 
+    }
+
+    &__item{
+        @include mixin.flex(center, center, column);
+
+        &__title{
+            @include mixin.font('Inter_Medium', 14px, 21px, 600);
+            color: hsla(220, 9%, 46%, 1);
+        }
+
+        &__description{
+            @include mixin.font('Inter_Light', 12px, 15px, 300);
+            color: hsla(220, 9%, 46%, 1);
+        }
+    }
+}
+
+.current{
+    color: hsla(241, 68%, 62%, 1);
+}
+
+.success{
+    color: hsla(160, 84%, 34%, 1);
+}
+
+.current-divider{
+    background: linear-gradient(90deg, #5D5BE0 0%, #D1D5DB 100%);
+}
+
+.success-divider{
+    background: hsla(160, 84%, 34%, 1);
+}

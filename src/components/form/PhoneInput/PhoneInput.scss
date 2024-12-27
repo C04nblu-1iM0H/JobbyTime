@@ -1,60 +1,78 @@
 @use "../../../style/mixins.scss" as mixin;
 @use "../../../style/variables.scss" as var;
 
-.container{
+.container-group{
     @include  mixin.flex(flex-start, flex-start, column);
-    width: 568px;
-    height: 613px;
-    border-radius: 16px;
-    padding: 24px;
-    background-color: hsla(0, 0%, 100%, 1);
 
     &__label{
-        @include mixin.font('Inter_Regular', 14px, 17.5px, 500);
+        @include mixin.font("Inter_Regular", 14px, 21px, 500);
         color: hsla(219, 40%, 11%, 1);
+        margin-bottom: 8px;
     }
 
-    &__inputs{
-        @include  mixin.flex(flex-start, center);
-        border: 1px solid hsla(216, 12%, 84%, 1);
+    &__phone-block{
+        position: relative;
+        @include mixin.flex(flex-start, center);
 
-        &__dropdown{
-            position: relative;
-            border-right: 1px solid hsla(219, 40%, 11%, 1);
+        &__input{
+            width: 147px;
+            height: 42px;
+            padding-left: 12px;
+            border-radius:0 8px 8px 0;
+            border: 1px solid hsla(216, 12%, 84%, 1);
+            background-color: hsla(210, 20%, 98%, 1);
+            outline: none;
+            @include mixin.font("Inter_Regular", 14px, 17.5px, 400);
+            color: hsla(219, 40%, 11%, 1);
 
-            &__button {
-                @include  mixin.flex(flex-start, center);
-                background: none;
-                border: none;
-                padding: 10px;
-                cursor: pointer;
+            &:not(:placeholder-shown) {
+                border: 2px solid hsla(234, 95%, 85%, 1);
+                background-color: hsla(210, 20%, 98%, 1); 
+            }
+        }
+
+        &__select{
+            @include mixin.flex(flex-start, center);
+            width: 104px;
+            height: 42px;
+            border-radius: 8px 0 0 8px;
+            padding: 12px 20px;
+            gap: 8px;
+            background-color: hsla(220, 14%, 96%, 1);
+            border: 1px solid hsla(216, 12%, 84%, 1);
+            outline: none;
+            cursor: pointer;          
+            
+            &__code{
+                @include mixin.font("Inter_Regular", 14px, 17.5px, 500);
+                color: hsla(219, 40%, 11%, 1);
             }
 
-            &__content{
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: hsla(0, 0%, 100%, 1);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                z-index: 1;
-                display: none;
+            &__arrow{
+                transition: transform 0.3s ease;
 
-                &__item{
-                    padding: 10px;
-                    cursor: pointer;
-                    @include  mixin.flex(flex-start, center);
+                &.open {
+                    transform: rotate(180deg);
                 }
             }
         }
-    }
 
-    &__input{
-        flex: 1;
-        padding: 10px;
-        border: 0;
-        outline: none;
-        @include mixin.font('Inter_Regular', 14px, 17.5px, 500);
-        color: hsla(219, 40%, 11%, 1);
+        &__dropdownMenu {
+            position: absolute;
+            width: 250px;
+            height: 60px;
+            top: 50px;
+            left: 0px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            z-index: 10;
+            border: 1px solid hsla(216, 12%, 84%, 1);
+            background-color: hsla(210, 20%, 98%, 1);
+
+            &__item{
+                padding-left: 24px;
+                padding-top: 10px;
+            }
+        }
     }
 }

@@ -1,0 +1,21 @@
+@use '../../style/mixins.scss' as mixin;
+
+
+.modal{
+
+    &__container{
+        position: relative;
+        width: 615px;
+        height: 394px;
+        border-radius: 16px;
+        padding: 24px; 
+        background-color: #fff;
+
+        &__close{
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            cursor: pointer;
+        }
+    }
+}

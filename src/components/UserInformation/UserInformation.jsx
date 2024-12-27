@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import edit from "../../assets/profile/edit.svg";
 import UserData from "../UserData/UserData";
@@ -6,6 +6,20 @@ import UserInfoForm from "../form/UserInfoForm/UserInfoForm";
 
 export default function UserInformation(){
     const [activeForm, SetActiveForm] = useState(false);
+
+    useEffect(() => {
+        if (activeForm) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [activeForm])
+
+
     return(
         <section className="profile__container__information">
             <div className="profile__container__information__block">
