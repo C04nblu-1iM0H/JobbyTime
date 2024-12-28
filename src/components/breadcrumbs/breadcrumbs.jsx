@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AppRouting } from "../../const";
 import arrowRight from '../../assets/job/arrow_right.svg'
 
+
 export default function Breadcrumbs({currenturl}){
-    const defaultName = "Privacy Policy & Terms of Use"
+    const currentRoute = useLocation().pathname;
+    console.log(currentRoute);
+    const defaultName = currentRoute === AppRouting.Questions ? "U.S. Standard Demographic Questions" : "Privacy Policy & Terms of Use"
     return(
         <nav className="breadcrumbs">
             <Link to={AppRouting.JobBoard} className="breadcrumbs__link">

@@ -32,13 +32,13 @@ export default function UploadResume({handleFileName, handleFile, handleStart}){
     
         const handleFileUpload = (file) => {
             if (file && file.type === 'application/pdf') {
-                currentRoute === AppRouting.Onboard ? handleStart(false) : null;
+                if(currentRoute === AppRouting.Onboard) handleStart(false)
                 dispatch(setLoading(true));
                 setTimeout(() => {
                     handleFileName(file.name);
                     handleFile(file);
                     dispatch(setLoading(false));
-                    currentRoute === AppRouting.Onboard ? dispatch(setSteps({ step: 'step1', value: true })) : null;
+                    if (currentRoute === AppRouting.Onboard) dispatch(setSteps({ step: 'step0', value: true }))
                 }, 500);
             } else {
                 console.error("Please upload a valid PDF file.");

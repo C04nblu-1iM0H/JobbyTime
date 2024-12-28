@@ -7,15 +7,15 @@ import ResumeForm from "../ResumeForm/ResumeForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ValidateFormResume } from "../../../utils/validate";
 import StepStatus from "../../StepStatus/StepStatus";
-import InputResume from "../InputResume/InputResume";
 import { setCurrentStep, setDoneStep, setSteps } from "../../../store/stepSlice";
 
-export default function ResumeDataGeneration({file, OldFileName, resume, active}){    
+export default function ResumeDataGeneration({file, resume, active}){    
     const currentRoute = useLocation().pathname;
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         name: "",
         salary: "",
+        location:"",
         experienceLevel: "Intership",
         site: "",
         linkedIn: "",
@@ -24,12 +24,6 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
         jobprefor: [],
         radiobutton: "yes",
         work: 5,
-    });
-    const [additionalData, setAdditionalData] = useState({
-        firstName: "",
-        lastName: "",
-        country: "",
-        city: ""
     });
     const [errors, setErrors] = useState({});
     const token = useSelector(state => state.token.token);
@@ -104,14 +98,13 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
 
-    const handleAdditionalDataChange =(field, value) => {
-        setAdditionalData((prev) => ({...prev, [field]: value}));
-    }
+    // const handleAdditionalDataChange =(field, value) => {
+    //     setAdditionalData((prev) => ({...prev, [field]: value}));
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const validationErrors = ValidateFormResume(formData.name, formData.salary, formData.jobprefor, formData.work, additionalData.firstName, additionalData.lastName, additionalData.city);
-        const validationErrors = ValidateFormResume(formData.name, formData.salary, formData.jobprefor, formData.work, additionalData.firstName, additionalData.lastName, additionalData.city);
+        const validationErrors = ValidateFormResume(formData.name, formData.salary, formData.jobprefor, formData.work);
         
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
@@ -124,11 +117,11 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
             formDataToSend.append(key, formData[key]);
         });
 
-        if(currentRoute === AppRouting.Onboard){
-            Object.keys(additionalData).forEach((key) => {
-                formDataToSend.append(key, additionalData[key]);
-            });
-        }
+        // if(currentRoute === AppRouting.Onboard){
+        //     Object.keys(additionalData).forEach((key) => {
+        //         formDataToSend.append(key, additionalData[key]);
+        //     });
+        // }
         if (file) formDataToSend.append("file", file);
         if(currentRoute === AppRouting.Onboard){
             dispatch(setSteps(true));
@@ -140,28 +133,20 @@ export default function ResumeDataGeneration({file, OldFileName, resume, active}
         for (let [key, value] of formDataToSend) {
             console.log(`${key} - ${value}`)
         }
-        builderResume.mutate(formDataToSend);
+        //builderResume.mutate(formDataToSend);
     };
 
     return(
         <section className={`${active ? "data" : "modal"}`}>
-            <div className={`${active ? "" : "modal__block"}`}>
-                {currentRoute === AppRouting.Onboard && (
-                    <>
-                        <StepStatus width={"29%"} />
-                        <InputResume fileName = {OldFileName}/>
-
-                    </>
-                )}
+            <div className={`${active ? "" : "modal__block modal__block-onboard"}`}>
+                {currentRoute === AppRouting.Onboard && (<StepStatus width={"20%"} />)}
                 <div className="modal__wrapper">
-                    <h1 className="modal__wrapper__title">Confirm your resume information</h1>
+                    <h1 className="modal__wrapper__title">Confirm your job preferences</h1>
                     <p className="modal__wrapper__description">We have auto-filled your information from your resume. 
                     Please check and update if anything is incorrect.</p>
                 </div>
                 <ResumeForm
                     formData={formData}
-                    setAdditionalData={setAdditionalData}
-                    handleAdditionalDataChange={handleAdditionalDataChange}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     handleFilterChange={handleFilterChange}

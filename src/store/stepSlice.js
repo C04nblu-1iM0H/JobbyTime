@@ -14,6 +14,7 @@ const stepSlice  = createSlice({
             currentStep3:false
         },
         steps:{
+            step0:false,
             step1:false,
             step2:false,
             step3:false,

@@ -6,7 +6,7 @@ import linkedin from './assets/Signup/linkedin.svg';
 // import time from './assets/board/time.svg';
 // import cash from './assets/job/cash.svg';
 
-const currentUrl = 'https://79e6-46-147-240-190.ngrok-free.app';
+const currentUrl = 'http://79e6-46-147-240-190.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,
@@ -35,6 +35,7 @@ export const AppRouting = {
     Verify: '/verify-email',
     Onboard: '/onboard',
     Profile: '/profile',
+    Questions: '/questions',
     ResumeBuilder: '/resume',
     CoverLetter: '#',
     AutoApply: '/auto-apply',
@@ -139,19 +140,19 @@ export const inputs = [
 ];
 
 export const checkboxing = [
-    {label: "Full", key: "full" },
-    {label: "Project-Based", key: "projectBased" },
-    {label: "Remotely", key: "remotely" },
-    {label: "Partial", key: "partial" },
-    {label: "Flexible", key: "flexible" },
+    {label: "Full-time", key: "Full-time" },
+    {label: "Project based", key: "Project based" },
+    {label: "Remote", key: "Remote" },
+    {label: "Part-time", key: "Part-time" },
+    {label: "Flexible", key: "Flexible" },
 ];
 
 export const checkfilter = [
-    { label: "Full", key: "Full-time" },
-    { label: "Partial", key: "Part-time" },
-    { label: "Remotely", key: "remotely" },
-    { label: "Project-Based", key: "Contract" },
-    { label: "Flexible", key: "flexible" },
+    {label: "Full-time", key: "Full-time" },
+    {label: "Project based", key: "Project based" },
+    {label: "Remote", key: "Remote" },
+    {label: "Part-time", key: "Part-time" },
+    {label: "Flexible", key: "Flexible" },
 ];
 
 // export const infoOfJob = [
@@ -294,6 +295,63 @@ export const jobs = [
             location: "New York, NY",
         }
     },
+];
+
+export const genders = [
+    {id:1, value:"Male", label:"Male" },
+    {id:2, value:"Female", label:"Female" },
+    {id:3, value:"Non-Binary", label:"Non-Binary" },
+    {id:4, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:5, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const ProtectedStatus = [
+    {id:1, value:"I identify myself as one or more of the classifications  of protected veteran", label:"I identify myself as one or more of the classifications  of protected veteran" },
+    {id:2, value:"I'm not a protected veteran", label:"I'm not a protected veteran" },
+    {id:3, value:"I decline to self-identify", label:"I decline to self-identify" },
+];
+
+export const ethnicityQuestion = [
+    {id:1, value:"Black or of African descent", label:"Black or of African descent" },
+    {id:2, value:"East Asian", label:"East Asian" },
+    {id:3, value:"Indigenous, American Indian or Alaska Native", label:"Indigenous, American Indian or Alaska Native" },
+    {id:4, value:"Middle Eastern or North African", label:"Middle Eastern or North African" },
+    {id:5, value:"South Asian", label:"South Asian" },
+    {id:6, value:"Southeast Asian", label:"Southeast Asian" },
+    {id:7, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:8, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+
+export const RacialQuestion = [
+    {id:1, value:"Asexual", label:"Asexual" },
+    {id:2, value:"Heterosexual", label:"Heterosexual" },
+    {id:3, value:"Bisexual and/or Pansexual", label:"Bisexual and/or Pansexual" },
+    {id:4, value:"Queer", label:"Queer" },
+    {id:5, value:"Gay", label:"Gay" },
+    {id:6, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:7, value:"Lesbian", label:"Lesbian" },
+    {id:8, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const transgenders = [
+    {id:1, value:"Yes", label:"Yes" },
+    {id:2, value:"No", label:"No" },
+    {id:3, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:4, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const ChronicQuestion = [
+    {id:1, value:"Yes", label:"Yes" },
+    {id:2, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:3, value:"No", label:"No" },
+    {id:4, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const sponsorshipFuture = [
+    {id:1, value:"Yes", label:"Yes" },
+    {id:2, value:"No", label:"No" },
+    {id:3, value:"Not Sure", label:"Not Sure" },
 ];
 
 
