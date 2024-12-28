@@ -14,6 +14,7 @@ import './onboard.scss';
 import '../auto-apply-screen/apply.scss';
 import ModalDone from '../../components/ModalDone/ModalDone';
 import { disabledScrollSteps } from '../../utils/service';
+import UserStartDataModal from '../../components/UserStartDataModal/UserStartDataModal';
 
 function MainScreen(){
     const [start, setStart] = useState(false);
@@ -22,11 +23,13 @@ function MainScreen(){
     const isLoading = useSelector( state => state.step.loading);
     const steps = useSelector( state => state.step.steps);
     const isVerificationOfPayment = useSelector( state => state.step.isVerificationOfPayment);
-    const {step1, step2, step3, step4} = steps;
+    const {step0, step1, step2, step3, step4} = steps;
+    console.log(step0);
+    
 
     useEffect(() => {
-        disabledScrollSteps(start, step1, step2, step3, step4, isVerificationOfPayment);
-    }, [start, step1, step2, step3, isVerificationOfPayment]);
+        disabledScrollSteps(start, step0, step1, step2, step3, step4, isVerificationOfPayment);
+    }, [start, step0, step1, step2, step3, step4, isVerificationOfPayment]);
 
     return(
         <section className="onboard">
@@ -39,10 +42,15 @@ function MainScreen(){
                     handleStart={setStart}
                     setFileName={setFileName}
                     setFile={setFile}
+                    width="615px"
                 />,            
                 document.body
             )}
             {isLoading && (<Loader />)}
+            {step0 && ReactDOM.createPortal(
+                <UserStartDataModal width="615px"/>,
+                document.body
+            )}
             {step1 && fileName.length !== 0 && ReactDOM.createPortal(
                 <ResumeDataGeneration file={file} OldFileName={fileName}/>,
                 document.body

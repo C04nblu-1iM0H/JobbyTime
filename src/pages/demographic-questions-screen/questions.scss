@@ -1,0 +1,138 @@
+@use '../../style/mixins.scss' as mixin;
+
+.questions{
+    margin: 30px 0 24px 96px;
+    max-width: 1144px;
+    width: 100%;
+
+    &__block{
+        @include mixin.flex(flex-start, center);
+        gap: 16px;
+        margin-bottom: 16px;
+        margin-top: 16px;
+
+    }
+
+    &__container{
+        width: 100%;
+        background-color: hsla(0, 0%, 100%, 1);
+        box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+        padding: 24px;
+        @include mixin.flex(flex-start, flex-start, column);
+        gap: 24px;
+        height: fit-content;
+        border-radius: 16px;
+
+        &__title{
+            @include mixin.font('Inter_Regular', 16px, 24px, 500);
+            color: hsla(0, 0%, 24%, 1);
+        }
+
+        &__block{
+            @include mixin.flex(flex-start, flex-start);
+            flex-wrap: wrap;
+            gap: 16px;
+            
+            &__buttons{
+                width: 180px;
+                @include mixin.flex(flex-start, center);
+                gap: 8px;
+
+                &__input{
+                    width: 16px;
+                    height: 16px;
+                    background: hsla(210, 20%, 98%, 1);
+                    border: 0.5px solid hsla(234, 95%, 85%, 1);
+                    border-radius: 8px;
+                    appearance: none;
+                    cursor: pointer;
+    
+                    &:checked{
+                        border: 3.5px solid hsla(234, 84%, 78%, 1);
+                        background: hsla(210, 20%, 98%, 1);
+                    }
+                }
+
+                &__checkbox{
+                    width: 16px;
+                    height: 16px;
+                    border: 0.5px solid hsla(234, 95%, 85%, 1);
+                    background-color: hsla(210, 20%, 98%, 1);
+                    appearance: none;
+                    border-radius: 4px;
+                    margin-right: 8px;
+                    
+                    &:checked{
+                        border: 0.5px solid hsla(234, 84%, 78%, 1);
+                        background: hsla(234, 84%, 78%, 1) url("../../assets/resume/cheked.svg") no-repeat center;
+                        background-size: 9.79px 7px;
+                    }
+                }
+
+                &__label{
+                    @include mixin.font('Inter_Light', 14px, 14px, 300);
+                    color: hsla(0, 0%, 24%, 1);
+                }
+            }
+        }
+
+    }
+
+    &__buttons{
+        width: 100%;
+        @include mixin.flex(flex-end, center);
+        gap: 16px;
+        
+        &__btn{
+            border-radius:  999px;
+            padding: 8px 20px;
+
+            &:nth-child(1){
+                border: none;
+                background-color: hsla(220, 13%, 91%, 1);
+            }
+
+            &:nth-child(2){
+                width: 150px;
+                border: 1px solid hsla(163, 93%, 22%, 1);
+                background-color: transparent;
+            }
+        }
+        
+        &__text{
+            @include mixin.font('Inter_Light', 14px, 21px, 500);
+
+            &:nth-child(1){
+                color: hsla(212, 28%, 17%, 1);
+            }
+
+            &:nth-child(2){
+                color: hsla(163, 93%, 22%, 1);
+            }
+        }
+    }
+}
+
+.column{
+    @include mixin.flex(flex-start, flex-start, column);
+}
+
+.widthButtonsBlock{
+    width: fit-content;
+}
+
+.widthButtonsBlockCheckbox{
+    width:354px;
+}
+
+.widthButtonsBlockCheckboxRacial{
+    width: 300px;
+}
+
+.widthContinerRacial{
+    width: 752px;
+}
+
+.widthContinerQuestions{
+    width: 371px;
+}

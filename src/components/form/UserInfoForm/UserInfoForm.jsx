@@ -5,8 +5,14 @@ import FormFieldProfile from "../FormFieldProfile/FormFieldProfile";
 import DataPicker from "../DataPicker/DataPicker";
 import ButtonComponent from "../../button/ButtonComponent/ButtonComponent";
 import PhoneInputComponent from "../PhoneInput/PhoneInput";
+import { useDispatch } from "react-redux";
+import { setSteps } from "../../../store/stepSlice";
+import { useLocation } from "react-router-dom";
+import { AppRouting } from "../../../const";
 
 export default function UserInfoForm({SetActiveForm}){
+    const dispatch = useDispatch();
+    const currentRoute = useLocation().pathname;
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -29,12 +35,16 @@ export default function UserInfoForm({SetActiveForm}){
     const handleSubmit = (e) => {
         e.preventDefault();
         const fullPhoneNumber = `${formData.countryCode}${formData.phoneNumber}`;
-    
+
         const dataToSend = {
             ...formData,
             phoneNumber: fullPhoneNumber, 
         };
         console.log("Данные для отправки:", dataToSend);
+        if(currentRoute === AppRouting.Onboard){
+            dispatch(setSteps({ step: 'step0', value: false }));
+            dispatch(setSteps({ step: 'step1', value: true }));
+        }
     };
 
     return(

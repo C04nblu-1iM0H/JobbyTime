@@ -128,7 +128,7 @@
         height: 37px;
         position: absolute;
         z-index: 1;
-        bottom: 40px;
+        bottom: 0px;
 
         &__buttons{
             @include mixin.flex(flex-start, center);
