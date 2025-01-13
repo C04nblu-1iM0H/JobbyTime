@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { disabledScrollSteps } from '../../utils/service';
@@ -19,8 +19,6 @@ import axios from 'axios';
 import { API } from '../../const';
 import { setUserData } from '../../store/userSlice';
 import UserFormModal from '../../components/UserFormModal/UserFormModal';
-import { setDoneStep, setStateOnboard } from '../../store/stepSlice';
-
 
 function MainScreen(){
     const token = useSelector(state => state.token.token);
