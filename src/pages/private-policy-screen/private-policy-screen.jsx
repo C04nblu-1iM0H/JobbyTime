@@ -10,7 +10,7 @@ export default function PrivatePolicyScreen(){
     const goBack = () => navigate(-1);
     return(
         <section className="headers policy ">
-            <Breadcrumbs />
+            <Breadcrumbs currenturl={"Privacy Policy & Terms of Use"} />
             <div className="headers__title">
                 <Link 
                     onClick={goBack}

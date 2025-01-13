@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import ResumeDataGeneration from '../form/ResumeDataGeneration/ResumeDataGeneration';
 import UploadResume from '../UploadResume/UploadResume';
+import { useSelector } from 'react-redux';
+import UserInfoForm from '../form/UserInfoForm/UserInfoForm';
+import UserStartDataModal from '../UserStartDataModal/UserStartDataModal';
+import UserFormModal from '../UserFormModal/UserFormModal';
 
 export default function DownloadArea(){
     const [isLoading, setIsLoading] = useState(false);
     const [fileName, setFileName] = useState("");
     const [file, setFile]=useState("");
-
+    const [isUserData, setIsUserData] = useState(false);
+    const userData = useSelector((state) => state.user.userData);
+    const {phoneNumber, countryCode, birthday, state, city} = userData;
     return(
         <div>
             <div className="resume__container"> 
@@ -26,7 +32,11 @@ export default function DownloadArea(){
                 </div>,
                 document.body
             )}
-            {fileName.length !== 0 && ReactDOM.createPortal(
+            { fileName.length !== 0 && !isUserData && ReactDOM.createPortal(
+                <UserFormModal setIsUserData={setIsUserData}/>,
+                document.body
+            )}
+            {isUserData && fileName.length !== 0 && ReactDOM.createPortal(
                 <ResumeDataGeneration file={file} OldFileName={fileName}/>,
                 document.body
             )}

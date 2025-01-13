@@ -4,12 +4,13 @@
 @use './components/BadgeStatus/status.scss';  
 @use './pages/signup-screen/signup.scss';
 @use './components/UploadResume/upload_resume.scss';
-@use './components/form/ResumeForm/resumeform.scss';
+@use './components/ModalResumeForm/resumeform.scss';
 @use './components/badge/bage.scss';
 @use './pages/job-board-screen/board.scss';
 @use './components/verify/verify.scss';
 @use './pages/job-screen/job.scss';
 @use './pages/auto-apply-screen/apply.scss';
+@use './components/JobCard/job_card.scss';
 @use './pages/profile-screen/profile.scss';
 @use './components/form/PhoneInput/PhoneInput.scss';
 @use './components/form/DataPicker/data_picker.scss';
@@ -21,6 +22,9 @@
 @use './components/JobOpeningsList/job_openings_list.scss';
 @use './components/JobOpeningsCard/job_openings_card.scss';
 @use './pages/demographic-questions-screen/questions.scss';
+@use './pages/Integrations-screen/Integrations.scss';
+@use './components/UserFormModal/user_form.scss';
+@use './pages/email-screen/email.scss';
 
 *{
   margin: 0;

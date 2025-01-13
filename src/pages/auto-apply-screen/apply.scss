@@ -32,104 +32,104 @@ body{
         }
     }
 
-    .job__card {
-        width: 978px;
-        height: fit-content;
-        background-color: hsla(0, 0%, 100%, 1);
-        padding: 24px;
-        margin: 16px 0;
-        border-radius: 16px;
+    // .job__card {
+    //     width: 978px;
+    //     height: fit-content;
+    //     background-color: hsla(0, 0%, 100%, 1);
+    //     padding: 24px;
+    //     margin: 16px 0;
+    //     border-radius: 16px;
 
-        &__header{
-            &__wrapper{
-                @include mixin.flex(space-between, center);
-                margin-bottom: 12px;
-                &__subtitle{
-                    @include mixin.font('Inter_Light', 14px, 21px, 400);
-                    color: hsla(0, 0%, 60%, 1);
-                }
-            }
+    //     &__header{
+    //         &__wrapper{
+    //             @include mixin.flex(space-between, center);
+    //             margin-bottom: 12px;
+    //             &__subtitle{
+    //                 @include mixin.font('Inter_Light', 14px, 21px, 400);
+    //                 color: hsla(0, 0%, 60%, 1);
+    //             }
+    //         }
 
-            &__title{
-                @include mixin.title('Inter_Bold', 24px, 36px, 600, 0, hsla(0, 0%, 24%, 1));
-                margin-bottom: 24px;
-            }
-        }
+    //         &__title{
+    //             @include mixin.title('Inter_Bold', 24px, 36px, 600, 0, hsla(0, 0%, 24%, 1));
+    //             margin-bottom: 24px;
+    //         }
+    //     }
 
-        &__footer{
-            @include mixin.flex(space-between, flex-end);
-            &__tags{
-                @include mixin.flex(flex-start, center);
-                .badge{
-                    width: fit-content;    
-                    height: 22px;
-                    border-radius: 6px;
-                    @include mixin.flex(flex-start, center);
-                    margin-right: 8px;
-                }
+    //     &__footer{
+    //         @include mixin.flex(space-between, flex-end);
+    //         &__tags{
+    //             @include mixin.flex(flex-start, center);
+    //             .badge{
+    //                 width: fit-content;    
+    //                 height: 22px;
+    //                 border-radius: 6px;
+    //                 @include mixin.flex(flex-start, center);
+    //                 margin-right: 8px;
+    //             }
         
-                .icon{
-                    padding-left: 10px;
-                }
+    //             .icon{
+    //                 padding-left: 10px;
+    //             }
         
-                .description{
-                    @include mixin.font('Inter_Light', 12px, 18px, 400);
-                    color: hsla(0, 0%, 24%, 1);
-                    margin-left: 4px;
-                    padding: 2px 8px 2px 0;
-                }
-            }
+    //             .description{
+    //                 @include mixin.font('Inter_Light', 12px, 18px, 400);
+    //                 color: hsla(0, 0%, 24%, 1);
+    //                 margin-left: 4px;
+    //                 padding: 2px 8px 2px 0;
+    //             }
+    //         }
 
-            &__actions{
-                display: flex;
-                &__edit-button{
-                    width: 194px;
-                    height: 34px;
-                    @include mixin.flex(center, center);
-                    padding: 2px 5px;
-                    border-radius: 999px;
-                    background-color: hsla(234, 95%, 85%, 1);
-                    @include mixin.font('Inter_Regular', 12px, 18px, 500);
-                    color: hsla(0, 0%, 24%, 1);
-                    border: 0;
-                    margin-right: 16px;
-                    cursor: pointer;
-                }
+    //         &__actions{
+    //             display: flex;
+    //             &__edit-button{
+    //                 width: 194px;
+    //                 height: 34px;
+    //                 @include mixin.flex(center, center);
+    //                 padding: 2px 5px;
+    //                 border-radius: 999px;
+    //                 background-color: hsla(234, 95%, 85%, 1);
+    //                 @include mixin.font('Inter_Regular', 12px, 18px, 500);
+    //                 color: hsla(0, 0%, 24%, 1);
+    //                 border: 0;
+    //                 margin-right: 16px;
+    //                 cursor: pointer;
+    //             }
 
-                &__resume-button{
-                    width: 142px;
-                    height: 34px;
-                    @include mixin.flex(center, center);
-                    padding: 2px 5px;
-                    border-radius: 999px;
-                    background-color: hsla(0, 0%, 100%, 1);
-                    border: 1px solid hsla(241, 68%, 62%, 1);
-                    @include mixin.font('Inter_Regular', 12px, 18px, 500);
-                    color: hsla(241, 68%, 62%, 1);
-                    margin-right: 16px;
-                    cursor: pointer;
-                }
+    //             &__resume-button{
+    //                 width: 142px;
+    //                 height: 34px;
+    //                 @include mixin.flex(center, center);
+    //                 padding: 2px 5px;
+    //                 border-radius: 999px;
+    //                 background-color: hsla(0, 0%, 100%, 1);
+    //                 border: 1px solid hsla(241, 68%, 62%, 1);
+    //                 @include mixin.font('Inter_Regular', 12px, 18px, 500);
+    //                 color: hsla(241, 68%, 62%, 1);
+    //                 margin-right: 16px;
+    //                 cursor: pointer;
+    //             }
 
-                &__apply-button{
-                    padding: 8px 20px;
-                    background-color: transparent;
-                    border: 1px solid hsla(163, 93%, 22%, 1);
-                    @include mixin.font('Inter_Regular', 12px, 18px, 500);
-                    color: hsla(163, 93%, 22%, 1);
-                    border-radius: 999px;
-                    cursor: pointer;
-                }
+    //             &__apply-button{
+    //                 padding: 8px 20px;
+    //                 background-color: transparent;
+    //                 border: 1px solid hsla(163, 93%, 22%, 1);
+    //                 @include mixin.font('Inter_Regular', 12px, 18px, 500);
+    //                 color: hsla(163, 93%, 22%, 1);
+    //                 border-radius: 999px;
+    //                 cursor: pointer;
+    //             }
 
-                &__edit-results{
-                    background-color: transparent;
-                    border: 1px solid hsla(241, 68%, 62%, 1);
-                    color: hsla(241, 68%, 62%, 1);
-                }
+    //             &__edit-results{
+    //                 background-color: transparent;
+    //                 border: 1px solid hsla(241, 68%, 62%, 1);
+    //                 color: hsla(241, 68%, 62%, 1);
+    //             }
 
-                &__icon{
-                    margin-left: 8px;
-                }
-            }
-        }
-    }
+    //             &__icon{
+    //                 margin-left: 8px;
+    //             }
+    //         }
+    //     }
+    // }
 }

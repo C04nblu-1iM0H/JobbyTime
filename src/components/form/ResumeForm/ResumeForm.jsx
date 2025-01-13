@@ -1,9 +1,6 @@
 import Counter from "../../counter/counter";
 import Checkboxes from "../checkboxes/checkboxes";
-import {AppRouting, checkboxing, options} from '../../../const';
-import './resumeform.scss';
-import { useDispatch } from "react-redux";
-import { setSteps } from "../../../store/stepSlice";
+import {checkboxing, options} from '../../../const';
 import ButtonComponent from "../../button/ButtonComponent/ButtonComponent";
 
 export default function ResumeForm({
@@ -13,12 +10,9 @@ export default function ResumeForm({
     handleFilterChange,
     handleCounter,
     errors,
-    currentRoute,
 }){    
-    const dispatch = useDispatch();
     return(
-        <form 
-            className="modal__form" onSubmit={handleSubmit}>
+        <form className="modal__form" onSubmit={handleSubmit}>
             <div className="modal__form__container">
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Application job title</label>
@@ -64,8 +58,8 @@ export default function ResumeForm({
                         onChange={(e) => handleChange("location", e.target.value)}
                         placeholder="Your Preferred Job Location type City"
                     />
-                    {errors.salary && (
-                        <span className="modal__form__container__group__error-message">{errors.salary}</span>
+                    {errors.location && (
+                        <span className="modal__form__container__group__error-message">{errors.location}</span>
                     )}
                 </div>
                 <div className="modal__form__container__group">
@@ -147,88 +141,17 @@ export default function ResumeForm({
                     )}
                 </div>
             </div>
-            { currentRoute === AppRouting.ResumeBuilder && (
-                <>
-                    <hr className="modal__form__hr" />
-                    <div className="modal__form__container">
-                        <div className="modal__form__container__group">
-                            <label className="modal__form__container__group__label">Website</label>
-                            <input 
-                                className="modal__form__container__group__input" 
-                                type="text"
-                                value={formData.site}
-                                onChange={(e) => handleChange("site", e.target.value)}
-                                placeholder="Link to your website"
-                            />
-                        </div>
-                        <div className="modal__form__container__group">
-                            <label className="modal__form__container__group__label">LinkedIn</label>
-                            <input 
-                                className="modal__form__container__group__input" 
-                                type="text"
-                                value={formData.linkedIn}
-                                onChange={(e) => handleChange("linkedIn", e.target.value)}
-                                placeholder="Link to your LinkedIn"
-                            />
-                        </div>
-                        <div className="modal__form__container__group">
-                            <label className="modal__form__container__group__label">GitHub</label>
-                            <input 
-                                className="modal__form__container__group__input" 
-                                type="text"
-                                value={formData.gitHub}
-                                onChange={(e) => handleChange("gitHub", e.target.value)}
-                                placeholder="Link to your GitHub"
-                            />
-                        </div>
-                    </div>
-                    <div className="modal__form__container">
-                        <div className="modal__form__container__group">
-                            <label className="modal__form__container__group__label">Portfolio (link)</label>
-                            <input 
-                                className="modal__form__container__group__input" 
-                                type="text"
-                                value={formData.portFolioLink}
-                                onChange={(e) => handleChange("portFolioLink", e.target.value)}
-                                placeholder="Link to your Portfolio (link)"
-                            />
-                        </div>
-                        <div className="modal__form__container__group">
-                            <label className="modal__form__container__group__label">Portfolio (file)</label>
-                            <div className="modal__form__container__group__addfile">
-                                <label htmlFor="fileInput" className="modal__form__container__group__addfile__button">Choose file</label>
-                                <input 
-                                    id="fileInput" 
-                                    className="modal__form__container__group__addfile__input" 
-                                    type="file" 
-                                />
-                                <span className="modal__form__container__group__addfile__text">your .pdf portfolio (or .docx / .doc / .txt)</span>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )}
             
             <div className="modal__form__block">
-                {currentRoute === AppRouting.Onboard && (
-                    <ButtonComponent 
-                        ClickFunction={ () => dispatch(setSteps({ step: 'step1', value: false }))}
-                        classNameButton={"modal__footer__button"}
-                        textButton={"Close"}
-                    />
-                )}
-                {/* <ButtonComponent 
-                        type="submit"
-                        classNameButton={"modal__form__block__button"}
-                        textButton={currentRoute === AppRouting.Onboard ? "Save and Continue" : "Save and Find Relevant Jobs"}
-                /> */}
-                <button
+                <ButtonComponent 
                     type="submit"
-                    className="modal__form__block__button"
-                >
-                    <p>{currentRoute === AppRouting.Onboard ? "Find Relevant Jobs" : "Save and Find Relevant Jobs"}</p>
-                </button>
+                    classNameButton={"modal__form__block__button"}
+                    textButton="Save and Find Relevant Jobs"
+                />
             </div>
         </form>
     )
 }
+
+
+

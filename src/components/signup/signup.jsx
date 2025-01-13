@@ -11,7 +11,11 @@ export default function Signup({SetIsDataSuccess}){
         <>
             { isLoading && (<Loader />)}
             <section className="signup">
-                <h1 className="signup__title">Sign up</h1>
+                <h1 className="signup__title">
+                    <span>Sign up </span> 
+                     /   
+                    <Link className="signup__title__link" to={AppRouting.Login}> Login in</Link>
+                </h1>
                 <SignupButtons buttons={SignupButton}/>
                 <div className="signup__divider">
                     <span>Or</span>
@@ -23,10 +27,6 @@ export default function Signup({SetIsDataSuccess}){
                     <Link className='signup__TermsOfUse__link'>Terms of Use</Link>
                 </div>
             </section>
-            <div className='footer'>
-                <p className='footer__description'>Already have an account?</p>
-                <Link className='footer__link' to={AppRouting.Login}>Log in</Link>
-            </div>
         </>
 
     )

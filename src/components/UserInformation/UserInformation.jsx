@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ReactDOM from 'react-dom';
 import edit from "../../assets/profile/edit.svg";
 import UserData from "../UserData/UserData";
-import UserInfoForm from "../form/UserInfoForm/UserInfoForm";
+import UserFormModal from "../UserFormModal/UserFormModal";
 
 export default function UserInformation(){
     const [activeForm, SetActiveForm] = useState(false);
@@ -35,7 +35,7 @@ export default function UserInformation(){
             <UserData />
             {activeForm && ReactDOM.createPortal(
                 <div className="modal">
-                    <UserInfoForm SetActiveForm={SetActiveForm}/>
+                    <UserFormModal SetActiveForm={SetActiveForm}/>
                 </div>,
                 document.body
             )}

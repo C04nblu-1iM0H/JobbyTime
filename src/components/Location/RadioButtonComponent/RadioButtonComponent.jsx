@@ -1,6 +1,7 @@
 
 
 export default function RadioButtonComponent({name, text, handleOptionChange, selectedOption}){
+    
     return(
         <>
             <h3 className="profile__location__block__title">{text}</h3>
@@ -9,10 +10,10 @@ export default function RadioButtonComponent({name, text, handleOptionChange, se
                     <input
                         className="profile__location__block__radio-buttons__input"
                         type="radio"
-                        name="location"
-                        value="Yes"
-                        checked={selectedOption === 'Yes'}
-                        onChange={() => handleOptionChange('Yes')}
+                        name={name}
+                        value={true}
+                        checked={selectedOption === true}
+                        onChange={() => handleOptionChange(true)}
                     />
                         Yes
                 </label>
@@ -21,9 +22,9 @@ export default function RadioButtonComponent({name, text, handleOptionChange, se
                         className="profile__location__block__radio-buttons__input"
                         type="radio"
                         name={name}
-                        value="No"
-                        checked={selectedOption === 'No'}
-                        onChange={() => handleOptionChange('No')}
+                        value={false}
+                        checked={selectedOption === false}
+                        onChange={() => handleOptionChange(false)}
                     />
                         No
                 </label>

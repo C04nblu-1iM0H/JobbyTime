@@ -3,7 +3,11 @@
 
 .container-group{
     @include  mixin.flex(flex-start, flex-start, column);
-
+    &__error-message {
+        color: hsla(0, 84%, 63%, 1);
+        @include mixin.font('Inter_Light', 12px, 18px, 400);
+        margin-top: 4px;
+    }
     &__label{
         @include mixin.font("Inter_Regular", 14px, 21px, 500);
         color: hsla(219, 40%, 11%, 1);
@@ -13,6 +17,11 @@
     &__phone-block{
         position: relative;
         @include mixin.flex(flex-start, center);
+
+        &__error{
+            border: 1px solid hsla(0, 84%, 63%, 1);
+            border-radius: 8px;
+        }
 
         &__input{
             width: 147px;

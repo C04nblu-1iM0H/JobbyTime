@@ -4,6 +4,7 @@ import { API } from "../../const";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loader from "../loader/loader";
 
 export default function Apply({job, setLoadingJobId}){
     const token = useSelector(state => state.token.token);
@@ -41,8 +42,10 @@ export default function Apply({job, setLoadingJobId}){
     }
     // setIsLoading(applyed.isPending)
 
-    // if(applyed.isPending) return <Loader />
-
+    if(applyed.isPending) {
+        return <Loader />
+    }
+       
     return(
         <form onSubmit={handleApplyed}>
             <button 

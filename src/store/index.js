@@ -12,10 +12,12 @@ import {
 import st from './storage';
 import tokenReducer from './tokenSlice';
 import stepReducer from './stepSlice';
+import userReducer from './userSlice';
 
 const rootReducer = combineReducers({
     token: tokenReducer,
     step:stepReducer,
+    user:userReducer,
 })
 
 const persistConfig = {

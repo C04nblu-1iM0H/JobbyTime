@@ -86,6 +86,7 @@
         }
 
         &__link{
+            width: 100%;
             margin-left: 21px;
             @include mixin.link('Inter_Medium', 12px, 18px, 600, underline, hsla(218, 93%, 61%, 1));
         }

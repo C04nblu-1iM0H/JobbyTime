@@ -1,41 +1,91 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RadioButtonComponent from "../Location/RadioButtonComponent/RadioButtonComponent";
 import { API, SecurityClearanceLevel } from "../../const";
+import { setUserData } from "../../store/userSlice";
 
 export default function SecurityClearance(){
-    const [selectedOption, setSelectedOption] = useState(null);
+    const dispatch = useDispatch();
+    const [selectedOption, setSelectedOption] = useState({ securityClearance:null });
     const [checkbox, setChekbox] = useState([]);
     const token = useSelector(state => state.token.token);  
 
+    const storedsecurityClearance= useSelector((state) => state.user.userData.securityClearance);
+    const storedlevelOfClearance= useSelector((state) => state.user.userData.levelOfClearance);
+
+    useEffect(() => {
+        if (storedsecurityClearance !== null) {
+            setSelectedOption({ securityClearance: storedsecurityClearance });
+        }
+    }, [storedsecurityClearance]);
+
+    useEffect(() => {
+        if (storedlevelOfClearance && Array.isArray(storedlevelOfClearance)) {
+            setChekbox(storedlevelOfClearance);
+        }
+    }, [storedlevelOfClearance]);
+
     const mutation = useMutation({
-        mutationFn: async ({option}) => {
-            await axios.post(API.RESUME_FROM, option, {
+        mutationFn: async (option) => {
+            console.log(option);
+            const response = await axios.post(API.UPDATE_SECURITY_CLEARANCE, option, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,
                 },
-            });          
-        }
+            });                
+            return response.data      
+        },
+        onSuccess: (response) => {
+            dispatch(setUserData({ data: "securityClearance", value: response.securityClearance })); 
+        },
+        onError: (error) => {
+            console.error(error)
+        },
     });
 
+
     const handleOptionChange = (option) => {
-        setSelectedOption(option);
-        console.log(option);
-        
-        // mutation.mutate({ option });
+        setSelectedOption({securityClearance: option});
+        const requestData = { SecurityClearance: option };
+        mutation.mutate(requestData);
     };
+
+    const mutationlevelOfClearance = useMutation({
+        mutationFn: async (data) => {    
+            const response = await axios.post(API.UPDATE_LEVEL_OF_CLEARANCE, data, {
+                headers: {
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`,
+                },
+            });    
+            return response.data      
+        },
+        onSuccess: (response) => {
+            if (response.levelOfClearance && Array.isArray(response.levelOfClearance)) {
+                dispatch(setUserData({ data: "levelOfClearance", value: response.levelOfClearance }));
+                setChekbox(response.levelOfClearance);
+            }
+        },
+        onError: (error) => {
+            console.error(error)
+        },
+    });
 
     const handleOptionChangeCheckbox = (e) =>{
         const { value, checked } = e.target;
-        checked ? setChekbox([...checkbox, value]) : setChekbox(checkbox.filter(item => item !== value));
-    }
 
-    console.log(checkbox);
-    
-    
+        const updatedCheckbox = checked
+            ? [...checkbox, value]
+            : checkbox.filter(item => item !== value);
+
+        setChekbox(updatedCheckbox);
+
+        const  levelOfClearance = {LevelOfClearance:updatedCheckbox}
+        mutationlevelOfClearance.mutate(levelOfClearance);
+    }    
 
     return(
         <section className="profile__security">
@@ -44,7 +94,7 @@ export default function SecurityClearance(){
                     name="active-security"
                     text={"Do you have an active security clearance?"}
                     handleOptionChange={handleOptionChange}
-                    selectedOption={selectedOption}
+                    selectedOption={selectedOption.securityClearance}
                 />
 
             </section>

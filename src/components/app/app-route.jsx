@@ -19,6 +19,9 @@ import PrivatePolicyScreen from "../../pages/private-policy-screen/private-polic
 import IsBotScreen from "../../pages/is-bot-screen/is-bot-screen";
 import './app.scss';
 import DemographiQuestionsScreen from "../../pages/demographic-questions-screen/demographic-questions-screen";
+import IntegrationsScreen from "../../pages/Integrations-screen/Integrations-screen";
+import EmailScreen from "../../pages/email-screen/email-screen";
+import PasswordChangeScreen from "../../pages/password-change-screen/password-change-screen";
 
 const queryClient = new QueryClient();
 
@@ -37,11 +40,19 @@ export default function AppRoute() {
               element={<LoginScreen />} 
             />
             <Route 
+              path={AppRouting.CheckingMail}
+              element={<EmailScreen />} 
+            />
+            <Route 
+              path={AppRouting.PasswordСhange}
+              element={<PasswordChangeScreen />} 
+            />
+            <Route 
               path={AppRouting.bot}
               element={<IsBotScreen />} 
             />
             {/* element={<ProtectedRoute />} */}
-            <Route> 
+            <Route  > 
               <Route element={<PageHead />}>
                 <Route 
                   path={AppRouting.Profile}
@@ -79,6 +90,10 @@ export default function AppRoute() {
               <Route 
                 path={AppRouting.PrivatePolicy} 
                 element={<PrivatePolicyScreen />} 
+              />
+              <Route 
+                path={AppRouting.Integrations} 
+                element={<IntegrationsScreen />} 
               />
               <Route 
                 path={AppRouting.Questions}

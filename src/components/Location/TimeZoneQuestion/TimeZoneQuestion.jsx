@@ -1,31 +1,53 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { timeZones } from "../../../const";
 import { API } from "../../../const";
+import { setUserData } from "../../../store/userSlice";
 
 
 export default function TimeZoneQuestion(){
-    const [selectedTimeZone, setSelectedTimeZone] = useState(null);
+    const dispatch = useDispatch()
+    const [selectedTimeZone, setSelectedTimeZone] = useState({
+        TimeZoneQuestion:null
+    });
+    const storedTimeZone= useSelector((state) => state.user.userData.selectedTimeZone);
+
     const token = useSelector(state => state.token.token);  
 
+    useEffect(() => {
+        if (storedTimeZone !== null) {
+            setSelectedTimeZone({ TimeZoneQuestion: storedTimeZone });
+        }
+    }, [storedTimeZone]);
+    
+
     const mutation = useMutation({
-        mutationFn: async ({timeZone}) => {
-            await axios.post(API.RESUME_FROM, {timeZone}, {
+        mutationFn: async (timeZone) => {
+            const response = await axios.post(API.UPDATE_TIMEZONE, timeZone, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,
                 },
-            });          
-        }
+            });    
+            return response.data      
+        },
+        onSuccess: (response) => {
+            dispatch(setUserData({ data: "selectedTimeZone", value: response.selectedTimeZone })); 
+
+        },
+        onError: (error) => {
+            console.error(error)
+        },
     });
 
     const handleOptionChange = (timeZone) => {
-        setSelectedTimeZone(timeZone)
-        console.log(timeZone);
-        
-        // mutation.mutate({ timeZone });
+        setSelectedTimeZone({ TimeZoneQuestion: timeZone });        
+        const payload = {
+            TimeZone: timeZone
+        };
+        mutation.mutate(payload);
     };
     return(
         <section className="profile__location__container Three">
@@ -41,7 +63,7 @@ export default function TimeZoneQuestion(){
                         type="radio"
                         name="timeZone"
                         value={zone.value}
-                        checked={selectedTimeZone === zone.value}
+                        checked={selectedTimeZone.TimeZoneQuestion === zone.value}
                         onChange={() => handleOptionChange(zone.value)}
                     />
                     <div className="profile__location__container__radio-buttons__descriptions">

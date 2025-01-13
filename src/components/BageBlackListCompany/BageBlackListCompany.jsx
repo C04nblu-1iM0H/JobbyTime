@@ -1,6 +1,6 @@
 import del from '../../assets/profile/del.svg';
 
-export default function BageBlackListCompany({id, name, handleDel}){
+export default function BageBlackListCompany({name, handleDel}){
     return( 
         <div 
             className="badge-blackList" 
@@ -8,7 +8,7 @@ export default function BageBlackListCompany({id, name, handleDel}){
 
             <p className="description-blackList">{name}</p>
             <img
-                onClick={ () => handleDel(id)} 
+                onClick={ () => handleDel(name)} 
                 className="icon" 
                 src={del} 
                 alt="del-icon" 

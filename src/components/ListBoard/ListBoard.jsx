@@ -10,6 +10,7 @@ import Loader from '../loader/loader.jsx';
 import Badge from '../badge/badge';
 // import {jobs } from '../../bak.js';
 import Pagination from '../pagiantion/pagination.jsx';
+import { getWords } from '../../utils/service.js';
 
 export default function ListBoard({filters}){
     const [listJob, setListJob] = useState([]);
@@ -73,25 +74,27 @@ export default function ListBoard({filters}){
         <>
 
             {
-                filteredJobs.map((posting, index) => {
-                    // const team = posting.companyName;
-                    // const location = "USA";
+                filteredJobs.map((posting, index) => {                    
                     const {updatedat, id_posting, text_posting} = posting;
                     const categories = typeof posting.categories === 'string' 
                     ? JSON.parse(posting.categories) 
                     : posting.categories;
                     const {commitment, location, team} = categories;
                     const commitmentArray = commitment.split(', ').map(item => item.trim());
-                    
                     const creationTime = formatDateDifference(updatedat);
+                    const trimWords = getWords(text_posting);
                     return(
-                        <Link to={id_posting} key={index}>
+                        <Link 
+                            to={{
+                                pathname: `${id_posting}`,
+                            }}  
+                            key={index}>
                             <section className="board__list">
                                 <div className="board__list__company">
                                     <p className="board__list__company__name">{team}</p>
                                     <img className="board__list__company__favorites" src={favorite} alt="icon_favorites" />
                                 </div>
-                                <p className="board__list__title">{text_posting}</p>
+                                <p className="board__list__title">{trimWords}</p>
                                 <div className="board__list__information">
                                     <div className='board__list__information__box'>
                                         {Array.isArray(commitmentArray)

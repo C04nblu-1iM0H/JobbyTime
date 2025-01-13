@@ -130,7 +130,8 @@ export default function DemographicQuestions(){
 
         const formDataToSend = new FormData();
         Object.keys(formData).forEach((key) => {
-            formDataToSend.append(key, formData[key]);
+            const value = Array.isArray(formData[key]) ? JSON.stringify(formData[key]) : formData[key];
+            formDataToSend.append(key, value);
         });
 
         for (let [key, value] of formDataToSend) {
@@ -139,7 +140,6 @@ export default function DemographicQuestions(){
 
         //saveMutation.mutate(formDataToSend);
     }
-
 
     return(
         <section className="questions">
