@@ -115,7 +115,7 @@ function SignupButtons({ buttons }) {
             const windowUrl = window.location.href;
 
             if (windowUrl.includes("code=") && !isLinkedInHandled.current) {
-                isLinkedInHandled.current = true; // Устанавливаем флаг в true
+                isLinkedInHandled.current = true; 
                 const codeMatch = windowUrl.match(/code=([a-zA-Z0-9_\-]+)/)?.[1];
 
                 if (codeMatch) {

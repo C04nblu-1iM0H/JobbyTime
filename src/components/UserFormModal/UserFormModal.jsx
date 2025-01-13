@@ -20,7 +20,7 @@ import { ValidateUserData } from "../../utils/validate";
 import SelectComponent from "../form/SelectComponent/SelectComponent";
 import { formatPhoneNumber } from "../../utils/service";
 
-export default function UserFormModal({ width, SetActiveForm, setIsUserData }) {
+export default function UserFormModal({ width, SetActiveForm, setIsUserData, setIsResumeData }) {
   const dispatch = useDispatch();
   const currentRoute = useLocation().pathname;
 
@@ -68,6 +68,7 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData }) {
       Object.entries(response).forEach(([key, value]) => {
         dispatch(setUserData({ data: key, value: value || "" }));
       }); 
+      if(currentRoute === AppRouting.ResumeBuilder)setIsResumeData(true);
       if (currentRoute === AppRouting.Onboard) {
         dispatch(setSteps({ step: 'step0', value: false }));
         dispatch(setSteps({ step: 'step1', value: true }));
@@ -98,13 +99,12 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData }) {
 
   const handleClose = () => {
     if (SetActiveForm) SetActiveForm(false);
+    if (currentRoute === AppRouting.ResumeBuilder) setIsUserData(false)
     if (currentRoute === AppRouting.Onboard) dispatch(setSteps({ step: "step0", value: false }));
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(1);
-  
+    e.preventDefault();  
     const isProfilePage = currentRoute === AppRouting.Profile;
 
     const validationErrors = ValidateUserData(

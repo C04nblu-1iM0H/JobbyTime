@@ -6,7 +6,7 @@ import { setLoading, setSteps } from '../../store/stepSlice';
 import { useLocation } from 'react-router-dom';
 import { AppRouting } from '../../const';
 
-export default function UploadResume({handleFileName, handleFile, handleStart}){
+export default function UploadResume({handleFileName, handleFile, handleStart, setIsUserData}){
         const [isDragging, setIsDragging] = useState(false);
         const dispatch = useDispatch();
         const currentRoute = useLocation().pathname
@@ -39,6 +39,7 @@ export default function UploadResume({handleFileName, handleFile, handleStart}){
                     handleFile(file);
                     dispatch(setLoading(false));
                     if (currentRoute === AppRouting.Onboard) dispatch(setSteps({ step: 'step0', value: true }))
+                    if (currentRoute === AppRouting.ResumeBuilder) setIsUserData(true);
                 }, 500);
             } else {
                 console.error("Please upload a valid PDF file.");

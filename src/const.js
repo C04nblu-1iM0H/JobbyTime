@@ -4,7 +4,7 @@ import newIntegration from "./assets/integration/newIntegration.svg";
 import lever from "./assets/integration/lever.svg";
 
 
-const currentUrl = 'https://cb14-77-91-77-16.ngrok-free.app';
+const currentUrl = 'https://a853-77-91-77-16.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,

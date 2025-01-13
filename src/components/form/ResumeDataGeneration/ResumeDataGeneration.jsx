@@ -7,7 +7,7 @@ import ResumeForm from "../ResumeForm/ResumeForm";
 import { useNavigate } from "react-router-dom";
 import { ValidateFormResume } from "../../../utils/validate";
 
-export default function ResumeDataGeneration({file, resume, active}){    
+export default function ResumeDataGeneration({file, resume, active, setIsResumeData}){    
     const [formData, setFormData] = useState({
         name: "",
         salary: "",
@@ -33,6 +33,7 @@ export default function ResumeDataGeneration({file, resume, active}){
         },
         onSuccess: (response) => {
             if (response.data === true) {
+                setIsResumeData(false)
                 navigate("/auto-apply");
             }
         },

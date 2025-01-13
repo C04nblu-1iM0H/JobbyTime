@@ -12,6 +12,7 @@ export default function DownloadArea(){
     const [fileName, setFileName] = useState("");
     const [file, setFile]=useState("");
     const [isUserData, setIsUserData] = useState(false);
+    const [isResumeData, setIsResumeData] = useState(false);
     const userData = useSelector((state) => state.user.userData);
     const {phoneNumber, countryCode, birthday, state, city} = userData;
     return(
@@ -21,6 +22,7 @@ export default function DownloadArea(){
                     handleLoading={setIsLoading}
                     handleFileName={setFileName}
                     handleFile={setFile}
+                    setIsUserData={setIsUserData}
                 />
             </div>
             {isLoading && ReactDOM.createPortal(
@@ -32,12 +34,12 @@ export default function DownloadArea(){
                 </div>,
                 document.body
             )}
-            { fileName.length !== 0 && !isUserData && ReactDOM.createPortal(
-                <UserFormModal setIsUserData={setIsUserData}/>,
+            { fileName.length !== 0 && isUserData && ReactDOM.createPortal(
+                <UserFormModal setIsUserData={setIsUserData} setIsResumeData={setIsResumeData}/>,
                 document.body
             )}
-            {isUserData && fileName.length !== 0 && ReactDOM.createPortal(
-                <ResumeDataGeneration file={file} OldFileName={fileName}/>,
+            {isResumeData && fileName.length !== 0 && ReactDOM.createPortal(
+                <ResumeDataGeneration file={file} OldFileName={fileName} setIsResumeData={setIsResumeData}/>,
                 document.body
             )}
         </div>
