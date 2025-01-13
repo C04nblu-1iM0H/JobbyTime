@@ -1,11 +1,13 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import RadioButtonComponent from "../Location/RadioButtonComponent/RadioButtonComponent";
 import { API, SecurityClearanceLevel } from "../../const";
+import { setUserData } from "../../store/userSlice";
 
 export default function SecurityClearance(){
+    const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState({ securityClearance:null });
     const [checkbox, setChekbox] = useState([]);
     const token = useSelector(state => state.token.token);  
@@ -33,11 +35,11 @@ export default function SecurityClearance(){
                     "Content-Type": "application/json",
                     'Authorization': `Bearer ${token}`,
                 },
-            });    
+            });                
             return response.data      
         },
         onSuccess: (response) => {
-            console.log(response);
+            dispatch(setUserData({ data: "securityClearance", value: response.securityClearance })); 
         },
         onError: (error) => {
             console.error(error)
@@ -52,7 +54,7 @@ export default function SecurityClearance(){
     };
 
     const mutationlevelOfClearance = useMutation({
-        mutationFn: async (data) => {            
+        mutationFn: async (data) => {    
             const response = await axios.post(API.UPDATE_LEVEL_OF_CLEARANCE, data, {
                 headers: {
                     "Content-Type": "application/json",
@@ -62,24 +64,26 @@ export default function SecurityClearance(){
             return response.data      
         },
         onSuccess: (response) => {
-            console.log(response);
+            if (response.levelOfClearance && Array.isArray(response.levelOfClearance)) {
+                dispatch(setUserData({ data: "levelOfClearance", value: response.levelOfClearance }));
+                setChekbox(response.levelOfClearance);
+            }
         },
         onError: (error) => {
             console.error(error)
         },
     });
 
-
     const handleOptionChangeCheckbox = (e) =>{
         const { value, checked } = e.target;
 
         const updatedCheckbox = checked
-        ? [...checkbox, value]
-        : checkbox.filter(item => item !== value);
+            ? [...checkbox, value]
+            : checkbox.filter(item => item !== value);
 
         setChekbox(updatedCheckbox);
 
-        const  levelOfClearance = {LevelOfClearance:checkbox}
+        const  levelOfClearance = {LevelOfClearance:updatedCheckbox}
         mutationlevelOfClearance.mutate(levelOfClearance);
     }    
 

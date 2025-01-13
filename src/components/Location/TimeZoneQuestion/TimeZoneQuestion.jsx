@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { timeZones } from "../../../const";
 import { API } from "../../../const";
+import { setUserData } from "../../../store/userSlice";
 
 
 export default function TimeZoneQuestion(){
+    const dispatch = useDispatch()
     const [selectedTimeZone, setSelectedTimeZone] = useState({
         TimeZoneQuestion:null
     });
@@ -32,7 +34,8 @@ export default function TimeZoneQuestion(){
             return response.data      
         },
         onSuccess: (response) => {
-            console.log(response);
+            dispatch(setUserData({ data: "selectedTimeZone", value: response.selectedTimeZone })); 
+
         },
         onError: (error) => {
             console.error(error)
