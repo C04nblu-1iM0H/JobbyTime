@@ -7,9 +7,7 @@ import Loader from "../loader/loader";
 
 export default function JobList({ list }) {
     const [loadingJobId, setLoadingJobId] = useState(null);
-    const route = useLocation().pathname;
-    console.log(list);
-    
+    const route = useLocation().pathname;    
     return (
         <ul className="job">
             {list.map((job, index) => {

@@ -124,7 +124,7 @@ export default function JobOpenings(){
                         onClick={handleNextStep}
                         className={"modal__form__block__button"}
                     >
-                        Find Relevant Jobs
+                        Tailor Resume and Cover Letter 
                         {isLoadingData && (
                             <span className="spinner"></span> 
                         )}
