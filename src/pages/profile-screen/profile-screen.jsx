@@ -1,5 +1,5 @@
 import BlackList from "../../components/BlackList/BlackList";
-import DemographicQuestions from "../../components/DemographicQuestions/DemographicQuestions";
+import DemographicQuestionsBlock from "../../components/DemographicQuestions/DemographicQuestionsBlock";
 import LocationCheckUSA from "../../components/Location/LocationCheckUSA/LocationCheckUSA";
 import TimeZoneQuestion from "../../components/Location/TimeZoneQuestion/TimeZoneQuestion";
 import WorkAuthorizationQuestion from "../../components/Location/WorkAuthorizationQuestion/WorkAuthorizationQuestion";
@@ -13,7 +13,7 @@ export default function ProfileScreen(){
             <h1 className="profile__title">My Profile</h1>
             <div className="profile__container">
                 <UserInformation />
-                <DemographicQuestions />
+                <DemographicQuestionsBlock />
             </div>
             <h2 className="profile__subtitle">Location</h2>
             <div className="profile__location">

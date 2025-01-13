@@ -1,12 +1,10 @@
 import google from './assets/Signup/google.svg';
 import linkedin from './assets/Signup/linkedin.svg';
-// import fulltime from './assets/board/fulltime.svg';
-// import remotely from './assets/board/remotely.svg';
-// import mark from './assets/board/mark.svg';
-// import time from './assets/board/time.svg';
-// import cash from './assets/job/cash.svg';
+import newIntegration from "./assets/integration/newIntegration.svg";
+import lever from "./assets/integration/lever.svg";
 
-const currentUrl = 'https://79e6-46-147-240-190.ngrok-free.app';
+
+const currentUrl = 'https://c8e2-77-91-77-16.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,
@@ -15,6 +13,7 @@ export const API = {
     GET_TOKEN:`${currentUrl}/api/v1/token`,
     PROTECTED_ROUTE:`${currentUrl}/api/v1/protected-route`,
     GET_BOARD:`${currentUrl}/api/v1/leverco_postings`,
+    GET_POSTING:`${currentUrl}/api/v1/get_posting`,
     RESUME_BUILDER:`${currentUrl}/api/v1/resume_builder`,
     RESUME_FROM:`${currentUrl}/api/v1/resume_form`,
     GET_APPLY_POSTING:`${currentUrl}/api/v1/get_apply_postings`,
@@ -23,18 +22,35 @@ export const API = {
     AUTHORIZATION_GOOGLE:`${currentUrl}/api/v1/auth_google`,
     AUTHORIZATION_LINKEDIN:`${currentUrl}/api/v1/auth_linkedin`,
     IS_BOT:`${currentUrl}/api/v1/check_bot`,
-}
+    USER_DATA:`${currentUrl}/api/v1/user_data`,
+    UPDATE_USER_DATA:`${currentUrl}/api/v1/update_user_data`,
+    ADD_TO_BLACKLIST:`${currentUrl}/api/v1/create_black_company`,
+    GET_BLACKLIST:`${currentUrl}/api/v1/get_blacklist_companies`,
+    DELETE_BLACKLIST_COMPANY:`${currentUrl}/api/v1/del_black_company`,
 
-//www.shane-smith.com
-//https://linkedin.com/shane-smith
-//https://github.com/shane-smith
+    UPDATE_LOCATION_USA:`${currentUrl}/api/v1/update_location_usa`,
+    UPDATE_WORK_AUTHORIZATION:`${currentUrl}/api/v1/update_work_authorization`,
+    UPDATE_TIMEZONE:`${currentUrl}/api/v1/update_timezone`,
+    UPDATE_SECURITY_CLEARANCE:`${currentUrl}/api/v1/update_security_сlearance`,
+    UPDATE_LEVEL_OF_CLEARANCE:`${currentUrl}/api/v1/update_level_of_clearance`,
+
+    GET_STEPS:`${currentUrl}/api/v1/get_step_onbording`,
+    UPDATE_STEPS:`${currentUrl}/api/v1/update_step_onbording`,
+
+    CHOISE_POSTING:`${currentUrl}/api/v1/choice_posting`,
+    GET_CHOISE_POSTING:`${currentUrl}/api/v1/get_choice_posting`, 
+}
 
 export const AppRouting = {
     Login : '/login',
+    ForgotMyPassword: '/new-password',
+    CheckingMail: '/checking-mail',
+    PasswordСhange: '/password-change',
     Root : '/',
     Verify: '/verify-email',
     Onboard: '/onboard',
     Profile: '/profile',
+    Questions: '/questions',
     ResumeBuilder: '/resume',
     CoverLetter: '#',
     AutoApply: '/auto-apply',
@@ -44,6 +60,7 @@ export const AppRouting = {
     SavedJobs: '#',
     PrivatePolicy:"/privacy-policy",
     bot:"/is-bot",
+    Integrations:"/integrations",
     NotFound : '*',
 };
 
@@ -139,55 +156,20 @@ export const inputs = [
 ];
 
 export const checkboxing = [
-    {label: "Full", key: "full" },
-    {label: "Project-Based", key: "projectBased" },
-    {label: "Remotely", key: "remotely" },
-    {label: "Partial", key: "partial" },
-    {label: "Flexible", key: "flexible" },
+    {label: "Full-time", key: "Full-time" },
+    {label: "Project based", key: "Project" },
+    {label: "Remote", key: "Remote" },
+    {label: "Part-time", key: "Part-time" },
+    {label: "Flexible", key: "Flexible" },
 ];
 
 export const checkfilter = [
-    { label: "Full", key: "Full-time" },
-    { label: "Partial", key: "Part-time" },
-    { label: "Remotely", key: "remotely" },
-    { label: "Project-Based", key: "Contract" },
-    { label: "Flexible", key: "flexible" },
+    {label: "Full-time", key: "Full-time" },
+    {label: "Project based", key: "Project based" },
+    {label: "Remote", key: "Remote" },
+    {label: "Part-time", key: "Part-time" },
+    {label: "Flexible", key: "Flexible" },
 ];
-
-// export const infoOfJob = [
-//     {name:"Google"},
-//     {name: "San Francisco, CA" ,icon:mark},
-//     {name: "15 hours ago", icon:time}
-// ]
-
-// export const details = [
-//     {name:"Full time", icon:fulltime},
-//     {name: "Remotely" ,icon:remotely},
-//     {name: "$34,800 – $55,500 a year", icon:cash}
-// ]
-
-// export const benefits = [
-//     {name:"Commuter assistance"},
-//     {name:"Employee stock purchase plan"},
-//     {name:"Health insurance"},
-//     {name:"Disability insurance"},
-//     {name:"Dental insurance"},
-//     {name:"Paid time off"},
-//     {name:"Perental leave"},
-//     {name:"Vision insurance"},
-// ]
-
-// export const qualifications = [
-//     {name:"Sales"},
-//     {name:"Customer service"},
-//     {name:"Engineering"},
-//     {name:"11+ years"},
-//     {name:"Bachelor’s degree"},
-//     {name:"Human resources"},
-//     {name:"IT"},
-//     {name:"SaaS"},
-//     {name:"Leadership"},
-// ]
 
 export const timeZones = [
     { value: 'Eastern Daylight Time', label: 'Eastern Daylight Time', location: 'Washington D.C.' },
@@ -296,6 +278,70 @@ export const jobs = [
     },
 ];
 
+export const genders = [
+    {id:1, value:"Male", label:"Male" },
+    {id:2, value:"Female", label:"Female" },
+    {id:3, value:"Non-Binary", label:"Non-Binary" },
+    {id:4, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:5, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const ProtectedStatus = [
+    {id:1, value:"I identify myself as one or more of the classifications  of protected veteran", label:"I identify myself as one or more of the classifications  of protected veteran" },
+    {id:2, value:"I'm not a protected veteran", label:"I'm not a protected veteran" },
+    {id:3, value:"I decline to self-identify", label:"I decline to self-identify" },
+];
+
+export const ethnicityQuestion = [
+    {id:1, value:"Black or of African descent", label:"Black or of African descent" },
+    {id:2, value:"East Asian", label:"East Asian" },
+    {id:3, value:"Indigenous, American Indian or Alaska Native", label:"Indigenous, American Indian or Alaska Native" },
+    {id:4, value:"Middle Eastern or North African", label:"Middle Eastern or North African" },
+    {id:5, value:"South Asian", label:"South Asian" },
+    {id:6, value:"Southeast Asian", label:"Southeast Asian" },
+    {id:7, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:8, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+
+export const RacialQuestion = [
+    {id:1, value:"Asexual", label:"Asexual" },
+    {id:2, value:"Heterosexual", label:"Heterosexual" },
+    {id:3, value:"Bisexual and/or Pansexual", label:"Bisexual and/or Pansexual" },
+    {id:4, value:"Queer", label:"Queer" },
+    {id:5, value:"Gay", label:"Gay" },
+    {id:6, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:7, value:"Lesbian", label:"Lesbian" },
+    {id:8, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const transgenders = [
+    {id:1, value:"Yes", label:"Yes" },
+    {id:2, value:"No", label:"No" },
+    {id:3, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:4, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const ChronicQuestion = [
+    {id:1, value:"Yes", label:"Yes" },
+    {id:2, value:"I prefer to self-describe", label:"I prefer to self-describe" },
+    {id:3, value:"No", label:"No" },
+    {id:4, value:"I don't wish to answer", label:"I don't wish to answer" },
+];
+
+export const sponsorshipFuture = [
+    {id:1, value:"Yes", label:"Yes" },
+    {id:2, value:"No", label:"No" },
+    {id:3, value:"Not Sure", label:"Not Sure" },
+];
+
+export const integrationsData = [
+    {id:1, icon:lever, title: 'Lever.co', description: 'Connect to your Lever.co account to source candidates '},
+    {id:2, icon:newIntegration, title: 'New integration', description: 'Write us for new integration: connect@jobbytime.com '},
+    // {icon:googleIntegration, title: 'Crossbeam Copilot for Chrome', badge: 'Crossbeam', forSale:"for Sales", description: 'See existing & new Crossbeam partner overlaps while in your Chrome browser '},
+    // {icon:salesforce, title: 'Crossbeam Copilot for Salesforce', badge: 'Crossbeam', forSale:"for Sales", description: 'Make partner data available directly in Salesforce '},
+    // {icon:slack, title: 'Slack',  description: 'Query Crossbeam partner data with the /crossbeam Slack command and alert on new overlaps via public, private, or Slack Connect channels ',},
+]
 
 
 export const PolicyTitle = {
@@ -677,3 +723,5 @@ export const PolicyMainContent =[
             If there are any questions regarding this privacy policy, you may contact us via help@jobbytime.com`
     },
 ]
+
+

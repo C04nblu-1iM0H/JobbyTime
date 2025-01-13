@@ -1,0 +1,97 @@
+@use '../../style/mixins.scss' as mixin;
+
+.integrations{
+    margin-top: 30px;
+    margin-left: 96px;
+    width: 1024px;
+
+    &__title{
+        margin-bottom: 15px;
+        @include mixin.font('Inter_Medium', 18px, 24px, 600);
+        color: hsla(0, 0%, 24%, 1);
+    }
+
+    &__list{
+        @include mixin.flex(flex-start, center);
+        gap:12px;
+
+        &__item{
+            width: 333px;
+            background-color: hsla(0, 0%, 100%, 1);
+            box-shadow: 0px 1px 2px 0px hsla(0, 0%, 0%, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+
+            &__header{
+                @include mixin.flex(space-between, center);
+
+                &__btn{
+                    background-color: hsla(234, 84%, 78%, 1);
+                    color: white; 
+                    padding: 0.5rem 1rem;
+                    border-radius: 5px;
+                    box-shadow: none;
+                    transition: box-shadow 0.3s ease;
+                    border: none;
+                    cursor: pointer;
+                    @include mixin.font('Inter_Regular', 14px, 24px, 500);
+                    color: rgb(255, 255, 255);
+
+                    &:hover{
+                        -webkit-box-shadow: 0px 0px 20px 3px rgba(118, 0, 141, 0.4);
+                        -moz-box-shadow: 0px 0px 20px 3px rgba(39, 0, 141, 0.4);
+                        box-shadow: 0px 0px 20px 3px rgba(96, 0, 141, 0.418);
+                    }
+                }
+            }
+
+            &__title{
+                @include mixin.font('Inter_Medium', 16px, 24px, 600);
+                color: hsla(0, 0%, 24%, 1);
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            &__bage{
+                width: fit-content;
+                padding: 2px 10px;
+                border-radius: 999px;
+                background-color: #ebf8ff;
+                margin-bottom: 10px;
+                &__description{
+                    @include mixin.font('Inter_Medium', 14px, 24px, 600);
+                    color: hsla(0, 0%, 24%, 1);
+                }
+
+                &__sales{
+                    @include mixin.font('Inter_Medium', 14px, 24px, 600);
+                    color: rgb(33, 166, 0);
+                }
+            }
+
+            &__description{
+                @include mixin.font('Inter_Light', 14px, 18px, 400);
+                color: rgb(77, 77, 77);
+            }
+
+            &__link{
+                display: inline-flex;
+                align-items: center; 
+                gap: 4px; 
+                @include mixin.font('Inter_Regular', 14px, 18px, 500);
+                color: rgb(16, 0, 136);
+                cursor: pointer;
+
+                &__icon{
+                    color: rgb(16, 0, 136); 
+                }
+            }
+
+            &:nth-child(3){
+                .integrations__list__item__title{
+                    margin-bottom: 25px;
+                }
+            }
+        }
+    }
+}

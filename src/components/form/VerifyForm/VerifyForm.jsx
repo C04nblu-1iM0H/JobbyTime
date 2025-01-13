@@ -1,12 +1,25 @@
 import { useMutation } from "@tanstack/react-query";
-import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { API } from "../../../const";
+import { useState, useRef, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { API, AppRouting } from "../../../const";
+
+const usePreviousRoute = () => {
+    const location = useLocation();
+    const previousPathRef = useRef(null);
+  
+    useEffect(() => {
+      previousPathRef.current = location.pathname;
+    }, [location]);
+  
+    return previousPathRef.current;
+};
+  
 
 export default function VerifyForm({setIsLoading}){
     const [code, setCode] = useState(new Array(6).fill("")); // Для хранения 6 символов
     const inputs = useRef([]); // Ссылки на input элементы
     const navigate = useNavigate();
+    const previousPath = usePreviousRoute();
 
     const handleChange = (value, index) => {
         // Обновляем значение текущего поля
@@ -42,10 +55,11 @@ export default function VerifyForm({setIsLoading}){
         },
         onSuccess: () => {
             setIsLoading(false);
-            navigate("/login");
+            previousPath === AppRouting.Root ? navigate("/login") : navigate("/password-change");
         },
         onError: (error) => {
             console.error('Error adding user:', error);
+            setIsLoading(false);
         },
     });
 

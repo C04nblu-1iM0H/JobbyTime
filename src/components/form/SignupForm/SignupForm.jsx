@@ -24,6 +24,7 @@ export default function SignupForm({SetIsDataSuccess, setIsLoading}){
                 setIsLoading(false);
                 SetIsDataSuccess(true);
             }else if(response === false){
+                setIsLoading(false);
                 errors.email = "Such an email already exists.";
                 setTimeout(() => {
                     navigate('/login');
@@ -33,6 +34,7 @@ export default function SignupForm({SetIsDataSuccess, setIsLoading}){
         },
         onError: (error) => {
             console.error('Error adding user:', error);
+            setIsLoading(false);
         },
     });
 

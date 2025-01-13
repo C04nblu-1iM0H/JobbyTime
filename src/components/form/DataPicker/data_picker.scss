@@ -1,158 +1,209 @@
 @use "../../../style/mixins.scss" as mixin;
+ 
+.date-label {
+    @include mixin.font("Inter_Regular", 14px, 21px, 500);
+    color: hsla(219, 40%, 11%, 1);
+    margin-bottom: 8px;
+}
 
+.date-input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 
-    .react-datepicker__input-container{
-        @include mixin.flex(flex-start, center);
-    }
+.input {
+    width: 250px;
+    height: 42px;
+    border-radius: 8px;
+    border: 1px solid hsla(216, 12%, 84%, 1);
+    background-color: hsla(210, 20%, 98%, 1);
+    outline: none;
+    @include mixin.font("Inter_Regular", 14px, 17.5px, 400);
+   
+    cursor: pointer;
 
-    .datepicker-container {
-        display: flex;
-        flex-direction: column;
-        max-width: 300px;
-    }
-  
-    .datepicker-label {
-        @include mixin.font("Inter_Regular", 14px, 21px, 500);
-        color: hsla(219, 40%, 11%, 1);
-        margin-bottom: 8px;
-    }
-    
-    .datepicker-input {
-        width: 250px;
-        height: 42px;
-        padding-left: 32px !important;
-        border-radius: 8px;
-        border: 1px solid hsla(216, 12%, 84%, 1);
-        background-color: hsla(210, 20%, 98%, 1);
-        outline: none;
-        @include mixin.font("Inter_Regular", 14px, 17.5px, 400);
+    &::placeholder{
+        padding-left: 42px;
         color: hsla(220, 9%, 46%, 1);
+    }
 
-        &::placeholder{
-            margin-left: 10px;
+    &:not(:placeholder-shown) {
+        padding-left: 42px;
+        border: 2px solid hsla(234, 95%, 85%, 1);
+        background-color: hsla(210, 20%, 98%, 1);
+    }
+
+}
+
+
+.calendar-icon{
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 43px;
+    left:18px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    width: 284px;
+    height: fit-content;
+    position: absolute;
+    top: 108%;
+    left: -30px;
+    border-radius: 8px;
+    padding: 16px;
+    background: #fff;
+    z-index: 10;
+    box-shadow: 0px 10px 15px -3px hsla(0, 0%, 0%, 0.1);
+
+
+
+    &__header-date {
+        @include mixin.flex(space-between, center);
+        margin-top: 16px;
+        margin-bottom: 8px;
+
+        &__btn{
+            background-color: transparent;
+            border: none;
+        }
+
+        &__description{
+            @include mixin.font("Inter_Bold", 12px, 18px, 700);
+            color: hsla(219, 40%, 11%, 1);
+            cursor: pointer;
         }
     }
-    
-    .react-datepicker{
-        border: 0;
-    }
 
-    .react-datepicker__navigation{
-        top: 18px;
-        color: #000;
-    }
+    &__days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        margin-bottom: 8px;
 
-    .react-datepicker__navigation-icon--previous::before{
-        border-color: #000;
-    }
+        &__btn{
+            padding: 8px 4px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
 
-    .react-datepicker__navigation-icon--next::before{
-        border-color: #000;
-    }
-
-
-    .custom-datepicker-popper {
-        z-index: 1000;
-    }
-
-    .react-datepicker__month-container {
-        width: 284px;
-        height: 313px;
-        background-color: #fff;
-        padding: 16px;
-        box-shadow: 0px 4px 6px 0px hsla(0, 0%, 0%, 0.05);  
-        box-shadow: 0px 10px 15px -3px hsla(0, 0%, 0%, 0.1);
-
-    }
-
-    .react-datepicker__month{
-        margin-top: 0;
-    }
-  
-    .react-datepicker__header {
-        background-color: #fff;
-        border-bottom: none;
-    }
-
-    .react-datepicker__week{
-        width: 252px;
-        height: 34px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .react-datepicker__day-names{
-        margin-top: 8px;
-        margin-left: 8px;
-        height: 34px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .react-datepicker__day-name{
-        @include mixin.font("Inter_Medium", 12px, 18px, 600);
-        color: hsla(220, 9%, 46%, 1);
-        margin: 0;
-        width: 36px;
-    }
-
-    .react-datepicker__day{
-        @include mixin.font("Inter_Bold", 12px, 18px, 700);
-        color: hsla(219, 40%, 11%, 1); 
-        padding: 8px 4px;
-        width: 36px;
-        height: 100%;
-        margin: 0;
-    }
-  
-    .react-datepicker__day--selected {
-        background-color: #a29bfe;
-        color: #fff;
-    }
-  
-    .react-datepicker__day--keyboard-selected {
-        background-color: #a29bfe;
-        border-radius: 8px;
-        color: #fff;
-    }
-
-    .react-datepicker__day--selected:not([aria-disabled=true]):hover{
-        background-color: #a29bfe;
-        color: #fff;
-    }
-
-    .datapicker__management{
-        width: 252px;
-        height: 37px;
-        position: absolute;
-        z-index: 1;
-        bottom: 40px;
-
-        &__buttons{
-            @include mixin.flex(flex-start, center);
-            gap: 16px;
-
-            &__btn{
-                width: 118px;
-                padding: 8px 12px;
-                border-radius: 999px;
-                cursor: pointer;
-                
-                &:nth-child(1){
-                    background-color: hsla(234, 95%, 85%, 1);
-                    border: none;
-                    @include mixin.font("Inter_Regular", 14px, 21px, 500);
-                    color: hsla(0, 0%, 100%, 1); 
-                }
-
-                &:nth-child(2){
-                    background-color: transparent;
-                    border: 1px solid hsla(220, 13%, 91%, 1);
-                    @include mixin.font("Inter_Regular", 14px, 21px, 500);
-                    color: hsla(212, 28%, 17%, 1); 
+            &__current{
+                &:hover{
+                    border-radius: 8px;
+                    background-color: hsla(216, 12%, 84%, 1);
                 }
             }
         }
+
+        &__description{
+            width: 28px;
+            height: 18px;
+            @include mixin.font("Inter_Bold", 12px, 18px, 700);
+            color: hsla(219, 40%, 11%, 1);
+        }
     }
+
+    &__year{
+        max-height: 200px;
+        overflow-y: auto;
+        margin-top: 16px;   
+        margin-bottom: 8px;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+            height: 141px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: hsla(234, 84%, 78%, 1);
+            border-radius: 999px;
+        }
+
+        &__list{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            justify-items: center;
+            align-items: center;
+
+            &__btn{
+                padding: 8px 4px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+
+                &:hover{
+                    border-radius: 8px;
+                    background-color: hsla(216, 12%, 84%, 1);
+                }
+            }
+        }
+
+        
+
+        &__description{
+            @include mixin.font("Inter_Bold", 12px, 18px, 700);
+            color: hsla(219, 40%, 11%, 1);
+        }
+    }
+    
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+    }
+}
+    
+.selected {
+    border-radius: 8px;
+    background-color: hsla(234, 95%, 85%, 1);
+
+    &:hover{
+        border-radius: 8px;
+        background-color: hsla(234, 95%, 85%, 1);
+        color: hsla(0, 0%, 100%, 1);
+    }
+}
+
+.selected-day{
+    @include mixin.font("Inter_Bold", 12px, 18px, 700);
+    color: hsla(0, 0%, 100%, 1);
+
+    &:hover{
+        color: hsla(0, 0%, 100%, 1);
+    }
+}
+    
+    
+.actions{
+    width: 100%;
+    height: fit-content;
+    @include mixin.flex(space-between, center);
+    &__btn{
+
+        width: 118px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        cursor: pointer;
+        
+        &:nth-child(1){
+            background-color: hsla(234, 95%, 85%, 1);
+            border: none;
+            @include mixin.font("Inter_Regular", 14px, 21px, 500);
+            color: hsla(0, 0%, 100%, 1); 
+        }
+
+        &:nth-child(2){
+            background-color: transparent;
+            border: 1px solid hsla(220, 13%, 91%, 1);
+            @include mixin.font("Inter_Regular", 14px, 21px, 500);
+            color: hsla(212, 28%, 17%, 1); 
+        }
+    }
+}
+
+.other-month{
+    color: rgb(122, 122, 122); 
+}
+    

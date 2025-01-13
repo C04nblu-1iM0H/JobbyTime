@@ -1,10 +1,8 @@
 import { useState } from "react";
 import JobOpeningsCard from "../JobOpeningsCard/JobOpeningsCard";
 import { useSelector } from "react-redux";
-import { jobs } from "../../const";
 
-export default function JobOpeningsList(){
-    const [selectedJobs, setSelectedJobs] = useState([]);
+export default function JobOpeningsList({jobs, setSelectedJobs, selectedJobs}){
     const freePlan = useSelector( state => state.step.freeplan);
     const toggleJobSelection = (id) => {
         setSelectedJobs((prev) =>
@@ -36,7 +34,7 @@ export default function JobOpeningsList(){
 
     return(
         <section className="job-openings">
-            {!freePlan &&(
+            {freePlan &&(
                 <div className="job-openings__сhoice">
                     <input
                         type="checkbox"
@@ -50,7 +48,7 @@ export default function JobOpeningsList(){
             
             <ul className="job-openings__list">
             {
-                jobs.map( (job) =>(
+                jobs.map((job) =>(
                     <JobOpeningsCard 
                         key={job.id_posting}
                         job={job}

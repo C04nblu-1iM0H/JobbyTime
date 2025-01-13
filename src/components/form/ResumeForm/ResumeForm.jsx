@@ -1,36 +1,18 @@
 import Counter from "../../counter/counter";
 import Checkboxes from "../checkboxes/checkboxes";
-import {AppRouting, checkboxing, options} from '../../../const';
-import './resumeform.scss';
-import AdditionalForm from "./AdditionalForm";
-import { useDispatch } from "react-redux";
-import { setSteps } from "../../../store/stepSlice";
+import {checkboxing, options} from '../../../const';
 import ButtonComponent from "../../button/ButtonComponent/ButtonComponent";
 
 export default function ResumeForm({
     formData, 
-    setAdditionalData,
     handleChange, 
-    handleAdditionalDataChange,
     handleSubmit,
     handleFilterChange,
     handleCounter,
     errors,
-    currentRoute,
 }){    
-    const dispatch = useDispatch();
     return(
-        <form 
-            className="modal__form" onSubmit={handleSubmit}
-        >
-        {currentRoute === AppRouting.Onboard &&(
-            <AdditionalForm 
-                setAdditionalData={setAdditionalData}
-                handleAdditionalDataChange={handleAdditionalDataChange}
-                errors={errors}
-            />
-        )}
-            
+        <form className="modal__form" onSubmit={handleSubmit}>
             <div className="modal__form__container">
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Application job title</label>
@@ -62,6 +44,24 @@ export default function ResumeForm({
                         <span className="modal__form__container__group__error-message">{errors.salary}</span>
                     )}
                 </div>
+            </div>
+            <hr className="modal__form__hr" />
+            <div className="modal__form__container">
+                <div className="modal__form__container__group">
+                    <label className="modal__form__container__group__label">Preffered Job Location</label>
+                    <input 
+                        className={`modal__form__container__group__input ${
+                            errors.location ? "modal__form__container__group__input__error" : ""
+                        }`}  
+                        type="text"
+                        value={formData.location}
+                        onChange={(e) => handleChange("location", e.target.value)}
+                        placeholder="Your Preferred Job Location type City"
+                    />
+                    {errors.location && (
+                        <span className="modal__form__container__group__error-message">{errors.location}</span>
+                    )}
+                </div>
                 <div className="modal__form__container__group">
                     <label className="modal__form__container__group__label">Your experience level</label>
                     <select 
@@ -73,7 +73,6 @@ export default function ResumeForm({
                         {options.map((option, index) => {
                             const {name, description} = option;
                             return(
-                                // selected={formData.experienceLevel === name}
                                 <option key={index} value={name}> 
                                     {description}
                                 </option>
@@ -85,25 +84,7 @@ export default function ResumeForm({
             <hr className="modal__form__hr" />
             <div className="modal__form__container">
                 <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">What type of job you prefer?</label>
-                    <div 
-                        className={`modal__form__container__group__wrapper ${
-                            errors.jobprefor ? "modal__form__container__group__wrapper__error" : ""
-                        }`}  
-                        >
-                        <Checkboxes 
-                            checkboxing={checkboxing}
-                            handleFilterChange={handleFilterChange}
-                            formData={formData}
-                            errors={errors}
-                        />
-                    </div>
-                    {errors.jobprefor && (
-                        <span className="modal__form__container__group__error-message">{errors.jobprefor}</span>
-                    )}
-                </div>
-                <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">Your work experience</label>
+                    <label className="modal__form__container__group__label">Your work experience on similar job</label>
                     <Counter 
                         currentCount={formData.work} 
                         handleCounter={handleCounter}
@@ -112,11 +93,9 @@ export default function ResumeForm({
                     {errors.work && (
                         <span className="modal__form__container__group__error-message">{errors.work}</span>
                     )}
-                    <p className="modal__form__container__group__description">The number of full years of your work experience</p>
-                    
                 </div>
                 <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">Are you open to relocating?</label>
+                    <label className="modal__form__container__group__label">Are you willing to relocate?</label>
                     <div className="modal__form__container__group__elements">
                         <div className="modal__form__container__group__elements__radio">
                             <input 
@@ -144,80 +123,35 @@ export default function ResumeForm({
             <hr className="modal__form__hr" />
             <div className="modal__form__container">
                 <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">Website</label>
-                    <input 
-                        className="modal__form__container__group__input" 
-                        type="text"
-                        value={formData.site}
-                        onChange={(e) => handleChange("site", e.target.value)}
-                        placeholder="Link to your website"
-                    />
-                </div>
-                <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">LinkedIn</label>
-                    <input 
-                        className="modal__form__container__group__input" 
-                        type="text"
-                        value={formData.linkedIn}
-                        onChange={(e) => handleChange("linkedIn", e.target.value)}
-                        placeholder="Link to your LinkedIn"
-                    />
-                </div>
-                <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">GitHub</label>
-                    <input 
-                        className="modal__form__container__group__input" 
-                        type="text"
-                        value={formData.gitHub}
-                        onChange={(e) => handleChange("gitHub", e.target.value)}
-                        placeholder="Link to your GitHub"
-                    />
-                </div>
-            </div>
-            <div className="modal__form__container">
-                <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">Portfolio (link)</label>
-                    <input 
-                        className="modal__form__container__group__input" 
-                        type="text"
-                        value={formData.portFolioLink}
-                        onChange={(e) => handleChange("portFolioLink", e.target.value)}
-                        placeholder="Link to your Portfolio (link)"
-                    />
-                </div>
-                <div className="modal__form__container__group">
-                    <label className="modal__form__container__group__label">Portfolio (file)</label>
-                    <div className="modal__form__container__group__addfile">
-                        <label htmlFor="fileInput" className="modal__form__container__group__addfile__button">Choose file</label>
-                        <input 
-                            id="fileInput" 
-                            className="modal__form__container__group__addfile__input" 
-                            type="file" 
+                    <label className="modal__form__container__group__label">What type of job you prefer?</label>
+                    <div 
+                        className={`modal__form__container__group__wrapper ${
+                            errors.jobprefor ? "modal__form__container__group__wrapper__error" : ""
+                        }`}  
+                        >
+                        <Checkboxes 
+                            checkboxing={checkboxing}
+                            handleFilterChange={handleFilterChange}
+                            formData={formData}
+                            errors={errors}
                         />
-                        <span className="modal__form__container__group__addfile__text">your .pdf portfolio (or .docx / .doc / .txt)</span>
                     </div>
+                    {errors.jobprefor && (
+                        <span className="modal__form__container__group__error-message">{errors.jobprefor}</span>
+                    )}
                 </div>
             </div>
+            
             <div className="modal__form__block">
-                {currentRoute === AppRouting.Onboard && (
-                    <ButtonComponent 
-                        ClickFunction={ () => dispatch(setSteps({ step: 'step1', value: false }))}
-                        classNameButton={"modal__footer__button"}
-                        textButton={"Close"}
-                    />
-                )}
-                {/* <ButtonComponent 
-                    type={"submit"}
-                    classNameButton={"modal__form__block__button"}
-                    textButton={currentRoute === AppRouting.Onboard ? "Save and Continue" : "Save and Find Relevant Jobs"}
-                /> */}
-                <button
+                <ButtonComponent 
                     type="submit"
-                    className="modal__form__block__button"
-                >
-                    <p>{currentRoute === AppRouting.Onboard ? "Save and Continue" : "Save and Find Relevant Jobs"}</p>
-                </button>
+                    classNameButton={"modal__form__block__button"}
+                    textButton="Save and Find Relevant Jobs"
+                />
             </div>
         </form>
     )
 }
+
+
+

@@ -8,17 +8,14 @@ const stepSlice  = createSlice({
             stepDone2:false,
             stepDone3:false
         },
-        current:{
-            currentStep1:false,
-            currentStep2:false,
-            currentStep3:false
-        },
         steps:{
+            step0:false,
             step1:false,
             step2:false,
             step3:false,
             step4:false
         },
+        state_onbording:"",
         loading:false,
         isVerificationOfPayment: false,
         freeplan: false,
@@ -30,18 +27,16 @@ const stepSlice  = createSlice({
                 state.done[step] = value;
             }
         },
-        setCurrentStep(state, action) {
-            const { step, value } = action.payload;
-            if (state.current.hasOwnProperty(step)) {
-                state.current[step] = value;
-            }
-        },
         setSteps(state, action){
             const { step, value } = action.payload;
             if (state.steps.hasOwnProperty(step)) {
                 state.steps[step] = value;
             }
         },
+        setStateOnboard(state, action){
+            state.state_onbording = action.payload;
+        },
+
         setLoading(state, action){
             state.loading = action.payload; 
         },
@@ -54,6 +49,6 @@ const stepSlice  = createSlice({
     }
 });
 
-export const {setDoneStep, setCurrentStep, setLoading, setSteps, setIsVerificationOfPayment, setFreePlan } = stepSlice.actions;
+export const {setStateOnboard, setDoneStep, setSteps, setLoading, setIsVerificationOfPayment, setFreePlan } = stepSlice.actions;
 
 export default stepSlice.reducer;

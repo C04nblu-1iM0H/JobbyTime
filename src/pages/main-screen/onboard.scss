@@ -165,6 +165,8 @@
     }
 }
 
+
+
 .modal__container{
     max-width: 744px;
     width: 100%;
@@ -194,6 +196,11 @@
     }
 }
 
+.modal__container-apply{
+    max-width: 815px;
+    width: 100%;
+}
+
 .tariff-plan__description{
     margin-bottom: 0px;
 }
@@ -212,23 +219,26 @@
     margin-top: 24px;
     gap: 16px;
 
-    &__button{
+    &__button-close{
+        border: none;
+        background-color: hsla(220, 13%, 91%, 1);
+        color: hsla(212, 28%, 17%, 1);
         border-radius: 999px;
         @include mixin.font('Inter_Regular', 14px, 21px, 500);
         padding: 8px 20px;
         cursor: pointer;
+    }
 
-        &:nth-child(1){
-            border: none;
-            background-color: hsla(220, 13%, 91%, 1);
-            color: hsla(212, 28%, 17%, 1);
-        }
-
-        &:nth-child(2){
-            border: 1px solid hsla(163, 93%, 22%, 1);
-            background-color: transparent;
-            color: hsla(163, 93%, 22%, 1);
-        }
+    &__button-save{
+        @include mixin.flex(center, center);
+        gap:0 8px;
+        border-radius: 999px;
+        @include mixin.font('Inter_Regular', 14px, 21px, 500);
+        padding: 8px 58.5px;
+        cursor: pointer;
+        border: 1px solid hsla(163, 93%, 22%, 1);
+        background-color: transparent;
+        color: hsla(163, 93%, 22%, 1);
     }
 }
 
@@ -360,10 +370,6 @@
     color: hsla(160, 84%, 34%, 1);
 }
 
-// .description{
-//     color:hsla(164, 93%, 17%, 1);
-// }
-
 .subtitle-active{
     color: hsla(0, 0%, 100%, 1);
 }
@@ -435,8 +441,7 @@
 
 
 
-.job{
-    max-width: 696px;
+.jobs{
     width: 100%;
     max-height: 538px;
     margin-top: 24px;
@@ -470,8 +475,8 @@
     }
 }
 
-.job__card {
-    width: 672px;
+.jobs-modal__card {
+    width: 750px;
     height: fit-content;
     background-color: hsla(0, 0%, 100%, 1);
     padding: 24px;
@@ -479,7 +484,7 @@
     margin-bottom: 8px;
 
     display: grid; 
-    grid-template-columns: 450px 194px; 
+    grid-template-columns: 520px 200px; 
     grid-template-rows: 60px 22px; 
     gap: 16px 0px; 
     grid-template-areas: 
@@ -503,6 +508,58 @@
         @include mixin.flex(space-between, flex-end);
         &__tags{
             @include mixin.flex(flex-start, center);
+        }
+
+        &__actions{
+            grid-area: buttons;
+            @include mixin.flex(space-around, flex-end, column);
+            &__edit-button{
+                width: 194px;
+                height: 34px;
+                @include mixin.flex(center, center);
+                padding: 2px 5px;
+                border-radius: 999px;
+                background-color: hsla(234, 95%, 85%, 1);
+                @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                color: hsla(0, 0%, 24%, 1);
+                border: 0;
+                margin-right: 16px;
+                cursor: pointer;
+            }
+    
+            &__resume-button{
+                width: 142px;
+                height: 34px;
+                @include mixin.flex(center, center);
+                padding: 2px 5px;
+                border-radius: 999px;
+                background-color: hsla(0, 0%, 100%, 1);
+                border: 1px solid hsla(241, 68%, 62%, 1);
+                @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                color: hsla(241, 68%, 62%, 1);
+                margin-right: 16px;
+                cursor: pointer;
+            }
+    
+            &__apply-button{
+                padding: 8px 20px;
+                background-color: transparent;
+                border: 1px solid hsla(163, 93%, 22%, 1);
+                @include mixin.font('Inter_Regular', 12px, 18px, 500);
+                color: hsla(163, 93%, 22%, 1);
+                border-radius: 999px;
+                cursor: pointer;
+            }
+    
+            &__edit-results{
+                background-color: transparent;
+                border: 1px solid hsla(241, 68%, 62%, 1);
+                color: hsla(241, 68%, 62%, 1);
+            }
+    
+            &__icon{
+                margin-left: 8px;
+            }
         }
     }
 

@@ -28,25 +28,10 @@
     &__footer{
         @include mixin.flex(space-between, flex-end);
         &__tags{
+            max-width: 420px;
             @include mixin.flex(flex-start, center);
-            .badge{
-                width: fit-content;    
-                height: 22px;
-                border-radius: 6px;
-                @include mixin.flex(flex-start, center);
-                margin-right: 8px;
-            }
-    
-            .icon{
-                padding-left: 10px;
-            }
-    
-            .description{
-                @include mixin.font('Inter_Light', 12px, 18px, 400);
-                color: hsla(0, 0%, 24%, 1);
-                margin-left: 4px;
-                padding: 2px 8px 2px 0;
-            }
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         &__actions{

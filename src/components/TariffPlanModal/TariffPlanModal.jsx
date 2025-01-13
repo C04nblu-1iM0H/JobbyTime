@@ -6,9 +6,9 @@ export default function TariffPlanModal(){
     const dispatch = useDispatch();
 
     const handleContinueForFree = () =>{
-        dispatch(setIsVerificationOfPayment(false));
-        dispatch(setSteps({ step: 'step2', value: true }));
-        dispatch(setFreePlan(true));
+        // dispatch(setIsVerificationOfPayment(false));
+        // dispatch(setSteps({ step: 'step2', value: true }));
+        // dispatch(setFreePlan(true));
     }
     return(
         <section className="modal">

@@ -56,7 +56,11 @@ function LoginScreen(){
                 <img  className="header__logo" src={logo} alt="logo" />
             </div>
             <section className="login">
-                <h1 className="login__title">Welcome</h1>
+                <h1 className="login__title">
+                    <Link className="login__title__link" to={AppRouting.Root}>Sign up </Link>
+                     /   
+                    <span> Login in</span> 
+                </h1>
                 <div className="login__item">
                     <SignupButtons buttons={SignupButton}/> 
                 </div>
@@ -65,13 +69,9 @@ function LoginScreen(){
                 </div>
                 <LoginForm />
                 <div className='login__TermsOfUse'>
-                    <Link className='login__TermsOfUse__link'>Forgot my password</Link>
+                    <Link to={AppRouting.CheckingMail} className='login__TermsOfUse__link'>Forgot my password</Link>
                 </div>
             </section>
-            <div className='footer'>
-                <p className='footer__description'>First time?</p>
-                <Link className='footer__link' to={AppRouting.Root}>Sign up</Link>
-            </div>
         </>
     );
 }

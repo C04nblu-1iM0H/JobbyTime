@@ -29,7 +29,14 @@ body{
         @include mixin.title('BricolageGrotesque_Bold', 48px, 52.8px, 800, -2px, hsla(0, 0%, 24%, 1));
         padding: var.$p-8;
         text-align: center;
+
+        &__link{
+            border: 0;
+            background: transparent;
+            color: hsla(241, 68%, 62%, 1)
+        }
     }
+
 
     &__list{
         @include mixin.flex(center, center, column);
@@ -38,7 +45,7 @@ body{
 
         &__item{
             list-style-type: none;
-            
+            width: 100%;
             &:first-child{
                 margin-bottom: 16px;
             }
@@ -50,6 +57,7 @@ body{
                 border-radius: 100px;
                 padding: 14px 50px 14px 49px;
                 cursor: pointer;
+                width: 100%;
 
                 &__text{
                     margin-left: 8px;
@@ -146,31 +154,6 @@ body{
         }
     }
 }
-
-.footer{
-    width: 310px;
-    height: 34px;
-    @include mixin.flex(center, center);
-    margin: 0 auto;
-    margin-top: 24px;
-
-    &__description{
-        margin-right: 5px;
-        @include mixin.font('Inter_Light', 12px, 18px, 400);
-    }
-
-    &__link{
-        @include mixin.link('Inter_Medium', 12px, 18px, 600, none,  var.$color_link);
-        border: 0;
-        background: transparent;
-    }
-
-    &__link-disabled{
-        @include mixin.link('Inter_Medium', 12px, 18px, 600, none,  hsla(241, 68%, 62%, 1));
-
-    }
-}
-
 
 .google-custom-button {
     @include mixin.flex(center, center);

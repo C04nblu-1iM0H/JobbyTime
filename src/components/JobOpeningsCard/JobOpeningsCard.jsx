@@ -1,14 +1,16 @@
 import { useSelector } from 'react-redux';
 import arrow from '../../assets/onboard/arrow_right.svg';
 import Badge from '../badge/badge';
+import { formatDateDifference } from '../../utils/date';
 
 export default function JobOpeningsCard({ job, isSelected, onToggle, onAdd }){
-    const {team, commitment, location, creationTime} = job.categories;
-    
+    const categories = JSON.parse(job.categories);
+    const {team, commitment, location} = categories;
+    const creationTime = formatDateDifference(job.updatedat);
     const freePlan = useSelector( state => state.step.freeplan);
     return(
         <li className='item'>
-            {!freePlan
+            {freePlan
                 ?(
                     <div className="item__choice">
                         <input

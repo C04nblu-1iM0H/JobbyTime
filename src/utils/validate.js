@@ -33,7 +33,7 @@ export const validateInputs = (firstName, lastName, email, password) => {
     return errors;
 }
 
-export const ValidateFormResume = (name, salary, jobprefor, work, firstName, lastName, city)=>{
+export const ValidateFormResume = (name, salary, jobprefor, work)=>{
 
   const errors = {};
   if(!name){
@@ -57,23 +57,121 @@ export const ValidateFormResume = (name, salary, jobprefor, work, firstName, las
   }else if(work > 80){
     errors.work = "Your work experience it can't be more than eighty years old";
   }
+ 
+  return errors;
 
-  if(!firstName){
-    errors.firstName = "The first name field must not be empty";
-  }else if(firstName > 80){
-    errors.firstName = "You entered a first name that is too long";
+}
+
+
+export const ValidateFormResumeModal = (name, salary, location, jobprefor, work)=>{
+
+  const errors = {};
+  if(!name){
+    errors.name = "It should not be application job title empty ";
+  }else if(name <= 5 ){
+    errors.name = "Too short application job title";
+  }else if(name >= 60){
+    errors.name = "Too long application job title";
   }
 
-  if(!lastName){
-    errors.lastName = "The last name field must not be empty";
-  }else if(lastName > 80){
-    errors.lastName = "You entered a last name that is too long";
+  if(!(/^\d+$/.test(salary))){
+    errors.salary ="The line should contain only numbers"
   }
 
-  if(!city){
-    errors.city = "The city field must not be empty";
+  if(!location){
+    errors.location = "The location field cannot be empty";
+  }
+
+
+  if(jobprefor.length === 0){
+    errors.jobprefor = "specify what type of job you prefer?";
+  }
+
+  if(work === 0){
+    errors.work = "Your work experience it can't be less than one year old";
+  }else if(work > 80){
+    errors.work = "Your work experience it can't be more than eighty years old";
   }
  
   return errors;
 
+}
+
+
+
+export const ValidateUserData = (firstName, lastName, phoneNumber, birthday, state, city, postal, linkedIn, isProfilePage) =>{
+
+  const errors = {};
+  if(!firstName){
+    errors.firstName = "First Name is required";
+  }else if(firstName <= 2 ){
+    errors.firstName = "The name is too short";
+  }else if(firstName >= 20){
+    errors.firstName = "The name is too long";
+  }
+
+  if(!lastName){
+    errors.lastName = "Last Name is required";
+  }else if(lastName <= 2 ){
+    errors.lastName = "The last name is too short";
+  }else if(lastName >= 20){
+    errors.lastName = "The last name is too long";
+  }
+
+  if(!(/^\d{3}(?:\s?\d{4}\s?\d{3})?$/.test(phoneNumber))){
+    errors.phoneNumber ="Incorrect phone number";
+  }else if(!phoneNumber){
+    errors.phoneNumber = "Enter your phone number";
+  }
+
+  if(!birthday){
+    errors.state = "Enter the birthday";
+  }
+  
+  if(!state){
+    errors.state = "Enter the state";
+  }
+
+  if(!city){
+    errors.city = "Enter the city";
+  }
+
+  // Валидация почтового кода, если на странице профиля
+  if (isProfilePage) {
+    if (!postal) {
+      errors.postal = "Enter the postal code";
+    } else if (!/^\d{5}$/.test(postal)) {
+      errors.postal = "The zip code should contain only numbers";
+    }
+  } else {
+    // Валидация LinkedIn
+    if (!linkedIn) {
+      errors.linkedIn = "Enter your LinkedIn profile link";
+    } else if (!/^https?:\/\/(www\.)?linkedin\.com\/.*$/.test(linkedIn)) {
+      errors.linkedIn = "Enter a valid LinkedIn profile link";
+    }
+  }
+  return errors;
+}
+
+export const validatePassword = (password, repeatPassword) =>{
+  const errors = {};
+  if (!password) {
+    errors.password = "Password is required.";
+  } else if (password.length < 6) {
+    errors.password = "Password must be at least 6 characters.";
+  }
+
+  if (!repeatPassword) {
+    errors.repeatPassword = "Password is required.";
+  } else if (repeatPassword.length < 6) {
+    errors.repeatPassword = "Password must be at least 6 characters.";
+  }
+
+  if(password !== repeatPassword) {
+    errors.password = "passwords don't match."
+    errors.repeatPassword = "passwords don't match."
+  }
+
+  return errors;
 }

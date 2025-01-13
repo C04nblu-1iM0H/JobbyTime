@@ -83,10 +83,6 @@ body {
                         margin-bottom: 16px;
                     }
 
-                    &__badges-left{
-                        @include mixin.flex(flex-start, center);
-                    }
-
                     &__badges{
                         @include mixin.flex(space-between, center);
                         flex-wrap: wrap;

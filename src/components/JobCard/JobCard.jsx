@@ -7,11 +7,9 @@ import CoverLetterAndResumeButton from "../button/CoverLetterAndResumeButton/Cov
 import coverLatter from '../../assets/apply/cover_latter.svg';
 
 export default function JobCard({ job, setLoadingJobId }) {
-    // const categories = JSON.parse(job.categories);
-    // const { commitment, location, team } = categories;
-
-    const { commitment, location, team, creationTime } = job.categories;
-    // const creationTime = formatDateDifference(job.updatedat);
+    const categories = JSON.parse(job.categories);
+    const { commitment, location, team } = categories;
+    const creationTime = formatDateDifference(job.updatedat);
     const statusAutoApply = "Waiting in queue";
     const statusApplyResults = "Sent";
     const currentRoute = useLocation().pathname;
