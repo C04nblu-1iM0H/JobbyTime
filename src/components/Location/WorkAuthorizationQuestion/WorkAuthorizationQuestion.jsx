@@ -35,7 +35,7 @@ export default function WorkAuthorizationQuestion(){
             return response.data      
         },
         onSuccess: (response) => {
-            dispatch(setUserData({ data: "LocationCheckUSA", value: response.LocationCheckUSA })); 
+            dispatch(setUserData({ data: "WorkAuthorizationQuestion", value: response.WorkAuthorizationQuestion })); 
         },
         onError: (error) => {
             console.error(error)

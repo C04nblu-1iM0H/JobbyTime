@@ -118,10 +118,13 @@ export const ValidateUserData = (firstName, lastName, phoneNumber, birthday, sta
     errors.lastName = "The last name is too long";
   }
 
-  if(!(/^\d{3}(?:\s?\d{4}\s?\d{3})?$/.test(phoneNumber))){
-    errors.phoneNumber ="Incorrect phone number";
-  }else if(!phoneNumber){
-    errors.phoneNumber = "Enter your phone number";
+  if (!phoneNumber) {
+    errors.phoneNumber = "Phone number is required";
+  } else {
+    const cleaned = phoneNumber.replace(/\D/g, "");
+    if (cleaned.length !== 10 && !(cleaned.length === 11 && cleaned.startsWith("1"))) {
+      errors.phoneNumber = "Enter a valid US phone number";
+    }
   }
 
   if(!birthday){
@@ -138,16 +141,14 @@ export const ValidateUserData = (firstName, lastName, phoneNumber, birthday, sta
 
   // Валидация почтового кода, если на странице профиля
   if (isProfilePage) {
-    if (!postal) {
-      errors.postal = "Enter the postal code";
-    } else if (!/^\d{5}$/.test(postal)) {
-      errors.postal = "The zip code should contain only numbers";
+    if (postal) {
+      if (!/^\d{5}$/.test(postal)) {
+        errors.postal = "The zip code should contain only numbers";
+      }
     }
-  } else {
-    // Валидация LinkedIn
-    if (!linkedIn) {
-      errors.linkedIn = "Enter your LinkedIn profile link";
-    } else if (!/^https?:\/\/(www\.)?linkedin\.com\/.*$/.test(linkedIn)) {
+  } else if (linkedIn) {
+    // Проверка LinkedIn только если поле заполнено
+    if (!/^https?:\/\/(www\.)?linkedin\.com\/.*$/.test(linkedIn)) {
       errors.linkedIn = "Enter a valid LinkedIn profile link";
     }
   }

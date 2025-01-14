@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import contry from '../../../assets/profile/contry.svg';
 import arrow_bottom from '../../../assets/profile/arrow_bottom.svg';
+import { formatPhoneNumber } from '../../../utils/service';
 
 
 const countryData = [
@@ -29,6 +30,12 @@ export default function PhoneInputComponent({
             onCountryCodeChange(selectedCountry.code);
         }
     }, [selectedCountry, code, onCountryCodeChange]);
+
+    const handleInputChange = (e) => {
+        const rawValue = e.target.value;
+        const formattedValue = formatPhoneNumber(rawValue);
+        onChange({ target: { name, value: formattedValue } });
+      };
     
     const handleCountrySelect = (country) => {
       setSelectedCountry(country);
@@ -76,7 +83,7 @@ export default function PhoneInputComponent({
                         className="profile__container__information__findings__form__basic__group__phone-block__input container-group__phone-block__input"
                         type="text"
                         value={value}
-                        onChange={onChange}
+                        onChange={handleInputChange}
                         placeholder={placeholder}
                         autoComplete="off"
                     />

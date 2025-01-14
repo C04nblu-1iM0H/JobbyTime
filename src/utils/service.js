@@ -60,7 +60,14 @@ export const getCalendarDays = (year, month) => {
     return [...prevMonthDays, ...currentMonthDays, ...nextMonthDays];
 };
 
-export const formatPhoneNumber = (phoneNumber) => {
-    const phoneString = phoneNumber.toString();
-    return phoneString.replace(/^(\d{3})(\d{4})(\d{3})$/, "$1 $2 $3");
-}
+export const  formatPhoneNumber = (value) => {
+    const digits = value.replace(/\D/g, ""); // Удалить все, кроме цифр
+    const match = digits.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+    if (!match) return digits;
+    const [, areaCode, centralOfficeCode, lineNumber] = match;
+    let formatted = "";
+    if (areaCode) formatted += `(${areaCode}`;
+    if (centralOfficeCode) formatted += `)-${centralOfficeCode}`;
+    if (lineNumber) formatted += `-${lineNumber}`;
+    return formatted;
+  }

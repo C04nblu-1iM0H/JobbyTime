@@ -56,6 +56,8 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData, set
 
   const userDataMutate = useMutation({
     mutationFn: async (formData) => {
+      console.log(formData);
+      
       const response = await axios.post(API.UPDATE_USER_DATA, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -68,7 +70,7 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData, set
       Object.entries(response).forEach(([key, value]) => {
         dispatch(setUserData({ data: key, value: value || "" }));
       }); 
-      if(currentRoute === AppRouting.ResumeBuilder)setIsResumeData(true);
+      if(currentRoute === AppRouting.ResumeBuilder) setIsResumeData(true);
       if (currentRoute === AppRouting.Onboard) {
         dispatch(setSteps({ step: 'step0', value: false }));
         dispatch(setSteps({ step: 'step1', value: true }));
@@ -93,7 +95,9 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData, set
   };
 
   const handleBirthday = (value) => {
-    const formattedDate = value.toISOString().split('T')[0];
+    const localOffset = value.getTimezoneOffset() * 60000; 
+    const adjustedDate = new Date(value.getTime() - localOffset); 
+    const formattedDate = adjustedDate.toISOString().split('T')[0];
     setFormData((prevData) => ({ ...prevData, birthday: formattedDate}));
   };
 
@@ -126,7 +130,7 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData, set
 
     const formDataToSend = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
-      if (key === "phoneNumber") value = value.replace(/\s/g, '');
+      if (key === "phoneNumber") value = value.replace(/\D/g, '');
       formDataToSend.append(key, value || "");
     });
 
@@ -177,7 +181,7 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData, set
               value={phoneFormat}
               onChange={handleInputChange}
               onCountryCodeChange={handleCountryCode}
-              placeholder="Enter your phone"
+              placeholder="(XXX) XXX-XXXX"
               errors={errors.phoneNumber}
             />
             <DateInput
@@ -212,11 +216,11 @@ export default function UserFormModal({ width, SetActiveForm, setIsUserData, set
             {currentRoute === AppRouting.Profile 
               ? (
                 <FormFieldProfile
-                  label="Postal"
+                  label="Zip code"
                   name="postal"
                   value={formData.postal}
                   onChange={handleInputChange}
-                  placeholder="enter your postal"
+                  placeholder="Enter your zip code"
                   errors={errors.postal} 
                 />
               ):(

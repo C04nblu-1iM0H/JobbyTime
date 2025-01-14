@@ -4,7 +4,7 @@ import newIntegration from "./assets/integration/newIntegration.svg";
 import lever from "./assets/integration/lever.svg";
 
 
-const currentUrl = 'https://a853-77-91-77-16.ngrok-free.app';
+const currentUrl = 'https://5feb-77-91-77-16.ngrok-free.app';
 
 export const API = {
     SEND_VERIFY_CODE:`${currentUrl}/api/v1/send_verification_code`,
@@ -13,7 +13,7 @@ export const API = {
     GET_TOKEN:`${currentUrl}/api/v1/token`,
     PROTECTED_ROUTE:`${currentUrl}/api/v1/protected-route`,
     GET_BOARD:`${currentUrl}/api/v1/leverco_postings`,
-    GET_POSTING:`${currentUrl}/api/v1/get_posting`,
+    GET_POSTING:`${currentUrl}/api/v1/get_posting`, 
     RESUME_BUILDER:`${currentUrl}/api/v1/resume_builder`,
     RESUME_FROM:`${currentUrl}/api/v1/resume_form`,
     GET_APPLY_POSTING:`${currentUrl}/api/v1/get_apply_postings`,

@@ -51,7 +51,8 @@ export default function DateInput({value, onBirthdayChange, errors}){
     };
   
     const handleDateSelect = (day) => {
-        setSelectedDate(new Date(currentYear, currentMonth, day));
+        const date = new Date(currentYear, currentMonth, day);
+        setSelectedDate(date);
     };
   
     const handleOk = () => {
@@ -64,7 +65,7 @@ export default function DateInput({value, onBirthdayChange, errors}){
     const handleCancel = () => {
         setIsOpen(false);
     };
-  
+        
     return (
         <div className="date-input">
             <label htmlFor="date-of-birth" className="date-label">
@@ -75,9 +76,9 @@ export default function DateInput({value, onBirthdayChange, errors}){
                 value={
                     value
                         ? new Date(value).toLocaleDateString("en-US", {
-                              month: "2-digit",
-                              day: "2-digit",
-                              year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            year: "numeric",
                           })
                         : ""
                 }
@@ -117,21 +118,21 @@ export default function DateInput({value, onBirthdayChange, errors}){
                     </button>
                 </div>
                 <div className="calendar__days">
-                    {days.map((day, index) => (
+                    {days.map((item, index) => (
                         <button
                             type="button"
                             key={index}
-                            onClick={() => day.currentMonth && handleDateSelect(day.day)}
-                            className={`calendar__days__btn ${day.currentMonth ? "calendar__days__btn__current" : "calendar__days__btn__other"} ${
-                            selectedDate?.getDate() === day.day && day.currentMonth ? "selected" : ""
+                            onClick={() => item.currentMonth && handleDateSelect(item.day)}
+                            className={`calendar__days__btn ${item.currentMonth ? "calendar__days__btn__current" : "calendar__days__btn__other"} ${
+                            selectedDate?.getDate() === item.day && item.currentMonth ? "selected" : ""
                             }`}
                         >
                             <span 
                                 className={`calendar__days__description 
-                                ${day.currentMonth ? "current-month" : "other-month"}
-                                ${selectedDate?.getDate() === day.day && day.currentMonth ? "selected-day" : ""}`}
+                                ${item.currentMonth ? "current-month" : "other-month"}
+                                ${selectedDate?.getDate() === item.day && item.currentMonth ? "selected-day" : ""}`}
                             >
-                                {day.day}</span>
+                                {item.day}</span>
                         </button>
                     ))}
                 </div>

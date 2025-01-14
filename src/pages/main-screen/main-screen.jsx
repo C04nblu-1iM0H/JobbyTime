@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import {useQuery } from '@tanstack/react-query';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { disabledScrollSteps } from '../../utils/service';
@@ -7,7 +7,7 @@ import Step from '../../components/step/step';
 import Loader from '../../components/loader/loader';
 import JobOpenings from '../../components/JobOpenings/JobOpenings';
 import TariffPlan from '../../components/TariffPlan/TariffPlan';
-import TariffPlanModal from '../../components/TariffPlanModal/TariffPlanModal';
+// import TariffPlanModal from '../../components/TariffPlanModal/TariffPlanModal';
 import ModalAiAutoApply from '../../components/ModalAiAutoApply/ModalAiAutoApply';
 import ModalDone from '../../components/ModalDone/ModalDone';
 import InformationBoard from '../../components/InformationBoard/InformationBoard';
@@ -19,6 +19,7 @@ import axios from 'axios';
 import { API } from '../../const';
 import { setUserData } from '../../store/userSlice';
 import UserFormModal from '../../components/UserFormModal/UserFormModal';
+// import { setDoneStep, setStateOnboard } from '../../store/stepSlice';
 
 function MainScreen(){
     const token = useSelector(state => state.token.token);
@@ -45,17 +46,46 @@ function MainScreen(){
         },
     });
 
+    //     const updateState = useMutation({
+    //     mutationFn: async (formData) => {
+    //         const response = await axios.post(API.UPDATE_STEPS, formData, {
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Authorization': `Bearer ${token}`,
+    //             },
+    //         });          
+    //         return response.data  
+    //     },
+    //     onSuccess: (response) => {
+    //         console.log(response);
+    //         dispatch(setStateOnboard(response.state_onbording));
+    //     },
+    //     onError: (error) => {
+    //         console.error('Error sending data:', error);
+
+    //     },
+    // })
+    // updateState.mutate({ update_step: "step1" });
+
+    // dispatch(setDoneStep({ step: 'stepDone1', value: false }))
+    // dispatch(setDoneStep({ step: 'stepDone2', value: false }))
+    // dispatch(setDoneStep({ step: 'stepDone3', value: false }))
+
     useEffect(() => {
         if(isSuccess && data !== undefined){
             Object.entries(data).forEach(([key, value]) => {
                 dispatch(setUserData({ data: key, value: value || "" }));
             }); 
         } 
+
+    }, [isSuccess, data, dispatch]);
+
+    useEffect(()=>{
         disabledScrollSteps(start, step0, step1, step2, step3, step4,);
-    }, [start, step0, step1, step2, step3, step4, isSuccess, data, dispatch]);
+    },  [start, step0, step1, step2, step3, step4])
 
 
-    if (isLoading) {
+    if (isLoading || isLoadingStep) {
         return <Loader />;
     }
     
@@ -74,7 +104,6 @@ function MainScreen(){
                 />,            
                 document.body
             )}
-            {isLoadingStep && (<Loader />)}
             {step0 && ReactDOM.createPortal(
                 <UserFormModal width="615px"/>,
                 document.body
