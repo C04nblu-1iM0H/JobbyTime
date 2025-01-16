@@ -27,17 +27,16 @@ body{
 
 
     &__title{
-        @include mixin.title('BricolageGrotesque_Bold', 48px, 52.8px, 800, -2px, hsla(0, 0%, 24%, 1));
+        @include mixin.title('BricolageGrotesque_Bold', 48px, 52.8px, 800, -2px, hsla(241, 68%, 62%, 1));
         padding: var.$p-8;
         text-align: center;
 
         &__link{
             border: 0;
             background: transparent;
-            color: hsla(241, 68%, 62%, 1)
+            color: hsla(0, 0%, 24%, 1)
         }
     }
-
 
     &__item{
         list-style-type: none;
