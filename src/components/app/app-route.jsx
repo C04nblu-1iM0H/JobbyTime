@@ -22,6 +22,7 @@ import DemographiQuestionsScreen from "../../pages/demographic-questions-screen/
 import IntegrationsScreen from "../../pages/Integrations-screen/Integrations-screen";
 import EmailScreen from "../../pages/email-screen/email-screen";
 import PasswordChangeScreen from "../../pages/password-change-screen/password-change-screen";
+import ImageLogoScreen from "../../pages/Image-logo-screen/Image-logo-screen";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,10 @@ export default function AppRoute() {
               element={<EmailScreen />} 
             />
             <Route 
+              path={AppRouting.LevetCoIcon}
+              element={<ImageLogoScreen />} 
+            />
+            <Route 
               path={AppRouting.PasswordСhange}
               element={<PasswordChangeScreen />} 
             />
@@ -52,7 +57,7 @@ export default function AppRoute() {
               element={<IsBotScreen />} 
             />
             {/* element={<ProtectedRoute />} */}
-            <Route  > 
+            <Route element={<ProtectedRoute />}> 
               <Route element={<PageHead />}>
                 <Route 
                   path={AppRouting.Profile}
@@ -103,7 +108,7 @@ export default function AppRoute() {
           </Routes>
         </BrowserRouter>
       </ReduxProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {process.env.NODE_ENV === "development" && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   );
 }

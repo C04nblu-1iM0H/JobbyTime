@@ -3,9 +3,15 @@ import { setSteps } from "../../store/stepSlice";
 import arrowRight from "../../assets/onboard/arrow.svg";
 import StepStatus from "../StepStatus/StepStatus";
 import ButtonComponent from "../button/ButtonComponent/ButtonComponent";
+import { useNavigate } from "react-router-dom";
 
 export default function ModalDone(){
     const dispatch = useDispatch();
+    const navigate = useNavigate(); 
+
+    const handleNavigate = () =>{
+        navigate('/auto-apply');
+    }
     return(
         <section className="modal">
             <div className="modal__container">
@@ -22,7 +28,7 @@ export default function ModalDone(){
                     />
                     <ButtonComponent 
                         type="button"
-                        ClickFunction={ () => dispatch(setSteps({ step: 'step4', value: false }))}
+                        ClickFunction={handleNavigate}
                         classNameButton={"modal__footer__button-save"}
                         textButton={"Applications queue"}
                         src={arrowRight}

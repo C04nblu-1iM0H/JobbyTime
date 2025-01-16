@@ -60,6 +60,7 @@ export const AppRouting = {
     SavedJobs: '#',
     PrivatePolicy:"/privacy-policy",
     bot:"/is-bot",
+    LevetCoIcon:"/jobbytime_logo_png_150x150.png",
     Integrations:"/integrations",
     NotFound : '*',
 };
